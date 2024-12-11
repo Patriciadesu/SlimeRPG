@@ -35,13 +35,44 @@ public class QuestManager : MonoBehaviour
         Debug.Log($"Started quest: {quest.name}");
     }
 
-    public void CheckObjective()
+    public void CheckObjective(int enemyID)
     {
+        if (currentQuest.objectives == null)
+        {
+            Debug.LogError("No objectives found.");
+            return;
+        }
 
+        bool allObjectivesCompleted = true;
+
+        for (int i = 0; i < currentQuest.objectives.Count; i++)
+        {
+            var objective = currentQuest.objectives[i];
+
+            if (objective.enemyID == enemyID && objective.currentAmount < objective.requiredAmount)
+            {
+                objective.currentAmount++;
+                currentQuest.objectives[i] = objective;
+                Debug.Log($"Objective '{objective.name}' progressed: {objective.currentAmount}/{objective.requiredAmount}");
+            }
+
+            if (objective.currentAmount < objective.requiredAmount)
+            {
+                allObjectivesCompleted = false;
+            }
+        }
+
+        if (allObjectivesCompleted)
+        {
+            CompleteQuest();
+        }
     }
+
+
 
     public void CompleteQuest()
     {
+        Debug.Log($"Quest '{currentQuest.name}' completed!");
         isFinish = true;
     }
 }

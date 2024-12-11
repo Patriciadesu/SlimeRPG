@@ -8,17 +8,18 @@ public struct QuestObjective
 
     public void OnQuestStart()
     {
+        GameManager.BattleReport += UpdateProgress;
         currentAmount = 0;
     }
-    public void OnProgressing()
+    public void UpdateProgress(Enemy enemy)
     {
-
+        /*
+        if (enemy.id == enemyID) currentAmount++;
+        */
+        if (currentAmount >= requiredAmount) CompleteObjective();
     }
-    public void OnCompletion()
+    public void CompleteObjective()
     {
-        if (currentAmount >= requiredAmount)
-        {
-
-        }
+        
     }
 }
