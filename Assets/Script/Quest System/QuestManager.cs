@@ -21,15 +21,10 @@ public class QuestManager : MonoBehaviour
         }
 
         string questID = npcQuestIDs[questIndex];
-        Quest selectedQuest = allQuests.Find(quest => quest.questID == questID);
-
-        if (selectedQuest != null && !selectedQuest.isComplete)
+        Quest? selectedQuest = allQuests.Find(quest => quest.questID == questID);
+        if (selectedQuest != null)
         {
-            StartQuest(selectedQuest);
-        }
-        else
-        {
-            Debug.Log("Quest already completed or does not exist.");
+            StartQuest((Quest)selectedQuest);
         }
     }
 
