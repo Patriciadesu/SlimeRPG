@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> allQuests = new List<Quest>();
     public Quest currentQuest;
@@ -35,7 +35,7 @@ public class QuestManager : MonoBehaviour
         Debug.Log($"Started quest: {quest.name}");
     }
 
-    public void CheckObjective(int enemyID)
+    public void CheckObjective()
     {
         if (currentQuest.objectives == null)
         {
@@ -49,13 +49,6 @@ public class QuestManager : MonoBehaviour
         {
             var objective = currentQuest.objectives[i];
 
-            if (objective.enemyID == enemyID && objective.currentAmount < objective.requiredAmount)
-            {
-                objective.currentAmount++;
-                currentQuest.objectives[i] = objective;
-                Debug.Log($"Objective '{objective.name}' progressed: {objective.currentAmount}/{objective.requiredAmount}");
-            }
-
             if (objective.currentAmount < objective.requiredAmount)
             {
                 allObjectivesCompleted = false;
@@ -67,9 +60,6 @@ public class QuestManager : MonoBehaviour
             CompleteQuest();
         }
     }
-
-
-
     public void CompleteQuest()
     {
         Debug.Log($"Quest '{currentQuest.name}' completed!");

@@ -13,13 +13,11 @@ public struct QuestObjective
     }
     public void UpdateProgress(Enemy enemy)
     {
-        /*
-        if (enemy.id == enemyID) currentAmount++;
-        */
+        //if (enemy.id == enemyID) currentAmount++;
         if (currentAmount >= requiredAmount) CompleteObjective();
     }
     public void CompleteObjective()
     {
-        
+        QuestManager.Instance.CheckObjective();
     }
 }
