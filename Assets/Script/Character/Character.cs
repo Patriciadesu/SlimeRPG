@@ -1,16 +1,33 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] protected int _level = 1;
+    [SerializeField] protected float _maxHealth = 100;
+    [SerializeField] protected float health;
+    [SerializeField] protected float _attackDamage = 10;
+    [SerializeField] protected Skill normalAttack;
+    [SerializeField] protected float speed = 1;
+
+    protected abstract void Move(Vector2 velocity);
+
+    protected abstract void Attack();
+
+    public virtual void TakeDamage(float dmg)
     {
-        
+        health = Mathf.Max(health - dmg, 0);
+
+        if (health <= 0)
+            Die();
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Heal(float h)
     {
-        
+        health = Mathf.Max(health + h, _maxHealth);
+    }
+
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
     }
 }

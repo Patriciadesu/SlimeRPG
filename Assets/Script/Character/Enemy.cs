@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static Enemy closestEnemy
     {
-        
-    }
+        get
+        {
+            var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            float distance = Mathf.Infinity;
+            Enemy closestEnemy = null;
+
+            foreach (var enemy in enemies)
+            {
+                var enemyPos = enemy.transform.position;
+                enemyPos.z = 0;
+
+
+            }
+
+            return closestEnemy;
+        }
     }
 }
