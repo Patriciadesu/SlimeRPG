@@ -1,4 +1,4 @@
-
+[System.Serializable]
 public struct QuestObjective
 {
     public string name;
@@ -8,7 +8,7 @@ public struct QuestObjective
 
     public void OnQuestStart()
     {
-
+        currentAmount = 0;
     }
     public void OnProgressing()
     {
@@ -16,6 +16,9 @@ public struct QuestObjective
     }
     public void OnCompletion()
     {
+        if (currentAmount >= requiredAmount)
+        {
 
+        }
     }
 }
