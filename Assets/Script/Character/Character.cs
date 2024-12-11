@@ -2,13 +2,17 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
+    protected Rigidbody2D rb2D;
     [SerializeField] protected int _level = 1;
     [SerializeField] protected float _maxHealth = 100;
     [SerializeField] protected float health;
     [SerializeField] protected float _attackDamage = 10;
-    [SerializeField] protected NormalAttack normalAttack;
+    //[SerializeField] protected NormalAttack normalAttack;
     [SerializeField] protected float speed = 1;
 
+    protected virtual void Awake(){
+        rb2D = GetComponent<Rigidbody2D>();
+    }
     protected abstract void Move(Vector2 velocity);
 
     protected abstract void Attack();
