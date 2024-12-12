@@ -78,7 +78,7 @@ public class NPC : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(1080, 600);
         rectTransform.localPosition = new Vector3(0, 3, 0);
         button.onClick.AddListener(OnButtonClick);
-
+        //พังว้อยยยย ทำไมเพิ่ม Listener บ่ได้้้้
         #endregion
     }
 
