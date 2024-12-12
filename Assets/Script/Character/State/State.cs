@@ -20,27 +20,28 @@ public abstract class State
         EXIT
     }
 
-    public STATE _state;
-    protected EVENT _event;
+    protected EVENT _event = EVENT.ENTER;
     protected float runTime;
 
     protected Enemy enemy;
     protected float chaseDistance;
+    protected float attackDistance;
     protected Rigidbody2D rigidbody;
 
     protected State nextState;
 
-    public State(Enemy _enemy, float _chaseDistance)
+    public State(Enemy _enemy, float _chaseDistance, float _attackDistance)
     {
         enemy = _enemy;
         chaseDistance = _chaseDistance;
+        attackDistance = _attackDistance;
         rigidbody = _enemy.GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Enter()
     {
         _event = EVENT.UPDATE;
-        Debug.Log("ENTER STATE");
+        Debug.Log("ENTER STATE " + GetType().Name);
     }
 
     protected virtual void Update()
@@ -51,7 +52,7 @@ public abstract class State
     protected virtual void Exit()
     {
         _event = EVENT.UPDATE;
-        Debug.Log("EXIT STATE");
+        Debug.Log("EXIT STATE " + GetType().Name);
     }
 
     public State Process()
@@ -59,8 +60,10 @@ public abstract class State
         switch (_event)
         {
             case EVENT.ENTER:
+                Enter();
                 break;
             case EVENT.UPDATE:
+                Update();
                 break;
             case EVENT.EXIT:
                 Exit();
@@ -68,7 +71,7 @@ public abstract class State
                 return nextState;
         }
 
-        runTime += Time.fixedDeltaTime;
+        runTime += Time.deltaTime;
 
         return this;
     }

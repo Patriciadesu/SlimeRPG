@@ -36,23 +36,28 @@ public class Enemy : Character
 
     [SerializeField] private ActiveSkill[] skills;
     [SerializeField] private float chaseDistance;
+    [SerializeField] private float attackDistance;
     [SerializeField] private string rewardID;
 
     private State state;
 
-    private void Awake()
+    protected override void Awake()
     {
-        state = new Patrol(this, chaseDistance);
+        base.Awake();
+
+        chaseDistance = Mathf.Max(chaseDistance, attackDistance);
+
+        state = new Patrol(this, chaseDistance, attackDistance);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         state = state.Process();
     }
 
     public void Move(Vector2 velocity)
     {
-        rb2D.linearVelocity = velocity;
+        rb2D.linearVelocity = velocity.normalized * speed * 2.5f;
     }
 
     public void Attack()

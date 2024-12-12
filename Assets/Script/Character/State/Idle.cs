@@ -5,14 +5,15 @@ public class Idle : State
 {
     private float maxIdleTime;
 
-    public Idle(Enemy _enemy, float _chaseDistance) : base(_enemy, _chaseDistance)
+    public Idle(Enemy _enemy, float _chaseDistance, float _attackDistance) : base(_enemy, _chaseDistance, _attackDistance)
     {
 
     }
 
     protected override void Enter()
     {
-        maxIdleTime = Random.Range(0.4f, 1.2f);
+        maxIdleTime = Random.Range(1.5f, 5f);
+
         base.Enter();
     }
 
@@ -32,7 +33,7 @@ public class Idle : State
 
         if (distance <= chaseDistance)
         {
-            nextState = new Chase(enemy, chaseDistance);
+            nextState = new Chase(enemy, chaseDistance, attackDistance);
             _event = EVENT.EXIT;
         }
         else if (runTime <= maxIdleTime)
@@ -41,7 +42,7 @@ public class Idle : State
         }
         else
         {
-            nextState = new Patrol(enemy, chaseDistance);
+            nextState = new Patrol(enemy, chaseDistance, attackDistance);
             _event = EVENT.EXIT;
         }
     }

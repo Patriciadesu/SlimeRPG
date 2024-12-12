@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Chase : State
 {
-    public Chase(Enemy _enemy, float _chaseDistance) : base(_enemy, _chaseDistance)
+    public Chase(Enemy _enemy, float _chaseDistance, float _attackDistance) : base(_enemy, _chaseDistance, _attackDistance)
     {
 
     }
@@ -25,7 +25,21 @@ public class Chase : State
         var plrPos = Player.Instance.transform.position;
 
         var direction = (plrPos - enemyPos).normalized;
+        float distance = (plrPos - enemyPos).magnitude;
 
-        enemy.Move(direction);
+        if (distance <= attackDistance)
+        {
+            nextState = new Attack(enemy, chaseDistance, attackDistance);
+            _event = EVENT.EXIT;
+        }
+        else if (distance <= chaseDistance)
+        {
+            enemy.Move(direction);
+        }
+        else
+        {
+            nextState = new Idle(enemy, chaseDistance, attackDistance);
+            _event = EVENT.EXIT;
+        }
     }
 }
