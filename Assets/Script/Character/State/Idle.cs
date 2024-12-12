@@ -1,24 +1,48 @@
+using System.Collections;
 using UnityEngine;
 
 public class Idle : State
 {
-    public Idle(Enemy _thisChar, NormalAttack _normalAttack, ActiveSkill[] _skills, float _chaseDistance) : base(_thisChar, _normalAttack, _skills, _chaseDistance)
+    private float maxIdleTime;
+
+    public Idle(Enemy _enemy, float _chaseDistance) : base(_enemy, _chaseDistance)
     {
 
     }
 
     protected override void Enter()
     {
-        throw new System.NotImplementedException();
+        maxIdleTime = Random.Range(0.4f, 1.2f);
+        base.Enter();
     }
 
     protected override void Exit()
     {
-        throw new System.NotImplementedException();
+        base.Exit();
     }
 
     protected override void Update()
     {
-        throw new System.NotImplementedException();
+        base.Update();
+
+        var enemyPos = enemy.transform.position;
+        var plrPos = Player.Instance.transform.position;
+
+        float distance = (plrPos - enemyPos).magnitude;
+
+        if (distance <= chaseDistance)
+        {
+            nextState = new Chase(enemy, chaseDistance);
+            _event = EVENT.EXIT;
+        }
+        else if (runTime <= maxIdleTime)
+        {
+            enemy.Move(Vector2.zero);
+        }
+        else
+        {
+            nextState = new Patrol(enemy, chaseDistance);
+            _event = EVENT.EXIT;
+        }
     }
 }

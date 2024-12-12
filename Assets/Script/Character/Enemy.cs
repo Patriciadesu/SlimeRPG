@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
     public static Enemy closestEnemy
     {
@@ -35,17 +35,33 @@ public class Enemy : MonoBehaviour
     public int enemyID;
 
     [SerializeField] private ActiveSkill[] skills;
+    [SerializeField] private float chaseDistance;
     [SerializeField] private string rewardID;
 
     private State state;
 
     private void Awake()
     {
-        state = new Patrol();
+        state = new Patrol(this, chaseDistance);
     }
 
     private void FixedUpdate()
     {
+        state = state.Process();
+    }
 
+    public void Move(Vector2 velocity)
+    {
+        rb2D.linearVelocity = velocity;
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Attack");
+    }
+
+    protected override void Die()
+    {
+        base.Die();
     }
 }

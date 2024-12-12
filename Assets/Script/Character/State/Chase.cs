@@ -2,23 +2,30 @@ using UnityEngine;
 
 public class Chase : State
 {
-    public Chase(Enemy _thisChar, NormalAttack _normalAttack, ActiveSkill[] _skills, float _chaseDistance) : base(_thisChar, _normalAttack, _skills, _chaseDistance)
+    public Chase(Enemy _enemy, float _chaseDistance) : base(_enemy, _chaseDistance)
     {
 
     }
 
     protected override void Enter()
     {
-        throw new System.NotImplementedException();
+        base.Enter();
     }
 
     protected override void Exit()
     {
-        throw new System.NotImplementedException();
+        base.Exit();
     }
 
     protected override void Update()
     {
-        throw new System.NotImplementedException();
+        base.Update();
+
+        var enemyPos = enemy.transform.position;
+        var plrPos = Player.Instance.transform.position;
+
+        var direction = (plrPos - enemyPos).normalized;
+
+        enemy.Move(direction);
     }
 }

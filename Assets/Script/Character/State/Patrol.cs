@@ -2,23 +2,35 @@ using UnityEngine;
 
 public class Patrol : State
 {
-    public Patrol(Enemy _thisChar, NormalAttack _normalAttack, ActiveSkill[] _skills, float _chaseDistance) : base(_thisChar, _normalAttack, _skills, _chaseDistance)
+    private float maxPatrolTime;
+    private Vector2 patrolPos;
+
+    public Patrol(Enemy _enemy, float _chaseDistance) : base(_enemy, _chaseDistance)
     {
 
     }
 
     protected override void Enter()
     {
-        throw new System.NotImplementedException();
+        maxPatrolTime = Random.Range(1f, 3f);
+        patrolPos = RandomPatrolPosition();
+        base.Enter();
     }
 
     protected override void Exit()
     {
-        throw new System.NotImplementedException();
+        base.Exit();
     }
 
     protected override void Update()
     {
-        throw new System.NotImplementedException();
+        base.Update();
+
+
+    }
+
+    private Vector2 RandomPatrolPosition()
+    {
+        return Vector2.zero;
     }
 }

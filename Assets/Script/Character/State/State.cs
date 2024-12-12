@@ -22,29 +22,39 @@ public abstract class State
 
     public STATE _state;
     protected EVENT _event;
+    protected float runTime;
 
-    protected Enemy thisChar;
-    protected NormalAttack normalAttack;
-    protected ActiveSkill[] skills;
+    protected Enemy enemy;
     protected float chaseDistance;
+    protected Rigidbody2D rigidbody;
 
     protected State nextState;
 
-    public State(Enemy _thisChar, NormalAttack _normalAttack, ActiveSkill[] _skills, float _chaseDistance)
+    public State(Enemy _enemy, float _chaseDistance)
     {
-        thisChar = _thisChar;
-        normalAttack = _normalAttack;
-        skills = _skills;
+        enemy = _enemy;
         chaseDistance = _chaseDistance;
+        rigidbody = _enemy.GetComponent<Rigidbody2D>();
     }
 
-    protected abstract void Enter();
+    protected virtual void Enter()
+    {
+        _event = EVENT.UPDATE;
+        Debug.Log("ENTER STATE");
+    }
 
-    protected abstract void Update();
+    protected virtual void Update()
+    {
+        _event = EVENT.UPDATE;
+    }
 
-    protected abstract void Exit();
+    protected virtual void Exit()
+    {
+        _event = EVENT.UPDATE;
+        Debug.Log("EXIT STATE");
+    }
 
-    protected State Process()
+    public State Process()
     {
         switch (_event)
         {
@@ -57,6 +67,8 @@ public abstract class State
                 onEventChanged?.Invoke();
                 return nextState;
         }
+
+        runTime += Time.fixedDeltaTime;
 
         return this;
     }

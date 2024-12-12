@@ -2,32 +2,32 @@ using UnityEngine;
 
 public class Attack : State
 {
-    public Attack(Enemy _thisChar, NormalAttack _normalAttack, ActiveSkill[] _skills, float _chaseDistance) : base(_thisChar, _normalAttack, _skills, _chaseDistance)
+    public Attack(Enemy _enemy, float _chaseDistance) : base(_enemy, _chaseDistance)
     {
 
     }
 
     protected override void Enter()
     {
-        _event = EVENT.UPDATE;
+        enemy.Attack();
+        base.Enter();
     }
 
     protected override void Exit()
     {
-        var enemyPos = thisChar.transform.position;
-        var plrPos = Player.Instance.transform.position;
-
-        float distance = (plrPos - enemyPos).magnitude;
-
-        if (distance <= chaseDistance)
-        {
-            nextState = new Patrol(thisChar);
-            _event = EVENT.EXIT;
-        }
+        base.Exit();
     }
 
     protected override void Update()
     {
-        _event = EVENT.UPDATE;
+        base.Update();
+        // wait for animation ended
+        // set nextState value
+
+        if (runTime >= 3)
+        {
+            nextState = new Patrol(enemy, chaseDistance);
+            _event = EVENT.EXIT;
+        }
     }
 }

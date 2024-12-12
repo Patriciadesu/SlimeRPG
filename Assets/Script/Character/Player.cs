@@ -37,7 +37,7 @@ public class Player : Character
         PlayerInput();
     }
 
-    protected override void Attack()
+    protected void Attack()
     {
         
     }
@@ -48,7 +48,7 @@ public class Player : Character
         Move(movement);
     }
 
-    protected override void Move(Vector2 velocity)
+    protected void Move(Vector2 velocity)
     {
         rb2D.linearVelocity = velocity;
     }
