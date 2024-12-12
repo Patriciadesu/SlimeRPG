@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int enemyID;
     public static Enemy closestEnemy
     {
         get

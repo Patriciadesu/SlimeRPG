@@ -33,6 +33,11 @@ public class QuestManager : Singleton<QuestManager>
         currentQuest = quest;
         isFinish = false;
         Debug.Log($"Started quest: {quest.name}");
+        for (int i = 0; i < currentQuest.objectives.Count; i++)
+        {
+            var objective = currentQuest.objectives[i];
+            objective.StartObjective();
+        }
     }
 
     public void CheckObjective()
@@ -54,15 +59,13 @@ public class QuestManager : Singleton<QuestManager>
                 allObjectivesCompleted = false;
             }
         }
-
-        if (allObjectivesCompleted)
-        {
-            CompleteQuest();
-        }
+        if (allObjectivesCompleted) CompleteQuest();
+        
     }
     public void CompleteQuest()
     {
         Debug.Log($"Quest '{currentQuest.name}' completed!");
         isFinish = true;
+        //Add remove quest duay naa
     }
 }

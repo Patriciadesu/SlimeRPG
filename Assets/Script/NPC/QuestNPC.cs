@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class QuestNPC : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //serialize for testing quest
+    [SerializeField] private string[] npcMidQuestDialog;
+    [SerializeField] private string[] questAvailableList;
 
-    // Update is called once per frame
-    void Update()
+    public void GiveQuest(int index)
     {
-        
+        QuestManager.Instance.GetQuest(questAvailableList, index);
     }
+    public void CheckPlayerQuestStatus()
+    {
 
-    
+    }
+    public void PlayMidQuestDialog()
+    {
+
+    }
+    public void ChooseQuest()
+    {
+
+    }
 }
