@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuestManager : Singleton<QuestManager>
@@ -6,6 +7,14 @@ public class QuestManager : Singleton<QuestManager>
     public List<Quest> allQuests = new List<Quest>();
     public Quest currentQuest;
     public bool isFinish = false;
+
+
+    [Header("Current Quest UI")]
+    public TMP_Text questNameText;
+    public TMP_Text questDescriptionText;
+    public TMP_Text moneyRewardText;
+    public TMP_Text expRewardText;
+    public TMP_Text objectivesText;
 
     public void GetAllQuests() //get all quest from Database
     {
@@ -33,6 +42,7 @@ public class QuestManager : Singleton<QuestManager>
         currentQuest = quest;
         isFinish = false;
         Debug.Log($"Started quest: {quest.name}");
+        UpdateQuestUI();
         for (int i = 0; i < currentQuest.objectives.Count; i++)
         {
             var objective = currentQuest.objectives[i];
@@ -66,6 +76,40 @@ public class QuestManager : Singleton<QuestManager>
     {
         Debug.Log($"Quest '{currentQuest.name}' completed!");
         isFinish = true;
+        UpdateQuestUI();
+        currentQuest = default(Quest);
+        //currentQuest = null; may by use | Quest? currentQuest = null;
+        //Add Reward
         //Add remove quest duay naa
     }
+
+    public void UpdateQuestUI()
+    {
+        questNameText.text = $"Quest: {currentQuest.name}";
+        questDescriptionText.text = $"Description: {currentQuest.description}";
+        moneyRewardText.text = $"Money Reward: {currentQuest.moneyReward}";
+        expRewardText.text = $"EXP Reward: {currentQuest.expReward}";
+
+        if (isFinish)
+        {
+            objectivesText.text = "Quest Completed!";
+        }
+        else
+        {
+            string objectivesTextString = "Objectives:\n";
+            foreach (var objective in currentQuest.objectives)
+            {
+                if (objective.currentAmount >= objective.requiredAmount)
+                {
+                    objectivesTextString += $"<color=green>{objective.name}: {objective.currentAmount}/{objective.requiredAmount} completed</color>\n";
+                }
+                else
+                {
+                    objectivesTextString += $"{objective.name}: {objective.currentAmount}/{objective.requiredAmount} in progress\n";
+                }
+            }
+            objectivesText.text = objectivesTextString;
+        }
+    }
+
 }
