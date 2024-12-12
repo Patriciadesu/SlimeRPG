@@ -2,23 +2,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int enemyID;
     public static Enemy closestEnemy
     {
         get
         {
             var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
 
-            var plrPos = Player.Instance.transform.position;
             float distance = Mathf.Infinity;
             Enemy closestEnemy = null;
+
+            var plrPos = Player.Instance.transform.position;
+            plrPos.z = 0;
 
             foreach (var enemy in enemies)
             {
                 var enemyPos = enemy.transform.position;
                 enemyPos.z = 0;
 
-                float newDistance = (plrPos - enemyPos).magnitude;
+                float newDistance = (enemyPos - plrPos).magnitude;
 
                 if (newDistance < distance)
                 {
@@ -31,8 +32,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public string ID { get { return _id; } }
-    [SerializeField] private string _id;
+    public int enemyID;
 
     [SerializeField] private ActiveSkill[] skills;
     [SerializeField] private string rewardID;

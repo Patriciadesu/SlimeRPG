@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Skill : MonoBehaviour
+public abstract class Skill : ScriptableObject
 {
     protected int level = 1;
     protected float damage;
