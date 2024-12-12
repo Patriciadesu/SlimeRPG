@@ -44,13 +44,13 @@ public class Player : Character
     private void PlayerInput(){
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        Vector2 movement = new Vector2(x,y) * speed;
+        Vector2 movement = new Vector2(x,y);
         Move(movement);
     }
 
     protected void Move(Vector2 velocity)
     {
-        rb2D.linearVelocity = velocity;
+        rb2D.linearVelocity = velocity * speed * 3;
     }
 
     protected override void Die()
