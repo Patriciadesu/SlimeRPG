@@ -66,5 +66,6 @@ public class QuestManager : Singleton<QuestManager>
     {
         Debug.Log($"Quest '{currentQuest.name}' completed!");
         isFinish = true;
+        //Add remove quest duay naa
     }
 }
