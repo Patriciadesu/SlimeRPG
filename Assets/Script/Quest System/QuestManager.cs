@@ -42,12 +42,12 @@ public class QuestManager : Singleton<QuestManager>
         currentQuest = quest;
         isFinish = false;
         Debug.Log($"Started quest: {quest.name}");
-        UpdateQuestUI();
         for (int i = 0; i < currentQuest.objectives.Count; i++)
         {
             var objective = currentQuest.objectives[i];
             objective.StartObjective();
         }
+        UpdateQuestUI();
     }
 
     public void CheckObjective()

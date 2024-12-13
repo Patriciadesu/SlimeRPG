@@ -19,6 +19,9 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
     public Image itemImage;
     public TextMeshProUGUI itemCountText;
 
+    public GameObject selectedShader;
+    public bool thisItemSelected;
+
     public void AddItem(Item item){
         this.item = item;
         hasItem = true;
@@ -47,7 +50,9 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left){ //IDK if this code is valid or not i cannot remember
+        if(eventData.button == PointerEventData.InputButton.Left){
+            selectedShader.SetActive(true);
+            this.isSelected = true;
             Selected();
         }
     }
