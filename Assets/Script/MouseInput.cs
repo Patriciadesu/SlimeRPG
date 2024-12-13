@@ -4,7 +4,13 @@ using UnityEngine;
 public class MouseInput : MonoBehaviour 
 {
     public List<Enemy> targetSelecting;
-    public GameObject mouseObject;  
+    public GameObject mousePrefab;
+    GameObject mouse;
+
+    void Awake()
+    {
+        mouse = Instantiate(mousePrefab , this.transform);
+    }
     void Update()
     {
         DebugInput();
@@ -14,7 +20,7 @@ public class MouseInput : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector2 newPosition = new Vector2(worldPosition.x, worldPosition.y);
-        mouseObject.transform.position = newPosition;
+        mouse.transform.position = newPosition;
     }
     
     public void AddEnemy(){

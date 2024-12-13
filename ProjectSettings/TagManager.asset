@@ -48,6 +48,15 @@ TagManager:
   - name: Object
     uniqueID: 3839806831
     locked: 0
+  - name: Enemy
+    uniqueID: 1946513497
+    locked: 0
+  - name: Player
+    uniqueID: 1891191911
+    locked: 0
+  - name: Mouse
+    uniqueID: 2398626121
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
