@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 using UnityEngine;
 
@@ -15,6 +16,9 @@ public class Player : Character
     [Header("Collectable")]
     private float collectItemRange;
 
+    [Header("Skill")]
+    public Dash dashSkill; // Reference to the Dash skill
+    public SuperSpeed superSpeedSkill; // เพิ่มตัวแปรเพื่อเก็บ SuperSpeed skill
     // [Header("Skill")]
     // public Skill activeSkill1;
     // public Skill activeSkill2;
@@ -42,6 +46,11 @@ public class Player : Character
         
     }
     private void PlayerInput(){
+
+        if (Input.GetKeyDown(KeyCode.Q) && superSpeedSkill != null)
+        {
+            superSpeedSkill.OnUse(); // เรียกใช้ SuperSpeed skill
+        }
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x,y);
@@ -57,5 +66,10 @@ public class Player : Character
     {
         // Do something with die mechanics
         base.Die();
+    }
+
+    internal void Move_2(Vector2 vector2)
+    {
+        throw new NotImplementedException();
     }
 }
