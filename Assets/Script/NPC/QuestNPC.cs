@@ -62,5 +62,7 @@ public class QuestNPC : NPC
     public void GetQuest(int QuestIndex)
     {
         GiveQuest(QuestIndex);
+        QuestUI.SetActive(false);
+        dialogInterface.SetActive(false);
     }
 }
