@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      legacy_atlas2_0: 3710916370121243187
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
