@@ -7,6 +7,7 @@ public abstract class Skill : ScriptableObject
     protected float damage;
     public string name;
     public string description;
+    public Sprite skillSprite;
     public float price;
     public bool have;
     public float coolDown;
