@@ -1,10 +1,19 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public struct Reward
 {
     public string rewardID;
-    public List<Item> itemIDs;
+    public List<ItemReward> items;
     public int exp;
     public int coin;
 }
+
+public struct ItemReward
+{
+    public string itemID;
+    public float dropRate;
+}
+
+

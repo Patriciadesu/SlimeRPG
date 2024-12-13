@@ -14,10 +14,16 @@ public class RewardManager : MonoBehaviour
     {
         Reward rewardToGive = rewards[rewardIndex];
         
-        for (int i = 0; i < rewardToGive.itemIDs.Count; i++)
+        for (int i = 0; i < rewardToGive.items.Count; i++)
         {
-            Inventory.Instance.AddItem(rewardToGive.itemIDs[i]);
+            if (Random.Range(0, 1) > rewardToGive.items[i].dropRate)
+            {
+                continue;
+            }
+
+            // add item to inventory... Inventory.Instance.AddItem(rewardToGive.items[i]);
         }
+        
         Player.Instance.exp += rewardToGive.exp;
         Player.Instance.coin += rewardToGive.coin;
     }
