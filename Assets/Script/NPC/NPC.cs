@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour , IInteractable
 {
     [SerializeField] protected string npcName;
     [SerializeField] protected string[] npcDialog;
@@ -15,13 +15,14 @@ public class NPC : MonoBehaviour
         currentDialog = 1;
     }
 
-
+    
     protected virtual void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             currentDialog = 1;
             dialogInterface.SetActive(true);
+            Interact();
             
         }
         DialogSystem();
@@ -48,4 +49,9 @@ public class NPC : MonoBehaviour
         }
     }
 
+    public void Interact()
+    {
+        currentDialog = 1;
+        dialogInterface.SetActive(true);
+    }
 }
