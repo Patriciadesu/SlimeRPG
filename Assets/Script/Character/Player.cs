@@ -18,8 +18,10 @@ public class Player : Character
     private float collectItemRange;
 
     [Header("Skill")]
-    public Dash dashSkill; // Reference to the Dash skill
-    public SuperSpeed superSpeedSkill; // ��������������� SuperSpeed skill
+    private Dash dashSkill; // Reference to the Dash skill
+    private SuperSpeed superSpeedSkill; // เพิ่มตัวแปรเพื่อเก็บ SuperSpeed skill
+    private SprintToEnemy SprintToEnemy;// เพิ่มตัวแปรเพื่อเก็บ SprintToEnemy
+    private Teleport Teleport;// เพิ่มตัวแปรเพื่อเก็บ Teleport
     // [Header("Skill")]
     // public Skill activeSkill1;
     // public Skill activeSkill2;
@@ -49,10 +51,12 @@ public class Player : Character
     }
     private void PlayerInput(){
 
+        // กด Q เพื่อใช้ ..... Skill
         if (Input.GetKeyDown(KeyCode.Q) && superSpeedSkill != null)
         {
-            superSpeedSkill.OnUse(); // ���¡�� SuperSpeed skill
+            StartCoroutine(superSpeedSkill.OnUse());
         }
+
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x,y);

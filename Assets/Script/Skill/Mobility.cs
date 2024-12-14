@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Mobility : Skill
 {
@@ -12,19 +13,109 @@ public class Mobility : Skill
         yield break;
     }
 }
-
+[CreateAssetMenu(fileName = "Dash", menuName = "Skill/Mobility/Dash", order = 1)]
 public class Dash : Mobility
 {
-    //เดี๋ยวเขียนแก้ใหม่ เขียนผิด
-}
+    public float dashSpeed = 10f; // speed of the dash
+    public float dashDistance = 5f; // maximum dash distance
+    private Camera mainCamera;
 
-public class Teleport : Mobility
-{
-    public float Distance;
+    private void Awake()
+    {
+        // get main Camera
+        mainCamera = Camera.main;
+    }
 
     public override IEnumerator OnUse()
     {
-        Debug.Log("Using Teleport skill with distance: " + Distance);
+        Player character = Player.Instance; // reference to the player character
+        if (character == null || mainCamera == null)
+        {
+            Debug.LogError("Player or Camera is missing!");
+            yield break;
+        }
+
+        // get mouse position on the screen
+        Vector3 mousePosition = Input.mousePosition;
+
+        // convert mouse position from screen space to world space
+        Vector2 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+
+        // calculate the direction from the player to the target position
+        Vector2 characterPosition = character.transform.position;
+        Vector2 direction = (worldPosition - characterPosition).normalized;
+
+        // clamp the dash distance to the maximum dash distance
+        Vector2 targetPosition = characterPosition + Vector2.ClampMagnitude(worldPosition - characterPosition, dashDistance);
+        // start the dash
+        yield return DashMovement(character, targetPosition);
+    }
+
+    private IEnumerator DashMovement(Character character, Vector2 targetPosition)
+    {
+        Vector2 startPosition = character.transform.position; // starting position
+        float journeyTime = Vector2.Distance(startPosition, targetPosition) / dashSpeed; // time required for the dash
+        float elapsedTime = 0f;
+
+        // smooth movement during the dash
+        while (elapsedTime < journeyTime)
+        {
+            elapsedTime += Time.deltaTime;
+            character.transform.position = Vector2.Lerp(startPosition, targetPosition, elapsedTime / journeyTime);
+            yield return null;
+        }
+
+        // set the character's position to the target position
+        character.transform.position = targetPosition;
+
+        Debug.Log($"Dash completed. Final position: {targetPosition}");
+    }
+}
+[CreateAssetMenu(fileName = "Teleport", menuName = "Skill/Mobility/Teleport", order = 1)]
+public class Teleport : Mobility
+{
+    public float maxTeleportDistance = 10f; // maximum teleport distance
+    private Camera mainCamera;
+
+    private void Awake()
+    {
+        // get main Camera
+        mainCamera = Camera.main;
+    }
+
+    public override IEnumerator OnUse()
+    {
+        Player character = Player.Instance; // อ้างอิงตัวละครผู้เล่น
+        if (character == null || mainCamera == null)
+        {
+            Debug.LogError("Player or Camera is missing!");
+            yield break;
+        }
+
+        // detect click position in world space
+        if (Input.GetMouseButtonDown(0)) // 0 = คลิกซ้าย
+        {
+            // ดึงตำแหน่งจากจุดที่คลิกในหน้าจอ
+            Vector3 mousePosition = Input.mousePosition; // mouse position on screen
+            Vector2 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition); // convert to World Position
+
+            //Calculate the distance from the character to the target position
+            Vector2 characterPosition = character.transform.position; // position player in game
+            float distance = Vector2.Distance(characterPosition, worldPosition); // calculate distance
+
+            // Check if the target position is within teleport range
+            if (distance <= maxTeleportDistance)
+            {
+                // teleport to target postion
+                character.transform.position = worldPosition;
+                Debug.Log($"Teleported to position: {worldPosition}");
+            }
+            else
+            {
+                Debug.Log("Target position is out of range.");
+            }
+        }
+
         yield break;
     }
 }
@@ -32,7 +123,7 @@ public class Teleport : Mobility
 [CreateAssetMenu(fileName = "SuperSpeed", menuName = "Skill/Mobility/SuperSpeed", order = 1)]
 public class SuperSpeed : Mobility
 {
-    public float UseTime = 10f; // Time to apply super speed in seconds
+    public float UseTime = 2f; // Time to apply super speed in seconds
     private float originalSpeed; // To store the character's original speed
 
     public override IEnumerator OnUse()
@@ -97,15 +188,54 @@ public class SuperSpeed : Mobility
         isSpeedActive = false;
     }*/
 }
-
+[CreateAssetMenu(fileName = "SprintToEnemy", menuName = "Skill/Mobility/SprintToEnemy", order = 1)]
 public class SprintToEnemy : Mobility
 {
-    public Enemy Enemy;
-    public float damageMultiplier;
+    public Enemy Enemy; // Reference to the enemy to sprint toward
+    public float sprintDistance = 2f; // Distance to sprint toward the enemy
+    public float damageMultiplier = 1.5f; // Damage multiplier after sprinting
 
     public override IEnumerator OnUse()
     {
-        Debug.Log("Using SprintToEnemy skill on enemy: " + Enemy + " with damage multiplier: " + damageMultiplier);
-        yield break;
+        Player character = Player.Instance;
+        if (Enemy != null && character != null)
+        {
+            Debug.Log("Using SprintToEnemy skill on enemy: " + Enemy.name + " with damage multiplier: " + damageMultiplier);
+
+            // Calculate direction from the player to enemy
+            Vector3 directionToEnemy = (Enemy.transform.position - character.transform.position).normalized;
+
+            // calculate the new position to move to
+            Vector3 sprintPosition = character.transform.position + directionToEnemy * sprintDistance;
+
+            // move player to new position
+            yield return SprintMovement(character, sprintPosition);
+
+            // after sprint, increase the character's damage
+            character.Damage *= damageMultiplier;
+            Debug.Log("Damage increased by multiplier: " + damageMultiplier);
+
+            // revert damage increase after a period of time
+            yield return new WaitForSeconds(2f);
+            character.Damage /= damageMultiplier;
+            Debug.Log("Damage reverted to original.");
+        }
+    }
+
+    private IEnumerator SprintMovement(Character character, Vector2 targetPosition)
+    {
+        float sprintSpeed = 10f;
+        float distance = Vector2.Distance(character.transform.position, targetPosition);
+        float journeyTime = distance / sprintSpeed;
+        float startTime = Time.time;
+
+        // move toward the target position
+        while (Time.time - startTime < journeyTime)
+        {
+            character.transform.position = Vector2.Lerp(character.transform.position, targetPosition, (Time.time - startTime) / journeyTime);
+            yield return null;
+        }
+
+        character.transform.position = targetPosition; // Ensure final position is accurate
     }
 }

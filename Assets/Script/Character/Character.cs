@@ -13,6 +13,11 @@ public abstract class Character : MonoBehaviour
     protected virtual void Awake() {
         rb2D = GetComponent<Rigidbody2D>();
     }
+    public float Damage
+    {
+        get => _attackDamage; // อ่านค่า
+        set => _attackDamage = Mathf.Max(value, 0); // เขียนค่าและป้องกันค่าติดลบ
+    }
     public float Speed
     {
         get { return speed; }
