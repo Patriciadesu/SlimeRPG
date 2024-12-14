@@ -50,7 +50,7 @@ public class QuestNPC : NPC
         }
         nameText.text = npcName;
 
-        if (currentDialog < npcDialog.Length + 1)
+        if (currentDialog > 0 && currentDialog <= npcDialog.Length)
         {
             dialogText.text = npcDialog[currentDialog - 1];
         }
@@ -69,7 +69,7 @@ public class QuestNPC : NPC
     public override void Interact()
     {
         base.Interact();
-        QuestUI.SetActive(false);
+        QuestUI.SetActive(true);
 
 
     }

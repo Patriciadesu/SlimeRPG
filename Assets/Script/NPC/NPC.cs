@@ -38,8 +38,8 @@ public class NPC : MonoBehaviour , IInteractable
             }
         }
         nameText.text = npcName;
-        
-        if (currentDialog < npcDialog.Length + 1)
+
+        if (currentDialog > 0 && currentDialog <= npcDialog.Length)
         {
             dialogText.text = npcDialog[currentDialog - 1];
         }
