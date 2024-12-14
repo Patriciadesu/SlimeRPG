@@ -23,6 +23,7 @@ public class QuestObjective
             Debug.Log($" {currentAmount} Enemy killed");
         }
         if (currentAmount >= requiredAmount) CompleteObjective();
+        QuestManager.Instance.UpdateQuestUI();
     }
     public void CompleteObjective()
     {
