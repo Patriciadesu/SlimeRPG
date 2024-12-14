@@ -5,14 +5,14 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     protected int level = 1;
-    public string Name;
-    public string Description;
-    public Sprite skillSprite;
-    public float price;
-    public bool have;
+    public Sprite SkillSprite;
+    public string Name = string.Empty;
+    public string Description = string.Empty;
+    public bool Have = false;
+    [SerializeField] private float _price = 0f;
+    public float Price { get => _price; }
     public float coolDown;
     public bool isActive;
 
-    public virtual IEnumerator OnUseForEnemy(Enemy enemy) { yield return OnUse(); }
     public abstract IEnumerator OnUse();
 }

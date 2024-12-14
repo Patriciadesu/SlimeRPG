@@ -1,13 +1,8 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyAttackTest", menuName = "Skill/EnemyAttack/EnemyAttackTest", order = 1)]
-public class EnemyAttackTest : EnemyAttack
+public class EnemySkill1Test : EnemyAttack
 {
-    [SerializeField] private float knockbackPower;
-    [SerializeField] private Vector2 attackCast = new Vector2(5, 3);
-
     public override IEnumerator OnUse()
     {
         if (!isActive) yield break;
@@ -39,7 +34,7 @@ public class EnemyAttackTest : EnemyAttack
 
         animator.SetTrigger("attack");
 
-        var rays = Physics2D.BoxCastAll(
+        /*var rays = Physics2D.BoxCastAll(
             enemyPos,
             attackCast,
             Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg,
@@ -53,9 +48,8 @@ public class EnemyAttackTest : EnemyAttack
             if (ray.collider != null && ray.collider.TryGetComponent(out Player player))
             {
                 player.TakeDamage(damage);
-                player.GetComponent<Rigidbody2D>().AddRelativeForce(direction * knockbackPower);
             }
-        }
+        }*/
         ////////////////////////////////////
 
         yield return new WaitForSeconds(coolDown);

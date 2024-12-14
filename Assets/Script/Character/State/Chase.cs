@@ -23,6 +23,13 @@ public class Chase : State
     {
         base.Update();
 
+        if (Player.Instance == null)
+        {
+            nextState = new Patrol(enemy, chaseDistance, attackDistance);
+            _event = EVENT.EXIT;
+            return;
+        }
+
         var enemyPos = enemy.transform.position;
         var plrPos = Player.Instance.transform.position;
 

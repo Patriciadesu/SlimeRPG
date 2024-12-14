@@ -23,13 +23,16 @@ public class SkillManager : MonoBehaviour
 
     public IEnumerator UseSkill(Skill skill)
     {
-        yield return skill.OnUse();
+        if (skill != null)
+            yield return skill.OnUse();
         //yield return StartCoroutine(skill.OnUse());
     }
 
-    public IEnumerator UseSkill(Enemy enemy, Skill skill)
+    public IEnumerator UseSkill(Enemy enemy, EnemyAttack skill)
     {
-        yield return skill.OnUseForEnemy(enemy);
+        Debug.Log($"{enemy.name} use skill {skill.Name}");
+        if (enemy != null && skill != null)
+            yield return skill.OnUse(enemy);
         //yield return StartCoroutine(skill.OnUse());
     }
 }

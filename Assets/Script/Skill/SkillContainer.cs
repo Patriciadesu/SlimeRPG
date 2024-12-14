@@ -10,6 +10,6 @@ public class SkillContainer : MonoBehaviour , ICollectables
 
     void Awake()
     {
-        this.GetComponent<SpriteRenderer>().sprite = skill.skillSprite;
+        this.GetComponent<SpriteRenderer>().sprite = skill.SkillSprite;
     }
 }

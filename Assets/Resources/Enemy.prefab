@@ -57,7 +57,7 @@ MonoBehaviour:
   skills: []
   chaseDistance: 8
   attackDistance: 2
-  rewardID: 
+  rewardID: Test
 --- !u!50 &2596930575691481932
 Rigidbody2D:
   serializedVersion: 5

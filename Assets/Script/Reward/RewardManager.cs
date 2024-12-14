@@ -23,6 +23,8 @@ public class RewardManager : MonoBehaviour
     {
         Reward rewardToGive = rewards.Find(r => r.rewardID.Equals(rewardID));
 
+        Debug.Log(rewardToGive + " " + rewardToGive.rewardID);
+
         if (string.IsNullOrEmpty(rewardToGive.rewardID)) return;
 
         for (int i = 0; i < rewardToGive.items.Count; i++)

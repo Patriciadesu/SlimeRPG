@@ -13,6 +13,12 @@ public class PlayerAttackTest : NormalAttack
 
         isActive = false;
 
+        if (Player.Instance == null)
+        {
+            isActive = true;
+            yield break;
+        }
+
         ////////////// ATTACK //////////////
         float damage = Player.Instance.AttackDamage;
 

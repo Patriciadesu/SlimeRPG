@@ -6,11 +6,11 @@ using UnityEngine;
 public class Player : Character
 {
     [Header("Singleton")]
-    public static Player Instance{get; private set;}
+    public static Player Instance { get; private set; }
 
     [Header("Player Stats")]
-    public int Level { get { return _level; } }
-    public float MaxExp { get { return ((float)Math.Pow(1.1f, _level + 1)) * 100; } }
+    public int Level { get => _level; }
+    public float MaxExp { get => ((float)Math.Pow(1.1f, _level - 1)) * 100; }
     public float dodgeRate
     {
         get
@@ -35,10 +35,16 @@ public class Player : Character
         {
             _exp = value;
 
-            while (_exp >= MaxExp)
+            while (_exp >= MaxExp && _level < 100)
             {
                 _exp -= MaxExp;
                 _level++;
+            }
+
+            if (_level >= 100)
+            {
+                _level = 100;
+                _exp = Mathf.Min(_exp, MaxExp);
             }
         }
     }
@@ -63,9 +69,13 @@ public class Player : Character
 
     protected override void Awake()
     {
-        if(Instance != null && Instance != this){
+        if (Instance != null && Instance != this)
+        {
             Destroy(this);
-        }else{
+        }
+        else
+        {
+            transform.SetParent(null);
             Instance = this;
         }
         DontDestroyOnLoad(this);
@@ -89,17 +99,19 @@ public class Player : Character
         if (normalAttack != null)
             StartCoroutine(SkillManager.Instance.UseSkill(normalAttack));
     }
-    private void PlayerInput(){
 
+    private void PlayerInput()
+    {
         // กด Q เพื่อใช้ ..... Skill
         if (Input.GetKeyDown(KeyCode.Q) && superSpeedSkill != null)
         {
-            StartCoroutine(superSpeedSkill.OnUse());
+            StartCoroutine(SkillManager.Instance.UseSkill(superSpeedSkill));
         }
 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x,y);
+
         Move(movement);
     }
 
@@ -120,10 +132,5 @@ public class Player : Character
     {
         // Do something with die mechanics
         base.Die();
-    }
-
-    internal void Move_2(Vector2 vector2)
-    {
-        throw new NotImplementedException();
     }
 }

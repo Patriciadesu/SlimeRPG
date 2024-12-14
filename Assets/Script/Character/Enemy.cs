@@ -37,7 +37,7 @@ public class Enemy : Character
 
     public int id;
 
-    [SerializeField] private ActiveSkill[] skills;
+    [SerializeField] private EnemyAttack[] skills;
     [SerializeField] private float chaseDistance;
     [SerializeField] private float attackDistance;
     [SerializeField] private string rewardID;
@@ -82,7 +82,7 @@ public class Enemy : Character
         }
         else if (normalAttack != null && normalAttack.isActive)
         {
-            StartCoroutine(SkillManager.Instance.UseSkill(this, normalAttack));
+            StartCoroutine(SkillManager.Instance.UseSkill(this, (EnemyAttack)normalAttack));
             return normalAttack;
         }
 

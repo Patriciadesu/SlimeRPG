@@ -6,11 +6,12 @@ using UnityEngine;
 public struct Reward
 {
     public string rewardID;
+    public float exp;
+    public float coin;
     public List<ItemReward> items;
-    public int exp;
-    public int coin;
 }
 
+[Serializable]
 public struct ItemReward
 {
     public string itemID;

@@ -1535,6 +1535,55 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &961096996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 961096998}
+  - component: {fileID: 961096997}
+  m_Layer: 0
+  m_Name: RewardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &961096997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961096996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da94de9103673d946aefe621e4a01c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewards:
+  - rewardID: Test
+    exp: 3.4028235e+38
+    coin: 3.402823e+38
+    items: []
+--- !u!4 &961096998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961096996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.2186, y: -1.7605786, z: 0.019031176}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1062757664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,10 +2869,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1685072512248702956, guid: eed96b0a93c7dcd40a179542ca82109d, type: 3}
-      propertyPath: normalAttack
-      value: 
-      objectReference: {fileID: 11400000, guid: b987493a651029e488ba7ef791779290, type: 2}
     - target: {fileID: 3679969487491694069, guid: eed96b0a93c7dcd40a179542ca82109d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2885,6 +2930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2686096219924486610, guid: b17b1e4464c4eb24d8faadd46fd5d165, type: 3}
+      propertyPath: rewardID
+      value: Test
+      objectReference: {fileID: 0}
     - target: {fileID: 4306066718991140909, guid: b17b1e4464c4eb24d8faadd46fd5d165, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2942,3 +2991,4 @@ SceneRoots:
   - {fileID: 1232280291}
   - {fileID: 644249433}
   - {fileID: 219215381}
+  - {fileID: 961096998}

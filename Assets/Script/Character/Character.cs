@@ -4,10 +4,10 @@ public abstract class Character : MonoBehaviour
 {
     protected Rigidbody2D rb2D;
     [SerializeField] protected int _level = 1;
-    public float MaxHealth { get { return _maxHealth + (_maxHealth * _level * 0.2f); } }
+    public float MaxHealth { get => _maxHealth + (_maxHealth * (_level - 1) * 0.2f); }
     [SerializeField] private float _maxHealth = 100;
     public float health { get; protected set; }
-    public float AttackDamage { get { return _attackDamage + (_attackDamage * _level * 0.2f); } }
+    public float AttackDamage { get => _attackDamage + (_attackDamage * (_level - 1) * 0.2f); }
     [SerializeField] private float _attackDamage = 10;
     [SerializeField] protected NormalAttack normalAttack;
     [SerializeField] protected float speed = 1;
@@ -15,6 +15,7 @@ public abstract class Character : MonoBehaviour
     protected virtual void Awake() {
         rb2D = GetComponent<Rigidbody2D>();
 
+        _level = Mathf.Max(_level, 1);
         health = MaxHealth;
     }
     public float Damage
