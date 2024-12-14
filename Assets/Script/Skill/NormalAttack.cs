@@ -1,9 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-public class NormalAttack : Skill
+public abstract class NormalAttack : Skill
 {
-    public override void OnUse()
-    {
 
-    }
 }

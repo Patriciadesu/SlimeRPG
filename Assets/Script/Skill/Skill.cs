@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,13 +6,13 @@ public abstract class Skill : ScriptableObject
 {
     protected int level = 1;
     protected float damage;
-    public string name;
-    public string description;
+    public string Name;
+    public string Description;
     public Sprite skillSprite;
     public float price;
     public bool have;
     public float coolDown;
-    public bool canUse;
+    public bool isActive;
 
-    public abstract void OnUse();
+    public abstract IEnumerator OnUse();
 }

@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Mobility : Skill
 {
     public ActivateType activateType;
-    public override void OnUse()
+    public override IEnumerator OnUse()
     {
         Debug.Log("Using Mobility skill");
+        yield break;
     }
 }
 
@@ -22,22 +22,50 @@ public class Teleport : Mobility
 {
     public float Distance;
 
-    public override void OnUse()
+    public override IEnumerator OnUse()
     {
         Debug.Log("Using Teleport skill with distance: " + Distance);
+        yield break;
     }
 }
 
+[CreateAssetMenu(fileName = "SuperSpeed", menuName = "Skill/Mobility/SuperSpeed", order = 1)]
 public class SuperSpeed : Mobility
 {
     public float UseTime = 10f; // Time to apply super speed in seconds
     private float originalSpeed; // To store the character's original speed
-    private bool isSpeedActive = false; // To track if speed boost is active
 
-    public override void OnUse()
+    public override IEnumerator OnUse()
     {
+        if (!isActive) yield break;
+
+        isActive = false;
+
+        Player character = Player.Instance;
+
+        if (character == null)
+        {
+            isActive = true;
+            yield break;
+        }
+
+        originalSpeed = character.Speed; // Store the original speed
+        character.Speed *= 2; // Increase speed by a factor of 2 (or any desired value)
+
+        yield return new WaitForSeconds(UseTime);
+
+        // Revert the speed to original value
+        if (character != null)
+        {
+            character.Speed = originalSpeed;
+        }
+
+        yield return new WaitForSeconds(coolDown);
+
+        isActive = true;
+
         // Check if the speed is not already boosted
-        if (!isSpeedActive)
+        /*if (!isSpeedActive)
         {
             isSpeedActive = true;
             Debug.Log("Using SuperSpeed skill for " + UseTime + " seconds");
@@ -51,15 +79,10 @@ public class SuperSpeed : Mobility
 
             // Start the timer to revert speed after UseTime seconds
             CoroutineRunner.instance.StartCoroutine(SpeedCooldown());
-        }
+        }*/
     }
 
-    private T GetComponent<T>()
-    {
-        throw new NotImplementedException();
-    }
-
-    private IEnumerator SpeedCooldown()
+    /*private IEnumerator SpeedCooldown()
     {
         yield return new WaitForSeconds(UseTime);
 
@@ -72,7 +95,7 @@ public class SuperSpeed : Mobility
 
         Debug.Log("SuperSpeed expired, reverting speed.");
         isSpeedActive = false;
-    }
+    }*/
 }
 
 public class SprintToEnemy : Mobility
@@ -80,8 +103,9 @@ public class SprintToEnemy : Mobility
     public Enemy Enemy;
     public float damageMultiplier;
 
-    public override void OnUse()
+    public override IEnumerator OnUse()
     {
         Debug.Log("Using SprintToEnemy skill on enemy: " + Enemy + " with damage multiplier: " + damageMultiplier);
+        yield break;
     }
 }

@@ -1,12 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class ActiveSkill : Skill
 {
     public ActivateType activateType;
     public ActiveSkill NextStep;
-    public override void OnUse()
+    public override IEnumerator OnUse()
     {
         Debug.Log("Using ActiveSkill");
+        yield break;
     }
 }
 
@@ -19,17 +21,17 @@ public enum ActivateType
 
 public class LightBeamV1 : ActiveSkill
 {
-    public override void OnUse()
+    public override IEnumerator OnUse()
     {
-        base.OnUse();
+        yield return base.OnUse();
     }
 }
 
 public class LightBeamV2 : ActiveSkill
 {
-    public override void OnUse()
+    public override IEnumerator OnUse()
     {
-        base.OnUse();
+        yield return base.OnUse();
     }
 }
 

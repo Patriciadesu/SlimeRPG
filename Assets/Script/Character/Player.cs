@@ -6,8 +6,9 @@ public class Player : Character
 {
     [Header("Singleton")]
     public static Player Instance{get; private set;}
-    
+
     [Header("Player Stats")]
+    public float AttackDamage { get { return _attackDamage; } }
     public float dodgeRate{get; private set;}
     public float criticalRate{get; private set;}
     public float exp;
@@ -26,6 +27,7 @@ public class Player : Character
 
     // [Header("Inventory")]
     // public Inventory inventory;
+
     protected override void Awake()
     {
         if(Instance != null && Instance != this){
