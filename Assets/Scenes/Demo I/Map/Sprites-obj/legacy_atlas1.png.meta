@@ -187,6 +187,424 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_4
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 85
+        width: 11
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd0377bf640a05408da39f787fe47ed
+      internalID: 1088639460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_5
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 69
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e598d391217455a4f899174a02e43d78
+      internalID: 814669423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_6
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 52
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fbd789b1a3a3964b8cca2b8bf7e7938
+      internalID: -706175251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_7
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 51
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 400b6f2dd5818b241bb7f0f2a95aaa8c
+      internalID: 577087374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1
+        width: 16
+        height: 41
+      alignment: 9
+      pivot: {x: 0.4713974, y: 0.3023056}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e176bd68c4b36145a17da1af9a153e7
+      internalID: 1920334511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_9
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1
+        width: 16
+        height: 41
+      alignment: 9
+      pivot: {x: 0.4918213, y: 0.28795683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04d8ef8a57bc184e95a20b4b95a3932
+      internalID: -857521618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_10
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 16
+        width: 16
+        height: 42
+      alignment: 9
+      pivot: {x: 0.45745468, y: 0.28279427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcf6a252cc296354ba790443500a54fb
+      internalID: -2104966503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_11
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 48
+        width: 16
+        height: 26
+      alignment: 9
+      pivot: {x: 0.48843384, y: 0.4241192}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842cf5e2fb544094ca3e762647f123a4
+      internalID: -49698385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_12
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 48
+        width: 16
+        height: 26
+      alignment: 9
+      pivot: {x: 0.52311325, y: 0.38617912}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b36b1890360e8c6448025c9096bf44d2
+      internalID: 646999201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_13
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 194
+        width: 29
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d29c181ea261882498963f4d317eddc1
+      internalID: -722015707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_14
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 210
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0514f91aee0a3a54ba696b9002d995a4
+      internalID: -646282679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_15
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 209
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bca9ed216956c33459d61acc80d2853a
+      internalID: 1515865176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_16
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 160
+        width: 15
+        height: 15
+      alignment: 9
+      pivot: {x: 0.4588501, y: 0.32792053}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ac4dd8af71c7c243860a12ddcf886ee
+      internalID: 128079238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_17
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 160
+        width: 15
+        height: 14
+      alignment: 9
+      pivot: {x: 0.47381184, y: 0.33166176}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3570a4fec4aaed2499e545047bfad93c
+      internalID: -1778138407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_18
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 160
+        width: 13
+        height: 10
+      alignment: 9
+      pivot: {x: 0.47841233, y: 0.2923828}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ed3b66d4e4e89841ab44da8655abe7b
+      internalID: 1261391606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_19
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 144
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda725a9834106641a4492cd2f0688ee
+      internalID: 1932085523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_20
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 144
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d63f7dca0303848832a6ae7f09057e
+      internalID: -870899156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_21
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 144
+        width: 15
+        height: 15
+      alignment: 9
+      pivot: {x: 0.47906902, y: 0.42674664}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72b522732444d354289abc5637905d6f
+      internalID: -795457208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas1_22
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 2
+        width: 11
+        height: 14
+      alignment: 9
+      pivot: {x: 0.4836419, y: 0.356026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86fe771c7681684688d4ab582300933
+      internalID: -1877865547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -203,8 +621,27 @@ TextureImporter:
     nameFileIdTable:
       legacy_atlas1_0: 4850768081375922639
       legacy_atlas1_1: 738618826
+      legacy_atlas1_10: -2104966503
+      legacy_atlas1_11: -49698385
+      legacy_atlas1_12: 646999201
+      legacy_atlas1_13: -722015707
+      legacy_atlas1_14: -646282679
+      legacy_atlas1_15: 1515865176
+      legacy_atlas1_16: 128079238
+      legacy_atlas1_17: -1778138407
+      legacy_atlas1_18: 1261391606
+      legacy_atlas1_19: 1932085523
       legacy_atlas1_2: 169498955
+      legacy_atlas1_20: -870899156
+      legacy_atlas1_21: -795457208
+      legacy_atlas1_22: -1877865547
       legacy_atlas1_3: -1331540651
+      legacy_atlas1_4: 1088639460
+      legacy_atlas1_5: 814669423
+      legacy_atlas1_6: -706175251
+      legacy_atlas1_7: 577087374
+      legacy_atlas1_8: 1920334511
+      legacy_atlas1_9: -857521618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

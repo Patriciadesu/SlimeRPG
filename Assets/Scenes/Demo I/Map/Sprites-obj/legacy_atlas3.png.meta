@@ -1188,12 +1188,12 @@ TextureImporter:
       name: legacy_atlas3_37
       rect:
         serializedVersion: 2
-        x: 449
-        y: 286
-        width: 45
-        height: 48
+        x: 400
+        y: 272
+        width: 15
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1276,10 +1276,10 @@ TextureImporter:
       name: legacy_atlas3_44
       rect:
         serializedVersion: 2
-        x: 481
-        y: 269
-        width: 46
-        height: 18
+        x: 482
+        y: 270
+        width: 44
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2544,6 +2544,138 @@ TextureImporter:
       bones: []
       spriteID: 700bc9df679fe0c00800000000000000
       internalID: 868906067585445895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas3_26
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 270
+        width: 29
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db9538deb5d0c5f4dbf79c4db98ed395
+      internalID: 1866359437038591509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas3_35
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 280
+        width: 15
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f68073d6224057544a8a565a4733677d
+      internalID: 7832309354397938595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas3_39
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 277
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb3365ae99e1674a8e2e22bb2014eb0
+      internalID: -4030366099860425052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas3_41
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 270
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5003cb5cea9365749bdb84722c06beb6
+      internalID: -5932497473100650289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas3_43
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 270
+        width: 12
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b20c6de67f958fe48bbf8ef87824c9c3
+      internalID: 5957717205185646477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legacy_atlas3_54
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 275
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e6b2748f3f1ba419c78fbd9d5e4e7a
+      internalID: 3376801299728798403
       vertices: []
       indices: 
       edges: []
