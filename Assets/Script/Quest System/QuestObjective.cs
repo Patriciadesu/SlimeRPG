@@ -5,9 +5,17 @@ using UnityEngine;
 public class QuestObjective
 {
     public string name;
-    public int enemyID;
+    public string enemyID;
     public int requiredAmount;
     public int currentAmount;
+
+    public QuestObjective(string _name,string _enemyID, int _requiredAmount)
+    {
+        this.name = _name;
+        this.enemyID = _enemyID;
+        this.requiredAmount = _requiredAmount;
+        this.currentAmount = 0;
+    }
 
     public void StartObjective()
     {

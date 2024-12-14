@@ -10,4 +10,14 @@ public struct Quest
     public int moneyReward;
     public int expReward;
     //public item reward;
+
+    public Quest(string _questID, string _name, string _description, int _moneyReward, int _expReward)
+    {
+        this.questID = _questID;
+        this.name = _name;
+        this.description = _description;
+        this.moneyReward = _moneyReward;
+        this.expReward = _expReward;
+        this.objectives = new List<QuestObjective>();
+    }
 }

@@ -23,11 +23,34 @@ public class QuestManager : Singleton<QuestManager>
     /// <summary>
     /// Get All Quest Data from database to QuestManager
     /// </summary>
-    public void GetAllQuests() //get all quest from Database
+    public void GetAllQuests()
     {
-        //allQuests = questsFromDatabase;
-        Debug.Log("All quests loaded from database.");
+        /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
+
+        allQuests.Clear();
+
+        foreach (sQuest squest in questsFromDatabase)
+        {
+            Quest quest = new Quest(squest._id, squest.name, squest.description, squest.reward.coin, squest.reward.xp);
+
+            foreach (string objectiveID in squest.Objective)
+            {
+                string name = "defaultName"; // more logic
+                string enemyID = "defaultEnemyID";  // more logic
+                int requiredAmount = 0; // more logic
+
+                QuestObjective objective = new QuestObjective(name, enemyID, requiredAmount);
+
+                quest.objectives.Add(objective);
+            }
+
+            allQuests.Add(quest);
+        }
+
+        Debug.Log("All quests loaded from database.");*/
     }
+
+
     public void GetQuest(string[] npcQuestIDs, int questIndex)
     {
         if(questIndex < 0 || questIndex >= npcQuestIDs.Length)
@@ -147,7 +170,7 @@ public class QuestManager : Singleton<QuestManager>
         public string name;
         public string description;
         public sReward reward;
-        public List<sObjective> Objective;
+        public List<string> Objective;
     }
 
     public class sObjective

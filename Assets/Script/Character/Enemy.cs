@@ -35,7 +35,7 @@ public class Enemy : Character
         }
     }
 
-    public int id;
+    public string id;
 
     [SerializeField] private ActiveSkill[] skills;
     [SerializeField] private float chaseDistance;
