@@ -5,9 +5,11 @@ public class NPC : MonoBehaviour , IInteractable
     [SerializeField] protected string npcName;
     [SerializeField] protected string[] npcDialog;
     [SerializeField] protected TMP_Text dialogText;
-    [SerializeField] protected TMP_Text nameText;
+    [SerializeField, Tooltip("this is a something we don't talk about")] protected TMP_Text nameText;
     [SerializeField] protected int currentDialog;
     [SerializeField] protected GameObject dialogInterface;
+    [Header("Key Input")]
+    [SerializeField] protected KeyCode dialogProgressingKey = KeyCode.Mouse0;
 
     protected virtual void Start()
     {
@@ -30,7 +32,7 @@ public class NPC : MonoBehaviour , IInteractable
     {
         if (dialogInterface.activeSelf)
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0)) 
+            if(Input.GetKeyDown(dialogProgressingKey)) 
             {
                 currentDialog += 1;
             }
@@ -47,9 +49,14 @@ public class NPC : MonoBehaviour , IInteractable
         }
     }
 
-    public void Interact()
+    public virtual void Interact()
     {
         currentDialog = 1;
         dialogInterface.SetActive(true);
+    }
+
+    public void UnInteract()
+    {
+        throw new System.NotImplementedException();
     }
 }

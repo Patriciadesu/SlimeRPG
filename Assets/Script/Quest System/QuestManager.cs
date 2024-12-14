@@ -20,7 +20,9 @@ public class QuestManager : Singleton<QuestManager>
     {
         currentQuest = default(Quest);
     }
-
+    /// <summary>
+    /// Get All Quest Data from database to QuestManager
+    /// </summary>
     public void GetAllQuests() //get all quest from Database
     {
         //allQuests = questsFromDatabase;
@@ -41,7 +43,10 @@ public class QuestManager : Singleton<QuestManager>
             StartQuest((Quest)selectedQuest);
         }
     }
-
+    /// <summary>
+    /// Start current Quest
+    /// </summary>
+    /// <param name="quest">current Quest</param>
     public void StartQuest(Quest quest)
     {
         if (!currentQuest.Equals(default(Quest)))
@@ -60,7 +65,7 @@ public class QuestManager : Singleton<QuestManager>
         }
         UpdateQuestUI();
     }
-
+    
     public void CheckObjective()
     {
         if (currentQuest.objectives == null)
@@ -121,6 +126,19 @@ public class QuestManager : Singleton<QuestManager>
             }
             objectivesText.text = objectivesTextString;
         }
+    }
+    /// <summary>
+    /// Get Quest name by quest ID
+    /// </summary>
+    /// <param name="ID">questID</param>
+    /// <returns></returns>
+    public string GetName(string ID){
+        foreach(Quest quest in allQuests){
+            if(quest.questID == ID){
+                return quest.name;
+            }
+        }
+        return null;
     }
 
 }

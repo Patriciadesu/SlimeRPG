@@ -5,7 +5,7 @@ public class QuestNPC : NPC
 {
     //serialize for testing quest
     [SerializeField] private string[] npcMidQuestDialog;
-    [SerializeField] private string[] questAvailableList;
+    [SerializeField] private string[] questAvailableList; // QuestID
     [SerializeField] private TMP_Text QuestName1;
     [SerializeField] private TMP_Text QuestName2;
     [SerializeField] private TMP_Text QuestName3;
@@ -18,11 +18,6 @@ public class QuestNPC : NPC
     }
     protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Interact();
-            QuestUI.SetActive(false);
-        }
         DialogSystem();
     }
     public void GiveQuest(int index)
@@ -39,16 +34,16 @@ public class QuestNPC : NPC
     }
     public void ChooseQuest()
     {
-        QuestName1.text = questAvailableList[0];
-        QuestName2.text = questAvailableList[1];
-        QuestName3.text = questAvailableList[2];
+        QuestName1.text = QuestManager.Instance.GetName(questAvailableList[0]);
+        QuestName2.text = QuestManager.Instance.GetName(questAvailableList[1]);
+        QuestName3.text = QuestManager.Instance.GetName(questAvailableList[2]);
         QuestUI.SetActive(true);
     }
     public override void DialogSystem()
     {
         if (dialogInterface.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(dialogProgressingKey))
             {
                 currentDialog += 1;
             }
@@ -70,5 +65,12 @@ public class QuestNPC : NPC
         dialogInterface.SetActive(false);
         GiveQuest(QuestIndex);
         
+    }
+
+    public override void Interact()
+    {
+        base.Interact();
+        QuestUI.SetActive(false);
+
     }
 }
