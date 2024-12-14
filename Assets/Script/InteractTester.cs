@@ -3,6 +3,11 @@ using UnityEngine;
 public class InteractTester : MonoBehaviour
 {
     public NPC currentNPC;
+    public Rigidbody2D rb2D;
+    void Awake()
+    {
+        rb2D = GetComponent<Rigidbody2D>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,5 +32,18 @@ public class InteractTester : MonoBehaviour
         {
             currentNPC.Interact();
         }
+    }
+
+    void FixedUpdate()
+    {
+        Move();
+    }
+
+    public void Move(){
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+
+        Vector2 movement = new Vector2(x , y);
+        rb2D.linearVelocity = movement * 5;
     }
 }
