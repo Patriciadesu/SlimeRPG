@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -12,6 +14,12 @@ public class Inventory : MonoBehaviour
 
     //Selected
     public InventorySlot selectedSlot;
+
+    // UI for Selected Item
+    public Image selectedItemImage;
+    public TextMeshProUGUI selectedItemName;
+    public TextMeshProUGUI selectedItemDescription;
+
 
     private void Update()
     {
@@ -48,7 +56,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = index; i < itemSlots.Count; i++)
         {
-            /*itemSlots[i] = new InventorySlot();*/
+            // Clear empty slots (if necessary)
         }
 
         foreach (var slot in itemSlots)
@@ -64,19 +72,89 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        for (int i = 0; i < itemSlots.Count; i++)
+        foreach (var slot in itemSlots)
         {
-            if ( !itemSlots[i].hasItem || itemSlots[i].item == item){
-                if(itemSlots[i].isFull) return;
-                itemSlots[i].AddItem(item);
+            if (!slot.hasItem || slot.item == item)
+            {
+                if (slot.isFull) continue;
+
+                slot.AddItem(item);
+
+                if (IsSlotSelected(slot))
+                {
+                    UpdateSelectedItemDisplay(slot.item);
+                }
+
                 SortItems();
+                return;
             }
+        }
+
+        Debug.LogWarning("Inventory is full or no suitable slot available to add the item!");
+    }
+
+    public void RemoveItem(Item item)
+    {
+        foreach (var slot in itemSlots)
+        {
+            if (slot.hasItem && slot.item == item)
+            {
+                slot.RemoveItem(1);
+
+                if (IsSlotSelected(slot))
+                {
+                    UpdateSelectedItemDisplay(slot.item);
+                }
+
+                if (!slot.hasItem)
+                {
+                    ClearSelectedItemDisplay();
+                }
+
+                return;
+            }
+        }
+
+        Debug.LogWarning("Item not found in inventory for removal!");
+    }
+
+    private bool IsSlotSelected(InventorySlot slot)
+    {
+        return selectedSlot == slot;
+    }
+
+
+    public void DeselectedAllSlot()
+    {
+        foreach (InventorySlot slot in itemSlots)
+        {
+            slot.Deselected();
+        }
+        ClearSelectedItemDisplay();
+    }
+
+    public void UpdateSelectedItemDisplay(Item item)
+    {
+        if (item != null)
+        {
+            selectedItemImage.sprite = item.itemSprite;
+            selectedItemImage.color = Color.white;
+            selectedItemName.text = item.itemName;
+            selectedItemDescription.text = item.description;
+        }
+        else
+        {
+            ClearSelectedItemDisplay();
         }
     }
 
-    public void DeselectedAllSlot(){
-        foreach(InventorySlot i in itemSlots){
-            i.Deselected();
-        }
+
+
+    private void ClearSelectedItemDisplay()
+    {
+        selectedItemImage.sprite = null;
+        selectedItemImage.color = new Color(1, 1, 1, 0);
+        selectedItemName.text = "";
+        selectedItemDescription.text = "";
     }
 }
