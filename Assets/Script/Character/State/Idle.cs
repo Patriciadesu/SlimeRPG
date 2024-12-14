@@ -28,19 +28,23 @@ public class Idle : State
         base.Update();
 
         var enemyPos = enemy.transform.position;
-        var plrPos = Player.Instance.transform.position;
 
-        float distance = (plrPos - enemyPos).magnitude;
+        if (Player.Instance != null)
+        {
+            var plrPos = Player.Instance.transform.position;
 
-        if (distance <= attackDistance)
-        {
-            nextState = new Attack(enemy, chaseDistance, attackDistance);
-            _event = EVENT.EXIT;
-        }
-        if (distance <= chaseDistance)
-        {
-            nextState = new Chase(enemy, chaseDistance, attackDistance);
-            _event = EVENT.EXIT;
+            float distance = (plrPos - enemyPos).magnitude;
+
+            if (distance <= attackDistance)
+            {
+                nextState = new Attack(enemy, chaseDistance, attackDistance);
+                _event = EVENT.EXIT;
+            }
+            else if (distance <= chaseDistance)
+            {
+                nextState = new Chase(enemy, chaseDistance, attackDistance);
+                _event = EVENT.EXIT;
+            }
         }
         else if (runTime <= maxIdleTime)
         {

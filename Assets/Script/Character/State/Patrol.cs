@@ -33,15 +33,19 @@ public class Patrol : State
         base.Update();
 
         var enemyPos = enemy.transform.position;
-        var plrPos = Player.Instance.transform.position;
-
-        float distance = (plrPos - enemyPos).magnitude;
         var direction = patrolPos - enemyPos.ConvertTo<Vector2>();
 
-        if (distance <= chaseDistance)
+        if (Player.Instance != null)
         {
-            nextState = new Chase(enemy, chaseDistance, attackDistance);
-            _event = EVENT.EXIT;
+            var plrPos = Player.Instance.transform.position;
+
+            float distance = (plrPos - enemyPos).magnitude;
+
+            if (distance <= chaseDistance)
+            {
+                nextState = new Chase(enemy, chaseDistance, attackDistance);
+                _event = EVENT.EXIT;
+            }
         }
         else if (runTime <= maxPatrolTime && direction.magnitude > 0.05f)
         {

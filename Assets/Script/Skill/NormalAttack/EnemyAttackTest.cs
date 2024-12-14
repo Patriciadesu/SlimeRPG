@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyAttackTest", menuName = "Skill/EnemyAttack/EnemyAttackTest", order = 1)]
 public class EnemyAttackTest : EnemyAttack
 {
+    [SerializeField] private float attackMultiply = 1;
     [SerializeField] private float knockbackPower;
     [SerializeField] private Vector2 attackCast = new Vector2(5, 3);
 
@@ -21,7 +22,7 @@ public class EnemyAttackTest : EnemyAttack
         }
 
         ////////////// ATTACK //////////////
-        float damage = enemy.AttackDamage;
+        float damage = enemy.AttackDamage * attackMultiply;
 
         var plrPos = Player.Instance.transform.position;
         var enemyPos = enemy.transform.position;
