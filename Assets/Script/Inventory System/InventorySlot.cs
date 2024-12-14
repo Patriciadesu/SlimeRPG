@@ -30,6 +30,8 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
         UpdateDisplay();
     }
     public void UpdateDisplay(){
+
+        itemImage.color = new Color(itemImage.color.r, itemImage.color.g, itemImage.color.b, hasItem ? 1f : 0f);
         itemImage.sprite = item.itemSprite;
         itemName.text = item.itemName;
         itemCountText.text = itemCount.ToString();
@@ -39,10 +41,13 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
         Inventory.Instance.DeselectedAllSlot();
         this.isSelected = true;
         Inventory.Instance.selectedSlot = this;
+        selectedShader.SetActive(true);
+        this.isSelected = true;
         //UpdateDisplay
     }
 
     public void Deselected(){
+        selectedShader.SetActive(false);
         this.isSelected = false;
         Inventory.Instance.selectedSlot = null;
         //UpdateDisplay
@@ -51,8 +56,6 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         if(eventData.button == PointerEventData.InputButton.Left){
-            selectedShader.SetActive(true);
-            this.isSelected = true;
             Selected();
         }
     }
