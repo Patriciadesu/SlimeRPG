@@ -4,14 +4,18 @@ public abstract class Character : MonoBehaviour
 {
     protected Rigidbody2D rb2D;
     [SerializeField] protected int _level = 1;
-    [SerializeField] protected float _maxHealth = 100;
+    public float MaxHealth { get { return _maxHealth + (_maxHealth * _level * 0.2f); } }
+    [SerializeField] private float _maxHealth = 100;
     public float health { get; protected set; }
-    [SerializeField] protected float _attackDamage = 10;
-    //[SerializeField] protected NormalAttack normalAttack;
+    public float AttackDamage { get { return _attackDamage + (_attackDamage * _level * 0.2f); } }
+    [SerializeField] private float _attackDamage = 10;
+    [SerializeField] protected NormalAttack normalAttack;
     [SerializeField] protected float speed = 1;
 
     protected virtual void Awake() {
         rb2D = GetComponent<Rigidbody2D>();
+
+        health = MaxHealth;
     }
     public float Speed
     {
@@ -24,11 +28,13 @@ public abstract class Character : MonoBehaviour
 
         if (health <= 0)
             Die();
+
+        Debug.Log($"{gameObject.name} Health: {health}");
     }
 
     public virtual void Heal(float h)
     {
-        health = Mathf.Max(health + h, _maxHealth);
+        health = Mathf.Max(health + h, MaxHealth);
     }
 
     protected virtual void Die()

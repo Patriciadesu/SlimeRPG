@@ -27,6 +27,7 @@ public abstract class State
     protected float chaseDistance;
     protected float attackDistance;
     protected Rigidbody2D rigidbody;
+    protected Animator animator;
 
     protected State nextState;
 
@@ -36,12 +37,13 @@ public abstract class State
         chaseDistance = _chaseDistance;
         attackDistance = _attackDistance;
         rigidbody = _enemy.GetComponent<Rigidbody2D>();
+        animator = _enemy.GetComponent<Animator>();
     }
 
     protected virtual void Enter()
     {
         _event = EVENT.UPDATE;
-        Debug.Log("ENTER STATE " + GetType().Name);
+        //Debug.Log("ENTER STATE " + GetType().Name);
     }
 
     protected virtual void Update()
@@ -52,7 +54,7 @@ public abstract class State
     protected virtual void Exit()
     {
         _event = EVENT.UPDATE;
-        Debug.Log("EXIT STATE " + GetType().Name);
+        //Debug.Log("EXIT STATE " + GetType().Name);
     }
 
     public State Process()

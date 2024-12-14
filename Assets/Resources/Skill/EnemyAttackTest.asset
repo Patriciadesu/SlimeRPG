@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602bb29faa384d845adf90056b43c3f9, type: 3}
+  m_Name: EnemyAttackTest
+  m_EditorClassIdentifier: 
+  Name: 
+  Description: 
+  skillSprite: {fileID: 0}
+  price: 0
+  have: 0
+  coolDown: 0
+  isActive: 0
+  stayTime: 0
+  attackCast: {x: 5, y: 3}

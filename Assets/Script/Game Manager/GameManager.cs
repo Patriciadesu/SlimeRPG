@@ -7,8 +7,8 @@ public class GameManager : Singleton<GameManager>
 
     public delegate void OnEnemyDeath(Enemy enemy);
 
-    public static void onEnemyKilled(Enemy enemy)
+    public static void OnEnemyKilled(Enemy enemy)
     {
-        GameManager.BattleReport?.Invoke(enemy);
+        BattleReport?.Invoke(enemy);
     }
 }

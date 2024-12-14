@@ -18,6 +18,8 @@ public class Patrol : State
         maxPatrolTime = Random.Range(2f, 5f);
         patrolPos = RandomPatrolPosition();
 
+        animator.SetBool("isWalking", true);
+
         base.Enter();
     }
 
@@ -34,15 +36,16 @@ public class Patrol : State
         var plrPos = Player.Instance.transform.position;
 
         float distance = (plrPos - enemyPos).magnitude;
+        var direction = patrolPos - enemyPos.ConvertTo<Vector2>();
 
         if (distance <= chaseDistance)
         {
             nextState = new Chase(enemy, chaseDistance, attackDistance);
             _event = EVENT.EXIT;
         }
-        else if (runTime <= maxPatrolTime)
+        else if (runTime <= maxPatrolTime && direction.magnitude > 0.05f)
         {
-            enemy.Move(patrolPos - enemyPos.ConvertTo<Vector2>());
+            enemy.Move(direction);
         }
         else
         {

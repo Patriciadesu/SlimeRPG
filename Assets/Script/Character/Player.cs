@@ -1,5 +1,6 @@
 using System;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Character
@@ -8,10 +9,40 @@ public class Player : Character
     public static Player Instance{get; private set;}
 
     [Header("Player Stats")]
-    public float AttackDamage { get { return _attackDamage; } }
-    public float dodgeRate{get; private set;}
-    public float criticalRate{get; private set;}
-    public float exp;
+    public int Level { get { return _level; } }
+    public float MaxExp { get { return ((float)Math.Pow(1.1f, _level + 1)) * 100; } }
+    public float dodgeRate
+    {
+        get
+        {
+            return Math.Min(_level * 0.4f, 100);
+        }
+    }
+    public float criticalRate
+    {
+        get
+        {
+            return Math.Min(_level * 0.25f, 100);
+        }
+    }
+    public float Exp
+    {
+        get
+        {
+            return _exp;
+        }
+        set
+        {
+            _exp = value;
+
+            while (_exp >= MaxExp)
+            {
+                _exp -= MaxExp;
+                _level++;
+            }
+        }
+    }
+    private float _exp;
     public float coin;
 
     [Header("Collectable")]
@@ -43,9 +74,18 @@ public class Player : Character
         PlayerInput();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
+    }
+    
     protected void Attack()
     {
-        
+        if (normalAttack != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(normalAttack));
     }
     private void PlayerInput(){
 
@@ -62,6 +102,14 @@ public class Player : Character
     protected void Move(Vector2 velocity)
     {
         rb2D.linearVelocity = velocity * speed * 3;
+
+        float currentX = transform.rotation.eulerAngles.x;
+        float currentZ = transform.rotation.eulerAngles.z;
+
+        if (velocity.x > 0)
+            transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
+        else if (velocity.x < 0)
+            transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
     protected override void Die()
