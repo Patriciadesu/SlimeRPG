@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character
@@ -32,7 +34,7 @@ public class Enemy : Character
         }
     }
 
-    public int enemyID;
+    public int id;
 
     [SerializeField] private ActiveSkill[] skills;
     [SerializeField] private float chaseDistance;

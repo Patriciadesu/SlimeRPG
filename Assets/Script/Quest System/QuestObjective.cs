@@ -17,7 +17,7 @@ public class QuestObjective
     }
     public void UpdateProgress(Enemy enemy)
     {
-        if (enemy.enemyID == enemyID)
+        if (enemy.id == enemyID)
         {
             currentAmount++;
             Debug.Log($" {currentAmount} Enemy killed");
