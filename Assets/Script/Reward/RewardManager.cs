@@ -21,9 +21,9 @@ public class RewardManager : MonoBehaviour
                 continue;
             }
 
-            // add item to inventory... Inventory.Instance.AddItem(rewardToGive.items[i]);
+            Inventory.Instance.AddItem(ItemManager.Instance.GetItemFromID(rewardToGive.items[i].itemID));
         }
-        
+
         Player.Instance.exp += rewardToGive.exp;
         Player.Instance.coin += rewardToGive.coin;
     }
