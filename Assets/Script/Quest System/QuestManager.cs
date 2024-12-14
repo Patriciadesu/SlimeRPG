@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> allQuests = new List<Quest>();
+    public List<QuestObjective> allObjectives = new List<QuestObjective>();
     public Quest currentQuest;
     public bool isFinish = false;
 
@@ -25,9 +26,15 @@ public class QuestManager : Singleton<QuestManager>
     /// </summary>
     public void GetAllQuests()
     {
-        /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
+       /* List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
 
-        allQuests.Clear();
+        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
+
+        foreach (var sObjective in objectivesFromDatabase)
+        {
+            QuestObjective newObjective = new QuestObjective(sObjective.objectiveID, sObjective.enemyID, sObjective.requiredAmount);
+            allObjectives.Add(newObjective);
+        }
 
         foreach (sQuest squest in questsFromDatabase)
         {
@@ -35,13 +42,15 @@ public class QuestManager : Singleton<QuestManager>
 
             foreach (string objectiveID in squest.Objective)
             {
-                string name = "defaultName"; // more logic
-                string enemyID = "defaultEnemyID";  // more logic
-                int requiredAmount = 0; // more logic
-
-                QuestObjective objective = new QuestObjective(name, enemyID, requiredAmount);
-
-                quest.objectives.Add(objective);
+                QuestObjective objective = allObjectives.Find(o => o.objectiveID == objectiveID);
+                if (objective != null)
+                {
+                    quest.AddObjective(objective);
+                }
+                else
+                {
+                    Debug.LogWarning("Objective ID " + objectiveID + " not found.");
+                }
             }
 
             allQuests.Add(quest);
@@ -175,6 +184,7 @@ public class QuestManager : Singleton<QuestManager>
 
     public class sObjective
     {
+        public string objectiveID;
         public string name;
         public string enemyID;
         public int requiredAmount;
