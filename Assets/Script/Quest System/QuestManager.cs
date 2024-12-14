@@ -26,7 +26,7 @@ public class QuestManager : Singleton<QuestManager>
     /// </summary>
     public void GetAllQuests()
     {
-        List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
+        /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
         List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
 
         List<QuestObjective> allObjectives = new List<QuestObjective>();
@@ -58,7 +58,7 @@ public class QuestManager : Singleton<QuestManager>
             allQuests.Add(quest);
         }
 
-        Debug.Log("All quests loaded from database.");
+        Debug.Log("All quests loaded from database.");*/
     }
 
 
