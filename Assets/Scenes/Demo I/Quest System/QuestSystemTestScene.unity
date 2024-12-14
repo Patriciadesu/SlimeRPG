@@ -1492,11 +1492,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6420430212bcf244a2ecf6747e93651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: 
+  npcDialog: []
+  dialogText: {fileID: 0}
+  nameText: {fileID: 0}
+  currentDialog: 0
+  dialogInterface: {fileID: 0}
   npcMidQuestDialog: []
   questAvailableList:
   - A
   - B
   - C
+  QuestName1: {fileID: 0}
+  QuestName2: {fileID: 0}
+  QuestName3: {fileID: 0}
+  QuestUI: {fileID: 0}
 --- !u!212 &1104436462
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2247,9 +2257,10 @@ MonoBehaviour:
   _maxHealth: 100
   _attackDamage: 10
   speed: 1
-  enemyID: 123
+  id: 123
   skills: []
   chaseDistance: 0
+  attackDistance: 0
   rewardID: 
 --- !u!212 &1500525356
 SpriteRenderer:

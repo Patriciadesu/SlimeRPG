@@ -27,7 +27,6 @@ public class QuestObjective
     }
     public void CompleteObjective()
     {
-        currentAmount = 0;
         QuestManager.Instance.CheckObjective();
         GameManager.BattleReport -= UpdateProgress;
     }

@@ -16,6 +16,11 @@ public class QuestManager : Singleton<QuestManager>
     public TMP_Text expRewardText;
     public TMP_Text objectivesText;
 
+    private void Start()
+    {
+        currentQuest = default(Quest);
+    }
+
     public void GetAllQuests() //get all quest from Database
     {
         //allQuests = questsFromDatabase;
@@ -39,11 +44,12 @@ public class QuestManager : Singleton<QuestManager>
 
     public void StartQuest(Quest quest)
     {
-        if (currentQuest.questID == quest.questID)
+        if (!currentQuest.Equals(default(Quest)))
         {
-            Debug.LogWarning($"Quest '{quest.name}' is already the current quest.");
+            Debug.LogWarning($"Cannot start a new quest. Current quest '{currentQuest.name}' is still active.");
             return;
         }
+
         currentQuest = quest;
         isFinish = false;
         Debug.Log($"Started quest: {quest.name}");
