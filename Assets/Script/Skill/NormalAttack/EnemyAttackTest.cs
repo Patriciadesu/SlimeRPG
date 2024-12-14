@@ -53,7 +53,7 @@ public class EnemyAttackTest : EnemyAttack
             if (ray.collider != null && ray.collider.TryGetComponent(out Player player))
             {
                 player.TakeDamage(damage);
-                player.GetComponent<Rigidbody2D>().AddRelativeForce(direction * knockbackPower);
+                player.GetComponent<Rigidbody2D>().AddRelativeForce(direction * knockbackPower * 7.5f, ForceMode2D.Impulse);
             }
         }
         ////////////////////////////////////

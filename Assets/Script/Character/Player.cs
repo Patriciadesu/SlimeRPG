@@ -117,7 +117,8 @@ public class Player : Character
 
     protected void Move(Vector2 velocity)
     {
-        rb2D.linearVelocity = velocity * speed * 3;
+        
+        rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity * speed * 3, Time.fixedDeltaTime * 5);
 
         float currentX = transform.rotation.eulerAngles.x;
         float currentZ = transform.rotation.eulerAngles.z;

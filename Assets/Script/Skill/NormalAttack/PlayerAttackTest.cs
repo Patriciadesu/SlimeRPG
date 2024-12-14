@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAttackTest : NormalAttack
 {
     [SerializeField] private Vector2 attackCast = new Vector2(5, 3);
+    [SerializeField] private float knockbackPower;
 
     public override IEnumerator OnUse()
     {
@@ -41,6 +42,7 @@ public class PlayerAttackTest : NormalAttack
             {
                 Debug.Log("TakeDamage: " + enemy);
                 enemy.TakeDamage(damage);
+                enemy.GetComponent<Rigidbody2D>().AddRelativeForce(direction * knockbackPower * 7.5f, ForceMode2D.Impulse);
             }
         }
         ////////////////////////////////////

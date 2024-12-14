@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602bb29faa384d845adf90056b43c3f9, type: 3}
   m_Name: EnemyAttackTest 1
   m_EditorClassIdentifier: 
-  Name: PlayerAttackTest
+  SkillSprite: {fileID: 0}
+  Name: EnemyAttackTest1
   Description: Test
-  skillSprite: {fileID: 0}
-  price: 0
-  have: 0
-  coolDown: 3
+  Have: 0
+  _price: 0
+  coolDown: 15
   isActive: 0
   stayTime: 1
+  knockbackPower: 2.5
   attackCast: {x: 5, y: 3}

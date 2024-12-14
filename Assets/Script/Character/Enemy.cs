@@ -60,7 +60,7 @@ public class Enemy : Character
 
     public void Move(Vector2 velocity)
     {
-        rb2D.linearVelocity = velocity.normalized * speed * 2.5f;
+        rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity.normalized * speed * 2.5f, Time.fixedDeltaTime * 5);
 
         float currentX = transform.rotation.eulerAngles.x;
         float currentZ = transform.rotation.eulerAngles.z;

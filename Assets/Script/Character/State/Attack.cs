@@ -53,5 +53,6 @@ public class Attack : State
                 _event = EVENT.EXIT;
             }
         }
+        else enemy.Move(Vector2.zero);
     }
 }
