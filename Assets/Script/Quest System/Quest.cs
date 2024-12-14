@@ -12,17 +12,21 @@ public struct Quest
     public int expReward;
     //public item reward;
 
-    public Quest(string _questID, string _name, string _description, int _moneyReward, int _expReward, List<QuestObjective> _objectives)
+    public Quest(sQuest data)
     {
-        this.questID = _questID;
-        this.name = _name;
-        this.description = _description;
-        this.moneyReward = _moneyReward;
-        this.expReward = _expReward;
-        objectives = _objectives ?? new List<QuestObjective>();
+        this.questID = data._id;
+        this.name = data.name;
+        this.description = data.description;
+        this.moneyReward = data.reward.coin;
+        this.expReward = data.reward.xp;
+
+        this.objectives = new List<QuestObjective>();
+
+        foreach (string objectiveName in data.Objective)
+        {
+            QuestObjective objective = new QuestObjective(objectiveName, "", 0);
+            this.objectives.Add(objective);
+        }
     }
-    public void AddObjective(QuestObjective objective)
-    {
-        objectives.Add(objective);
-    }
+
 }

@@ -26,26 +26,28 @@ public class QuestManager : Singleton<QuestManager>
     /// </summary>
     public void GetAllQuests()
     {
-       /* List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
-
+        List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
         List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
+
+        List<QuestObjective> allObjectives = new List<QuestObjective>();
 
         foreach (var sObjective in objectivesFromDatabase)
         {
             QuestObjective newObjective = new QuestObjective(sObjective.objectiveID, sObjective.enemyID, sObjective.requiredAmount);
             allObjectives.Add(newObjective);
         }
+        List<Quest> allQuests = new List<Quest>();
 
         foreach (sQuest squest in questsFromDatabase)
         {
-            Quest quest = new Quest(squest._id, squest.name, squest.description, squest.reward.coin, squest.reward.xp);
+            Quest quest = new Quest(squest);
 
             foreach (string objectiveID in squest.Objective)
             {
                 QuestObjective objective = allObjectives.Find(o => o.objectiveID == objectiveID);
                 if (objective != null)
                 {
-                    quest.AddObjective(objective);
+                    quest.objectives.Add(objective);
                 }
                 else
                 {
@@ -56,7 +58,7 @@ public class QuestManager : Singleton<QuestManager>
             allQuests.Add(quest);
         }
 
-        Debug.Log("All quests loaded from database.");*/
+        Debug.Log("All quests loaded from database.");
     }
 
 
