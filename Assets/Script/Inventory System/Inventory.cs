@@ -43,20 +43,23 @@ public class Inventory : MonoBehaviour
     }
     public void SortItems()
     {
-        List<InventorySlot> filledSlots = itemSlots.FindAll(slot => slot.hasItem);
+        int targetIndex = 0;
 
-        filledSlots.Sort((slot1, slot2) => string.Compare(slot1.item.itemName, slot2.item.itemName, StringComparison.Ordinal));
-
-        int index = 0;
-        foreach (var slot in filledSlots)
+        foreach (var slot in itemSlots)
         {
-            itemSlots[index] = slot;
-            index++;
-        }
+            if (slot.hasItem)
+            {
+                if (itemSlots[targetIndex] != slot)
+                {
+                    itemSlots[targetIndex].item = slot.item;
+                    itemSlots[targetIndex].itemCount = slot.itemCount;
+                    itemSlots[targetIndex].hasItem = true;
+                    itemSlots[targetIndex].isFull = slot.isFull;
 
-        for (int i = index; i < itemSlots.Count; i++)
-        {
-            // Clear empty slots (if necessary)
+                    slot.ClearSlot();
+                }
+                targetIndex++;
+            }
         }
 
         foreach (var slot in itemSlots)
@@ -64,6 +67,7 @@ public class Inventory : MonoBehaviour
             slot.UpdateDisplay();
         }
     }
+
 
     public void GetItem()
     {
@@ -95,8 +99,9 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(Item item)
     {
-        foreach (var slot in itemSlots)
+        for (int i = itemSlots.Count - 1; i >= 0; i--)
         {
+            var slot = itemSlots[i];
             if (slot.hasItem && slot.item == item)
             {
                 slot.RemoveItem(1);
@@ -110,13 +115,13 @@ public class Inventory : MonoBehaviour
                 {
                     ClearSelectedItemDisplay();
                 }
-
+                SortItems();
                 return;
             }
         }
-
         Debug.LogWarning("Item not found in inventory for removal!");
     }
+
 
     private bool IsSlotSelected(InventorySlot slot)
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> allQuests = new List<Quest>();
+    public List<QuestObjective> allObjectives = new List<QuestObjective>();
     public Quest currentQuest;
     public bool isFinish = false;
 
@@ -23,11 +24,44 @@ public class QuestManager : Singleton<QuestManager>
     /// <summary>
     /// Get All Quest Data from database to QuestManager
     /// </summary>
-    public void GetAllQuests() //get all quest from Database
+    public void GetAllQuests()
     {
-        //allQuests = questsFromDatabase;
+        List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
+        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
+
+        List<QuestObjective> allObjectives = new List<QuestObjective>();
+
+        foreach (var sObjective in objectivesFromDatabase)
+        {
+            QuestObjective newObjective = new QuestObjective(sObjective.objectiveID, sObjective.enemyID, sObjective.requiredAmount);
+            allObjectives.Add(newObjective);
+        }
+        List<Quest> allQuests = new List<Quest>();
+
+        foreach (sQuest squest in questsFromDatabase)
+        {
+            Quest quest = new Quest(squest);
+
+            foreach (string objectiveID in squest.Objective)
+            {
+                QuestObjective objective = allObjectives.Find(o => o.objectiveID == objectiveID);
+                if (objective != null)
+                {
+                    quest.objectives.Add(objective);
+                }
+                else
+                {
+                    Debug.LogWarning("Objective ID " + objectiveID + " not found.");
+                }
+            }
+
+            allQuests.Add(quest);
+        }
+
         Debug.Log("All quests loaded from database.");
     }
+
+
     public void GetQuest(string[] npcQuestIDs, int questIndex)
     {
         if(questIndex < 0 || questIndex >= npcQuestIDs.Length)
@@ -141,4 +175,36 @@ public class QuestManager : Singleton<QuestManager>
         return null;
     }
 
+    public class sQuest
+    {
+        public string _id;
+        public string name;
+        public string description;
+        public sReward reward;
+        public List<string> Objective;
+    }
+
+    public class sObjective
+    {
+        public string objectiveID;
+        public string name;
+        public string enemyID;
+        public int requiredAmount;
+        public int currentAmount;
+    }
+
+    public class sReward
+    {
+        public string _id;
+        public string name;
+        public int coin;
+        public int xp;
+        public List<sItem> item;
+    }
+
+    public class sItem
+    {
+        public string name;
+        public int amount;
+    }
 }
