@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = index; i < itemSlots.Count; i++)
         {
-            itemSlots[i] = new InventorySlot();
+            /*itemSlots[i] = new InventorySlot();*/
         }
 
         foreach (var slot in itemSlots)
