@@ -20,8 +20,6 @@ public class NPC : MonoBehaviour , IInteractable
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            currentDialog = 1;
-            dialogInterface.SetActive(true);
             Interact();
             
         }
