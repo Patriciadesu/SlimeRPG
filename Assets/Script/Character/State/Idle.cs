@@ -39,14 +39,17 @@ public class Idle : State
             {
                 nextState = new Attack(enemy, chaseDistance, attackDistance);
                 _event = EVENT.EXIT;
+                return;
             }
             else if (distance <= chaseDistance)
             {
                 nextState = new Chase(enemy, chaseDistance, attackDistance);
                 _event = EVENT.EXIT;
+                return;
             }
         }
-        else if (runTime <= maxIdleTime)
+        
+        if (runTime <= maxIdleTime)
         {
             enemy.Move(Vector2.zero);
         }

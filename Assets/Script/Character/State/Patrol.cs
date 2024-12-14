@@ -45,9 +45,11 @@ public class Patrol : State
             {
                 nextState = new Chase(enemy, chaseDistance, attackDistance);
                 _event = EVENT.EXIT;
+                return;
             }
         }
-        else if (runTime <= maxPatrolTime && direction.magnitude > 0.05f)
+        
+        if (runTime <= maxPatrolTime && direction.magnitude > 0.05f)
         {
             enemy.Move(direction);
         }
@@ -56,6 +58,7 @@ public class Patrol : State
             nextState = new Idle(enemy, chaseDistance, attackDistance);
             _event = EVENT.EXIT;
         }
+
     }
 
     private Vector2 RandomPatrolPosition()

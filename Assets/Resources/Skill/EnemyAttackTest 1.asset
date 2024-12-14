@@ -17,8 +17,9 @@ MonoBehaviour:
   Description: Test
   Have: 0
   _price: 0
-  coolDown: 15
+  coolDown: 8
   isActive: 0
   stayTime: 1
-  knockbackPower: 2.5
+  attackMultiply: 2
+  knockbackPower: 4
   attackCast: {x: 5, y: 3}
