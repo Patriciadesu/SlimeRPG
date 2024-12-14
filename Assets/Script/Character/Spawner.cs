@@ -11,16 +11,6 @@ public class Spawner : MonoBehaviour
     public int maxNearbyEnemy;
     public float requiredPlayerRange;
     private List<Enemy> storedEnemy;
-    [SerializeField]private LayerMask playerLayer; // Assign the layer for Player in the Inspector
-
-    private bool IsPlayerInRange()
-    {
-        Collider2D collider = Physics2D.OverlapCircle(this.transform.position, requiredPlayerRange, playerLayer);
-
-        // Check if the collider is not null and belongs to a Player
-        return collider != null && collider.GetComponent<Player>() != null;
-    }
-
 
 
     public IEnumerator SpawnEnemy()
@@ -30,7 +20,7 @@ public class Spawner : MonoBehaviour
             Vector2 randomSpawnPosition = CalculateSpawnPosition();
 
             Enemy enemyspawning = Instantiate(EnemyDataManager.Instance.GetEnemy(enemyID),
-             CalculateSpawnPosition(),
+             randomSpawnPosition,
               Quaternion.identity,
                this.transform)
                .GetComponent<Enemy>();
