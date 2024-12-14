@@ -39,6 +39,11 @@ public class QuestManager : Singleton<QuestManager>
 
     public void StartQuest(Quest quest)
     {
+        if (currentQuest.questID == quest.questID)
+        {
+            Debug.LogWarning($"Quest '{quest.name}' is already the current quest.");
+            return;
+        }
         currentQuest = quest;
         isFinish = false;
         Debug.Log($"Started quest: {quest.name}");

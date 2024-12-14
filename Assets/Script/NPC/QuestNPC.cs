@@ -11,12 +11,12 @@ public class QuestNPC : NPC
     [SerializeField] private TMP_Text QuestName3;
     [SerializeField] private GameObject QuestUI;
 
-    public void Start()
+    protected override void Start()
     {
         base.Start();
         QuestUI.SetActive(false);
     }
-    private void Update()
+    protected override void Update()
     {
         base.Update();
     }

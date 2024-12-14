@@ -9,12 +9,14 @@ public class NPC : MonoBehaviour
     [SerializeField] protected int currentDialog;
     [SerializeField] protected GameObject dialogInterface;
 
-    public void Start()
+    protected virtual void Start()
     {
         dialogInterface.SetActive(false);
         currentDialog = 1;
     }
-    public void Update()
+
+
+    protected virtual void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
