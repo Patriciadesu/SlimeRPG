@@ -2,19 +2,19 @@
 using TMPro;
 public class NPC : MonoBehaviour , IInteractable
 {
-    [SerializeField] protected string npcName;
-    [SerializeField] protected string[] npcDialog;
-    [SerializeField] protected TMP_Text dialogText;
-    [SerializeField, Tooltip("this is a something we don't talk about")] protected TMP_Text nameText;
-    [SerializeField] protected int currentDialog;
-    [SerializeField] protected GameObject dialogInterface;
+    [SerializeField, Tooltip("Your NPC Name")] protected string npcName;
+    [SerializeField, Tooltip("Put Your NPC Dialogue in here, Create more index for more dialogue.")] protected string[] npcDialog;
+    [SerializeField, Tooltip("Put Your Dialogue TMP_Text here")] protected TMP_Text dialogText;
+    [SerializeField, Tooltip("Put Your NPC Name TMP_Text Here")] protected TMP_Text nameText;
+    [SerializeField, Tooltip("Don't Touch Pls")] protected int currentDialog;
+    [SerializeField, Tooltip("Put Your Entire Dialog Canvas in here!")] protected GameObject dialogInterface;
     [Header("Key Input")]
-    [SerializeField] protected KeyCode dialogProgressingKey = KeyCode.Mouse0;
+    [SerializeField, Tooltip("Uhh Key to move to next Dialogue")] protected KeyCode dialogProgressingKey = KeyCode.Mouse0;
 
     protected virtual void Start()
     {
         dialogInterface.SetActive(false);
-        currentDialog = 1;
+        
     }
 
     
@@ -45,7 +45,7 @@ public class NPC : MonoBehaviour , IInteractable
         }
         else
         {
-            dialogInterface.SetActive(false);
+            UnInteract();
         }
     }
 
@@ -55,8 +55,8 @@ public class NPC : MonoBehaviour , IInteractable
         dialogInterface.SetActive(true);
     }
 
-    public void UnInteract()
+    public virtual void UnInteract()
     {
-        throw new System.NotImplementedException();
+        dialogInterface.SetActive(false);
     }
 }

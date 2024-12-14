@@ -4,17 +4,17 @@ using UnityEngine.UI;
 public class QuestNPC : NPC
 {
     //serialize for testing quest
-    [SerializeField] private string[] npcMidQuestDialog;
+    [SerializeField, Tooltip("NPC Dialog When Quest is Active")] private string[] npcMidQuestDialog;
     [SerializeField] private string[] questAvailableList; // QuestID
     [SerializeField] private TMP_Text QuestName1;
     [SerializeField] private TMP_Text QuestName2;
     [SerializeField] private TMP_Text QuestName3;
-    [SerializeField] private GameObject QuestUI;
+    [SerializeField, Tooltip("Put Choose Quest GameObject here")] private GameObject QuestUI;
 
     protected override void Start()
     {
         base.Start();
-        QuestUI.SetActive(false);
+       
     }
     protected override void Update()
     {
@@ -61,8 +61,7 @@ public class QuestNPC : NPC
     }
     public void GetQuest(int QuestIndex)
     {
-        QuestUI.SetActive(false);
-        dialogInterface.SetActive(false);
+        UnInteract();
         GiveQuest(QuestIndex);
         
     }
@@ -72,5 +71,11 @@ public class QuestNPC : NPC
         base.Interact();
         QuestUI.SetActive(false);
 
+
+    }
+    public override void UnInteract()
+    {
+        base.UnInteract();
+        QuestUI.SetActive(false);
     }
 }
