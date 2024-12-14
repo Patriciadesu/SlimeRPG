@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2686096219924486610}
   - component: {fileID: 2596930575691481932}
   - component: {fileID: 8901842967284694281}
+  - component: {fileID: 5303882059436560210}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -50,12 +51,12 @@ MonoBehaviour:
   _level: 1
   _maxHealth: 100
   _attackDamage: 10
-  normalAttack: {fileID: 0}
+  normalAttack: {fileID: 11400000, guid: cae5d8353da568b418427ffbcccc55d5, type: 2}
   speed: 1
   id: 0
   skills: []
-  chaseDistance: 5
-  attackDistance: 1
+  chaseDistance: 8
+  attackDistance: 2
   rewardID: 
 --- !u!50 &2596930575691481932
 Rigidbody2D:
@@ -121,6 +122,28 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!95 &5303882059436560210
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113568758980343755}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d229cf2ff92c37547959afc027617b72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6603270498999185665
 GameObject:
   m_ObjectHideFlags: 0
