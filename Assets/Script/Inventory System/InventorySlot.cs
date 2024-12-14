@@ -22,36 +22,93 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
     public GameObject selectedShader;
     public bool thisItemSelected;
 
-    public void AddItem(Item item){
+    public void AddItem(Item item)
+    {
+        if (hasItem && this.item != item) return;
+
         this.item = item;
         hasItem = true;
         itemCount++;
-        if(this.item.maxItemCount == itemCount) isFull = true;
+
+        isFull = itemCount >= item.maxItemCount;
+
         UpdateDisplay();
     }
-    public void UpdateDisplay(){
 
-        itemImage.color = new Color(itemImage.color.r, itemImage.color.g, itemImage.color.b, hasItem ? 1f : 0f);
-        itemImage.sprite = item.itemSprite;
-        itemName.text = item.itemName;
-        itemCountText.text = itemCount.ToString();
+
+    public void RemoveItem(int amount = 1)
+    {
+        if (!hasItem) return;
+
+        itemCount -= amount;
+
+        if (itemCount <= 0)
+        {
+            ClearSlot();
+        }
+        else
+        {
+            isFull = itemCount >= item.maxItemCount;
+            UpdateDisplay();
+        }
     }
 
-    public void Selected(){
+
+    public void ClearSlot()
+    {
+        item = null;
+        itemCount = 0;
+        hasItem = false;
+        isFull = false;
+
+        if (itemName != null) itemName.text = string.Empty;
+        if (itemCountText != null) itemCountText.text = string.Empty;
+        if (itemImage != null) itemImage.sprite = null;
+
+        UpdateDisplay();
+    }
+
+
+
+    public void UpdateDisplay()
+    {
+        if (item != null)
+        {
+            itemImage.sprite = item.itemSprite;
+            itemName.text = item.itemName;
+            itemCountText.text = itemCount.ToString();
+        }
+        else
+        {
+            itemImage.sprite = null;
+            itemName.text = string.Empty;
+            itemCountText.text = string.Empty;
+        }
+        itemImage.color = new Color(itemImage.color.r, itemImage.color.g, itemImage.color.b, hasItem ? 1f : 0f);
+    }
+
+
+    public void Selected()
+    {
         Inventory.Instance.DeselectedAllSlot();
         this.isSelected = true;
         Inventory.Instance.selectedSlot = this;
         selectedShader.SetActive(true);
-        this.isSelected = true;
-        //UpdateDisplay
+        Inventory.Instance.UpdateSelectedItemDisplay(item);
     }
 
-    public void Deselected(){
-        selectedShader.SetActive(false);
-        this.isSelected = false;
+
+    public void Deselected()
+    {
+        if (selectedShader != null)
+            selectedShader.SetActive(false);
+
+        isSelected = false;
         Inventory.Instance.selectedSlot = null;
-        //UpdateDisplay
+        UpdateDisplay();
     }
+
+
 
     public void OnPointerClick(PointerEventData eventData)
     {

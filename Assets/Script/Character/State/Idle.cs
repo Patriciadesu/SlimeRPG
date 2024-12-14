@@ -13,6 +13,7 @@ public class Idle : State
     protected override void Enter()
     {
         maxIdleTime = Random.Range(1.5f, 5f);
+        animator.SetBool("isWalking", false);
 
         base.Enter();
     }
@@ -31,6 +32,11 @@ public class Idle : State
 
         float distance = (plrPos - enemyPos).magnitude;
 
+        if (distance <= attackDistance)
+        {
+            nextState = new Attack(enemy, chaseDistance, attackDistance);
+            _event = EVENT.EXIT;
+        }
         if (distance <= chaseDistance)
         {
             nextState = new Chase(enemy, chaseDistance, attackDistance);

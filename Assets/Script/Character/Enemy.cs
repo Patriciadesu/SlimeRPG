@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Enemy : Character
@@ -60,15 +61,39 @@ public class Enemy : Character
     public void Move(Vector2 velocity)
     {
         rb2D.linearVelocity = velocity.normalized * speed * 2.5f;
+
+        float currentX = transform.rotation.eulerAngles.x;
+        float currentZ = transform.rotation.eulerAngles.z;
+
+        if (velocity.x > 0)
+            transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
+        else if (velocity.x < 0)
+            transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
-    public void Attack()
+    public Skill Attack()
     {
-        Debug.Log("Attack");
+        var skillCanUse = skills.ToList().Find(s => s.isActive);
+
+        if (skillCanUse != null)
+        {
+            StartCoroutine(SkillManager.Instance.UseSkill(this, skillCanUse));
+            return skillCanUse;
+        }
+        else if (normalAttack != null && normalAttack.isActive)
+        {
+            StartCoroutine(SkillManager.Instance.UseSkill(this, normalAttack));
+            return normalAttack;
+        }
+
+        return null;
     }
 
     protected override void Die()
     {
+        RewardManager.Instance.GiveReward(rewardID);
+        GameManager.OnEnemyKilled(this);
+
         base.Die();
     }
 }

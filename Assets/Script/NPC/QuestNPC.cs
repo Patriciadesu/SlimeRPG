@@ -18,7 +18,12 @@ public class QuestNPC : NPC
     }
     protected override void Update()
     {
-        base.Update();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+            QuestUI.SetActive(false);
+        }
+        DialogSystem();
     }
     public void GiveQuest(int index)
     {
@@ -61,8 +66,9 @@ public class QuestNPC : NPC
     }
     public void GetQuest(int QuestIndex)
     {
-        GiveQuest(QuestIndex);
         QuestUI.SetActive(false);
         dialogInterface.SetActive(false);
+        GiveQuest(QuestIndex);
+        
     }
 }

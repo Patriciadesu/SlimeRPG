@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     protected int level = 1;
-    protected float damage;
     public string Name;
     public string Description;
     public Sprite skillSprite;
@@ -14,5 +13,6 @@ public abstract class Skill : ScriptableObject
     public float coolDown;
     public bool isActive;
 
+    public virtual IEnumerator OnUseForEnemy(Enemy enemy) { yield return OnUse(); }
     public abstract IEnumerator OnUse();
 }

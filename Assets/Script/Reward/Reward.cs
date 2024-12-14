@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public struct Reward
@@ -13,7 +14,7 @@ public struct Reward
 public struct ItemReward
 {
     public string itemID;
-    public float dropRate;
+    [Range(0f, 1f)] public float dropRate;
 }
 
 

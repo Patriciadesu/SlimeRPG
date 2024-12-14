@@ -9,6 +9,8 @@ public class Chase : State
 
     protected override void Enter()
     {
+        animator.SetBool("isWalking", true);
+
         base.Enter();
     }
 

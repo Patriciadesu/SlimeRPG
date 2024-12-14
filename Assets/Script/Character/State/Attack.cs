@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Attack : State
 {
+    private float attackTime;
+    private Skill skillAttacker;
+
     public Attack(Enemy _enemy, float _chaseDistance, float _attackDistance) : base(_enemy, _chaseDistance, _attackDistance)
     {
 
@@ -10,7 +13,10 @@ public class Attack : State
     protected override void Enter()
     {
         enemy.Move(Vector2.zero);
-        enemy.Attack();
+        animator.SetBool("isWalking", false);
+
+        skillAttacker = enemy.Attack();
+        attackTime = skillAttacker.coolDown;
 
         base.Enter();
     }
@@ -24,9 +30,7 @@ public class Attack : State
     {
         base.Update();
 
-        // wait for animation ended
-        // set nextState value
-        if (runTime >= 3)
+        if ((skillAttacker.isActive && runTime > 2.5f) || skillAttacker == null)
         {
             var enemyPos = enemy.transform.position;
             var plrPos = Player.Instance.transform.position;

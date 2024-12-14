@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d05d558509afb49bc7cf762ee78342, type: 3}
-  m_Name: TestItem 1
+  m_Script: {fileID: 11500000, guid: 003abdeb722113b4cba463fb3448f773, type: 3}
+  m_Name: PlayerAttackTest
   m_EditorClassIdentifier: 
-  itemID: 2134
-  itemName: suiiii
-  maxItemCount: 15
-  itemSprite: {fileID: 21300000, guid: 1f1e357adcd28498085d11f888cdb457, type: 3}
-  price: 100
-  description: hi
+  Name: PlayerAttackTest
+  Description: Test
+  skillSprite: {fileID: 0}
+  price: 0
+  have: 1
+  coolDown: 1
+  isActive: 1
+  attackCast: {x: 5, y: 3}
