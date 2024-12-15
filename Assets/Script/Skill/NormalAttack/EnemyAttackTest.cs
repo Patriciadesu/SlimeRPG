@@ -1,13 +1,15 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "EnemyAttackTest", menuName = "Skill/EnemyAttack/EnemyAttackTest", order = 1)]
 public class EnemyAttackTest : EnemyAttack
 {
+    [SerializeField] private Vector2 effectScale = new Vector2(2.5f, 1.5f);
+    [SerializeField] private Vector2 attackCast = Vector2.one * 3;
     [SerializeField] private float attackMultiply = 1;
     [SerializeField] private float knockbackPower;
-    [SerializeField] private Vector2 attackCast = new Vector2(5, 3);
 
     public override IEnumerator OnUse()
     {
@@ -39,6 +41,20 @@ public class EnemyAttackTest : EnemyAttack
         var animator = enemy.GetComponent<Animator>();
 
         animator.SetTrigger("attack");
+
+        var effectObj = EffectManager.Instance.CreateEffect(
+            EffectManager.Effect.SLASH,
+            enemyPos + (direction * (effectScale.x / 1.5f)),
+            Quaternion.Euler(
+                0,
+                direction.x > 0 ? -180 : 0,
+                direction.x < 0 ?
+                Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg :
+                -Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg + 180
+            ),
+            enemy.transform
+        );
+        effectObj.localScale = effectScale;
 
         var rays = Physics2D.BoxCastAll(
             enemyPos,

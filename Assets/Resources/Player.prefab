@@ -108,8 +108,6 @@ MonoBehaviour:
   normalAttack: {fileID: 11400000, guid: b987493a651029e488ba7ef791779290, type: 2}
   speed: 1
   coin: 0
-  dashSkill: {fileID: 0}
-  superSpeedSkill: {fileID: 0}
 --- !u!50 &2222682610183555158
 Rigidbody2D:
   serializedVersion: 5

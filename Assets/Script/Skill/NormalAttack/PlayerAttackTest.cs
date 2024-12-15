@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerAttackTest", menuName = "Skill/NormalAttack/PlayerAttackTest", order = 1)]
 public class PlayerAttackTest : NormalAttack
 {
-    [SerializeField] private Vector2 attackCast = new Vector2(5, 3);
+    [SerializeField] private Vector2 effectScale = new Vector2(2.5f, 1.5f);
+    [SerializeField] private Vector2 attackCast = Vector2.one * 3;
     [SerializeField] private float knockbackPower;
 
     public override IEnumerator OnUse()
@@ -26,6 +27,20 @@ public class PlayerAttackTest : NormalAttack
         var plrPos = Player.Instance.transform.position.ConvertTo<Vector2>();
         var mousePos = MouseInput.Instance.MousePos;
         var direction = (mousePos - plrPos).normalized;
+
+        var effectObj = EffectManager.Instance.CreateEffect(
+            EffectManager.Effect.SLASH,
+            plrPos + (direction * (effectScale.x / 1.5f)),
+            Quaternion.Euler(
+                0,
+                direction.x > 0 ? -180 : 0,
+                direction.x < 0 ?
+                Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg :
+                -Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg + 180
+            ),
+            Player.Instance.transform
+        );
+        effectObj.localScale = effectScale;
 
         var rays = Physics2D.BoxCastAll(
             plrPos,
