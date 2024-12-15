@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SlashForDebug01(SpriteSheet)_0: -5006772004292272772
+      SlashForDebug01(SpriteSheet)_1: 376607870275010511
+      SlashForDebug01(SpriteSheet)_2: 6179445733271624057
+      SlashForDebug01(SpriteSheet)_3: -1551501815417300612
+      SlashForDebug01(SpriteSheet)_4: -3129618152926858410
+      SlashForDebug01(SpriteSheet)_5: 4584751584976966792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
