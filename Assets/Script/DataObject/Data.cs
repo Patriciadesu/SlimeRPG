@@ -27,7 +27,14 @@ public class sReward
     public int xp;
     public List<sItem> item;
 }
+
 [Serializable]
+public class sUserItem
+{
+    public string _id;
+    public int amount;
+}
+
 public class sItem
 {
     public string _id;
