@@ -24,15 +24,7 @@ public class Dash : Mobility
         Debug.Log("Using Dash skill");
 
         Player character = Player.Instance;
-<<<<<<< HEAD
         if (character == null) yield break;
-=======
-        if (character == null)
-        {
-            Debug.LogError("Player or Rigidbody2D is missing!");
-            yield break;
-        }
->>>>>>> fd8b61723b93d638b42f8a01ed1647c271bcd79d
 
         // ดึงตำแหน่งจากการคลิกที่หน้าจอ
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -41,7 +33,6 @@ public class Dash : Mobility
         // คำนวณทิศทางจากตำแหน่งผู้เล่นไปยังตำแหน่งที่คลิก
         Vector3 direction = (mousePosition - character.transform.position).normalized;
 
-<<<<<<< HEAD
         // คำนวณตำแหน่งเป้าหมาย
         Vector3 targetPosition = character.transform.position + direction * dashDistance;
 
@@ -55,13 +46,6 @@ public class Dash : Mobility
 
         //// หยุดการเคลื่อนที่
         //character.rb2D.linearVelocity = Vector2.zero;
-=======
-
-        // เล่น Animation (ถ้ามี)
-        character.GetComponent<Animator>().SetTrigger("Dash");
-
-        character.GetComponent<Rigidbody2D>().AddRelativeForce(direction * dashSpeed, ForceMode2D.Impulse);
->>>>>>> fd8b61723b93d638b42f8a01ed1647c271bcd79d
 
         Debug.Log("Dash skill completed");
     }
@@ -104,11 +88,11 @@ public class Teleport : Mobility
             Debug.Log("Obstacle detected, teleporting to nearest point.");
         }
 
-        // เล่น Animation Teleport (ถ้ามี)
-        if (character.animator != null)
-        {
-            character.animator.SetTrigger("Teleport");
-        }
+        //// เล่น Animation Teleport (ถ้ามี)
+        //if (character.animator != null)
+        //{
+        //    character.animator.SetTrigger("Teleport");
+        //}
 
         // ย้ายตัวละครไปยังตำแหน่งที่คำนวณได้
         character.transform.position = targetPosition;
