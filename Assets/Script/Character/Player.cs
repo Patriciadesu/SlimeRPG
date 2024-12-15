@@ -67,12 +67,6 @@ public class Player : Character
 
     // [Header("Inventory")]
     // public Inventory inventory;
-<<<<<<< HEAD
-=======
-    [Header("Player Component")]
-    public Rigidbody2D rb2D; // ตัวแปรสำหรับอ้างอิง Rigidbody2D
-    public Animator animator; // Animator สำหรับควบคุมแอนิเมชัน
->>>>>>> 65513587be38da08b3b6e23c01e54929e5f52415
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -89,10 +83,6 @@ public class Player : Character
         if (rb2D == null)
         {
             rb2D = GetComponent<Rigidbody2D>(); // เชื่อมโยงกับ Rigidbody2D ถ้าไม่ถูกกำหนด
-        }
-        if (animator == null)
-        {
-            animator = GetComponent<Animator>(); // เชื่อมโยง Animator ถ้าไม่ถูกกำหนด
         }
     }
     void FixedUpdate()

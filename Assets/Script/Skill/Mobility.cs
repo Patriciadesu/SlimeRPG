@@ -26,7 +26,7 @@ public class Dash : Mobility
 
         // ดึงตัวละคร Player
         Player character = Player.Instance;
-        if (character == null || character.rb2D == null)
+        if (character == null)
         {
             Debug.LogError("Player or Rigidbody2D is missing!");
             yield break;
@@ -38,27 +38,11 @@ public class Dash : Mobility
         // คำนวณแรงที่จะผลักตัวละคร
         Vector3 dashForce = direction.normalized * dashSpeed;
 
-<<<<<<< HEAD
-        // คำนวณตำแหน่งเป้าหมาย
-        //Vector3 targetPosition = character.transform.position + direction * dashDistance;
 
-        character.GetComponent<Rigidbody2D>().AddRelativeForce(direction *  dashSpeed, ForceMode2D.Impulse);
-=======
         // เล่น Animation (ถ้ามี)
-        if (character.animator != null)
-        {
-            character.animator.SetTrigger("Dash");
-        }
+        character.GetComponent<Animator>().SetTrigger("Dash");
 
-        // ตั้งค่า Velocity สำหรับ Dash
-        character.rb2D.velocity = dashForce;
->>>>>>> 65513587be38da08b3b6e23c01e54929e5f52415
-
-        // รอให้ Dash เสร็จ
-        yield return new WaitForSeconds(dashDuration);
-
-        // หยุดการเคลื่อนที่หลัง Dash
-        character.rb2D.velocity = Vector2.zero;
+        character.GetComponent<Rigidbody2D>().AddRelativeForce(direction * dashSpeed, ForceMode2D.Impulse);
 
         Debug.Log("Dash skill completed");
     }
