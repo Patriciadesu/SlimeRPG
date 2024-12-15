@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossNPC : NPC
 {
     [SerializeField] private string[] BossActiveDialog;
-    [SerializeField] private bool BossEventOngoing;
+    public bool BossEventOngoing;
     void Start()
     {
         base.Start();
@@ -27,26 +27,6 @@ public class BossNPC : NPC
              DialogSystem();
         }
         
-    }
-    public virtual void DialogSystem()
-    {
-        if (dialogInterface.activeSelf)
-        {
-            if (Input.GetKeyDown(dialogProgressingKey))
-            {
-                currentDialog += 1;
-            }
-        }
-        nameText.text = npcName;
-
-        if (currentDialog > 0 && currentDialog <= npcDialog.Length)
-        {
-            dialogText.text = npcDialog[currentDialog - 1];
-        }
-        else
-        {
-            UnInteract();
-        }
     }
     public void PlayBossDialog()
     {
