@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a36754fd96809c742be4f5bfee8fac24
+guid: 7ec1d324e16aab04696aa62ee10ce1ce
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -118,20 +118,20 @@ TextureImporter:
       name: SlashForDebug01(SpriteSheet)_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 24
-        width: 8
-        height: 6
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c7dd9cc936f548ab0800000000000000
-      internalID: -5006772004292272772
+      spriteID: 4a52b4011a3fa1f49a1883eaed35d5e8
+      internalID: 1623496102
       vertices: []
       indices: 
       edges: []
@@ -140,20 +140,20 @@ TextureImporter:
       name: SlashForDebug01(SpriteSheet)_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 16
-        width: 19
-        height: 14
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fcfbb57dcdaf93500800000000000000
-      internalID: 376607870275010511
+      spriteID: d0cd540e53c30f84dafc70f9030ae22d
+      internalID: 127738749
       vertices: []
       indices: 
       edges: []
@@ -162,20 +162,20 @@ TextureImporter:
       name: SlashForDebug01(SpriteSheet)_2
       rect:
         serializedVersion: 2
-        x: 70
-        y: 5
-        width: 17
-        height: 24
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9795570872dc1c550800000000000000
-      internalID: 6179445733271624057
+      spriteID: 8b124724740b48d48906acaf2cbfe910
+      internalID: -1590326707
       vertices: []
       indices: 
       edges: []
@@ -184,20 +184,20 @@ TextureImporter:
       name: SlashForDebug01(SpriteSheet)_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 2
-        width: 18
-        height: 20
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c799dafa155f77ae0800000000000000
-      internalID: -1551501815417300612
+      spriteID: a19ad1ca6b1914c40ab64650c718f2af
+      internalID: -1883582504
       vertices: []
       indices: 
       edges: []
@@ -206,20 +206,20 @@ TextureImporter:
       name: SlashForDebug01(SpriteSheet)_4
       rect:
         serializedVersion: 2
-        x: 139
-        y: 2
-        width: 15
-        height: 13
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6533e201fdc5194d0800000000000000
-      internalID: -3129618152926858410
+      spriteID: 74f47fd26ed72bd448658fbf7543d5a2
+      internalID: 2121045230
       vertices: []
       indices: 
       edges: []
@@ -228,20 +228,42 @@ TextureImporter:
       name: SlashForDebug01(SpriteSheet)_5
       rect:
         serializedVersion: 2
-        x: 175
-        y: 2
-        width: 42
-        height: 8
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 88416f5864f40af30800000000000000
-      internalID: 4584751584976966792
+      spriteID: 22a4596bbffd4f14f9c45826c746f667
+      internalID: 670258262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlashForDebug01(SpriteSheet)_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e3cd6979321a514dbaaa6a688cdd7fd
+      internalID: 131139269
       vertices: []
       indices: 
       edges: []
@@ -250,7 +272,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f1b1ca115d79dc54ba7b7e1c902376e3
     internalID: 0
     vertices: []
     indices: 
@@ -260,12 +282,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SlashForDebug01(SpriteSheet)_0: -5006772004292272772
-      SlashForDebug01(SpriteSheet)_1: 376607870275010511
-      SlashForDebug01(SpriteSheet)_2: 6179445733271624057
-      SlashForDebug01(SpriteSheet)_3: -1551501815417300612
-      SlashForDebug01(SpriteSheet)_4: -3129618152926858410
-      SlashForDebug01(SpriteSheet)_5: 4584751584976966792
+      SlashForDebug01(SpriteSheet)_0: 1623496102
+      SlashForDebug01(SpriteSheet)_1: 127738749
+      SlashForDebug01(SpriteSheet)_2: -1590326707
+      SlashForDebug01(SpriteSheet)_3: -1883582504
+      SlashForDebug01(SpriteSheet)_4: 2121045230
+      SlashForDebug01(SpriteSheet)_5: 670258262
+      SlashForDebug01(SpriteSheet)_6: 131139269
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

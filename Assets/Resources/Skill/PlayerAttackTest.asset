@@ -19,5 +19,6 @@ MonoBehaviour:
   _price: 0
   coolDown: 1
   isActive: 1
-  attackCast: {x: 5, y: 3}
+  effectScale: {x: 4.1666665, y: 2.5}
+  attackCast: {x: 5, y: 5}
   knockbackPower: 5
