@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8f34f12b8b3ff4b957e5d7c4746979, type: 3}
+  m_Name: LightBeam 4
+  m_EditorClassIdentifier: 
+  SkillSprite: {fileID: 0}
+  Name: LightBeam
+  Description: 
+  Have: 1
+  _price: 0
+  coolDown: 10
+  isActive: 1
+  activateType: 0
+  NextStep: {fileID: 11400000, guid: 9cb7e47d55b5866449c3d3715d9e55c9, type: 2}
+  beamSize: 1.1
+  spread: 60
+  beamCount: 3
+  damageMultiply: 4.5
+  knockbackPower: 14
+  stayTime: 1.5

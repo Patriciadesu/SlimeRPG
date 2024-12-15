@@ -1,15 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class ActiveSkill : Skill
+public abstract class ActiveSkill : Skill
 {
     public ActivateType activateType;
     public ActiveSkill NextStep;
-    public override IEnumerator OnUse()
-    {
-        Debug.Log("Using ActiveSkill");
-        yield break;
-    }
 }
 
 public enum ActivateType
@@ -24,8 +19,6 @@ public class HealSkill : ActiveSkill
 
     public override IEnumerator OnUse()
     {
-        yield return base.OnUse();
-
         Debug.Log($"Using HealSkill. Healing for {healAmount} HP");
 
         if (Player.Instance != null)
@@ -36,19 +29,3 @@ public class HealSkill : ActiveSkill
         yield break;
     }
 }
-public class LightBeamV1 : ActiveSkill
-{
-    public override IEnumerator OnUse()
-    {
-        yield return base.OnUse();
-    }
-}
-
-public class LightBeamV2 : ActiveSkill
-{
-    public override IEnumerator OnUse()
-    {
-        yield return base.OnUse();
-    }
-}
-

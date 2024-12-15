@@ -61,16 +61,12 @@ public class Player : Character
     private SprintToEnemy SprintToEnemy;// เพิ่มตัวแปรเพื่อเก็บ SprintToEnemy
     private Teleport Teleport;// เพิ่มตัวแปรเพื่อเก็บ Teleport
     // [Header("Skill")]
-    // public Skill activeSkill1;
-    // public Skill activeSkill2;
+    [SerializeField] private ActiveSkill activeSkill1;
+    [SerializeField] private ActiveSkill activeSkill2;
     // public Skill mobilitySkill;
 
     // [Header("Inventory")]
     // public Inventory inventory;
-
-    [Header("interact")]
-    private NPC currentNPC;
-
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -100,12 +96,30 @@ public class Player : Character
         {
             Attack();
         }
-        if (currentNPC != null && Input.GetKeyDown(KeyCode.E))
+
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            currentNPC.Interact();
+            UseSkill1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            UseSkill2();
         }
     }
-    
+
+    private void UseSkill1()
+    {
+        if (activeSkill1 != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill1));
+    }
+
+    private void UseSkill2()
+    {
+        if (activeSkill2 != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill2));
+    }
+
     protected void Attack()
     {
         if (normalAttack != null)
@@ -115,28 +129,16 @@ public class Player : Character
     private void PlayerInput()
     {
         // กด Q เพื่อใช้ ..... Skill
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    Debug.Log("Q key pressed");
-
-        //    // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
-        //    Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
-        //    StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
-        //}
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Q key pressed");
 
-            // เรียกใช้ Teleport Skill
-            if (Teleport == null)
-            {
-                Teleport = ScriptableObject.CreateInstance<Teleport>();
-            }
-            StartCoroutine(SkillManager.Instance.UseSkill(Teleport));
+            // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
+            Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
+            StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
         }
         // กด E หรือ Q เพื่อใช้skill heal
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
         }
@@ -153,15 +155,14 @@ public class Player : Character
 
     protected void Move(Vector2 velocity)
     {
-        
         rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity * speed * 3, Time.fixedDeltaTime * 5);
 
         float currentX = transform.rotation.eulerAngles.x;
         float currentZ = transform.rotation.eulerAngles.z;
 
-        if (velocity.x > 0)
+        if ((velocity * speed).x > 0)
             transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
-        else if (velocity.x < 0)
+        else if ((velocity * speed).x < 0)
             transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
@@ -176,23 +177,4 @@ public class Player : Character
         health = Mathf.Min(MaxHealth, health + amount);
         Debug.Log($"Player healed by {amount}. Current health: {health}");
     }
-
-    #region onEnter/Exit
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent<NPC>(out NPC npc))
-        {
-            currentNPC = npc;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent<NPC>(out NPC npc) && currentNPC == npc)
-        {
-            currentNPC.UnInteract();
-            currentNPC = null;
-        }
-    }
-    #endregion
 }

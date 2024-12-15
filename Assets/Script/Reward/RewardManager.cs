@@ -1,19 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RewardManager : MonoBehaviour
+public class RewardManager : Singleton<RewardManager>
 {
-    public static RewardManager Instance;
     public List<Reward> rewards = new List<Reward>();
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance.gameObject);
-
-        Instance = this;
-    }
-
+    public float expBoostRate = 1f;
+    public float coinBoostRate = 1f;
+    public float dropBoostRate = 1f;
     public void GetAllRewards()
     {
         //rewards = get from databse;
@@ -29,7 +22,7 @@ public class RewardManager : MonoBehaviour
 
         for (int i = 0; i < rewardToGive.items.Count; i++)
         {
-            if (Random.Range(0, 1) > rewardToGive.items[i].dropRate)
+            if (Random.Range(0, 1) > rewardToGive.items[i].dropRate * dropBoostRate)
             {
                 continue;
             }
@@ -37,7 +30,7 @@ public class RewardManager : MonoBehaviour
             Inventory.Instance.AddItem(ItemManager.Instance.GetItemFromID(rewardToGive.items[i].itemID));
         }
 
-        Player.Instance.Exp += rewardToGive.exp;
-        Player.Instance.coin += rewardToGive.coin;
+        Player.Instance.Exp += rewardToGive.exp * expBoostRate;
+        Player.Instance.coin += rewardToGive.coin * coinBoostRate;
     }
 }
