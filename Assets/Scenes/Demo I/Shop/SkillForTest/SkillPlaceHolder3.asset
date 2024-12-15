@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SkillPlaceHolder3
   m_EditorClassIdentifier: Assembly-CSharp::Dash
-  SkillSprite: {fileID: 2714453574471835212, guid: bf91f6ac94f3744479f78c64b528a8e6, type: 3}
+  SkillSprite: {fileID: 4179637941868313244, guid: 6f193eeb0136c3242b1022896ba352dc, type: 3}
   Name: 
   Description: 
   Have: 0
