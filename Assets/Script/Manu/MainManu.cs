@@ -5,6 +5,11 @@ public class MainManu : MonoBehaviour
 {
     public string playerID;
 
+    private void Start()
+    {
+        CheckPlayerID();
+    }
+
     public void CheckPlayerID()
     {
 
@@ -13,7 +18,7 @@ public class MainManu : MonoBehaviour
     #region SceneChange
     public void EnterGame()
     {
-        SceneManager.LoadScene("Map1");
+        SceneManager.LoadScene("MainMap");
     }
 
     public void BackToMenu()
