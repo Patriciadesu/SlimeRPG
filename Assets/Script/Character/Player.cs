@@ -67,6 +67,7 @@ public class Player : Character
 
     // [Header("Inventory")]
     // public Inventory inventory;
+    public Rigidbody2D rb2D;
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -106,6 +107,20 @@ public class Player : Character
 
     private void PlayerInput()
     {
+
+        //// ใช้สกิลที่เลือกไว้สำหรับปุ่ม E
+        //if (Input.GetKeyDown(KeyCode.E) && activeSkill1 != null)
+        //{
+        //    Debug.Log("Using Skill 1: " + activeSkill1.name);
+        //    StartCoroutine(SkillManager.Instance.UseSkill(activeSkill1));
+        //}
+
+        //// ใช้สกิลที่เลือกไว้สำหรับปุ่ม F
+        //if (Input.GetKeyDown(KeyCode.F) && activeSkill2 != null)
+        //{
+        //    Debug.Log("Using Skill 2: " + activeSkill2.name);
+        //    StartCoroutine(SkillManager.Instance.UseSkill(activeSkill2));
+        //}
         // กด Q เพื่อใช้ ..... Skill
         //if (Input.GetKeyDown(KeyCode.Q))
         //{
@@ -168,4 +183,29 @@ public class Player : Character
         health = Mathf.Min(MaxHealth, health + amount);
         Debug.Log($"Player healed by {amount}. Current health: {health}");
     }
+
+    [Header("Skill Selection")]
+    public Skill activeSkill1; // สำหรับปุ่ม E
+    public Skill activeSkill2; // สำหรับปุ่ม F
+
+    public void SetSkill(int skillSlot, Skill newSkill)
+    {
+        if (skillSlot == 1)
+        {
+            activeSkill1 = newSkill;
+            Debug.Log("Skill 1 (E) set to: " + newSkill.name);
+        }
+        else if (skillSlot == 2)
+        {
+            activeSkill2 = newSkill;
+            Debug.Log("Skill 2 (F) set to: " + newSkill.name);
+        }
+    }
+
+    //void Start()
+    //{
+    //    // ตัวอย่างการเลือกสกิลใน Start (สามารถแก้ไขเป็น UI input ได้)
+    //    SetSkill(1, ScriptableObject.CreateInstance<Dash>());       // ตั้ง Dash เป็นสกิลปุ่ม E
+    //    SetSkill(2, ScriptableObject.CreateInstance<Teleport>());   // ตั้ง Teleport เป็นสกิลปุ่ม F
+    //}
 }
