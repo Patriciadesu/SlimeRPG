@@ -28,6 +28,7 @@ public class EnemyAttackTest : EnemyAttack
 
         var plrPos = Player.Instance.transform.position;
         var enemyPos = enemy.transform.position;
+        enemyPos.z = plrPos.z;
         var direction = (plrPos - enemyPos).normalized;
 
         yield return new WaitForSeconds(stayTime);

@@ -6,7 +6,8 @@ public class EffectManager : MonoBehaviour
 
     public enum Effect
     {
-        SLASH
+        SLASH,
+        LIGHTBEAM
     }
 
     private void Awake()
@@ -33,14 +34,20 @@ public class EffectManager : MonoBehaviour
 
     public Transform CreateEffect(Effect effect, Vector2 pos)
     {
+        Transform effectObj = null;
+
         switch (effect)
         {
             case Effect.SLASH:
-                var effectObj = Instantiate(Resources.Load<Transform>("Effect/SlashEffect"));
+                effectObj = Instantiate(Resources.Load<Transform>("Effect/SlashEffect"));
                 effectObj.position = pos;
-                return effectObj;
+                break;
+            case Effect.LIGHTBEAM:
+                effectObj = Instantiate(Resources.Load<Transform>("Effect/LightBeamEffect"));
+                effectObj.position = pos;
+                break;
         }
 
-        return null;
+        return effectObj;
     }
 }

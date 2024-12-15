@@ -61,8 +61,8 @@ public class Player : Character
     private SprintToEnemy SprintToEnemy;// เพิ่มตัวแปรเพื่อเก็บ SprintToEnemy
     private Teleport Teleport;// เพิ่มตัวแปรเพื่อเก็บ Teleport
     // [Header("Skill")]
-    // public Skill activeSkill1;
-    // public Skill activeSkill2;
+    [SerializeField] private ActiveSkill activeSkill1;
+    [SerializeField] private ActiveSkill activeSkill2;
     // public Skill mobilitySkill;
 
     // [Header("Inventory")]
@@ -96,8 +96,30 @@ public class Player : Character
         {
             Attack();
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            UseSkill1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            UseSkill2();
+        }
     }
-    
+
+    private void UseSkill1()
+    {
+        if (activeSkill1 != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill1));
+    }
+
+    private void UseSkill2()
+    {
+        if (activeSkill2 != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill2));
+    }
+
     protected void Attack()
     {
         if (normalAttack != null)
@@ -133,15 +155,14 @@ public class Player : Character
 
     protected void Move(Vector2 velocity)
     {
-        
         rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity * speed * 3, Time.fixedDeltaTime * 5);
 
         float currentX = transform.rotation.eulerAngles.x;
         float currentZ = transform.rotation.eulerAngles.z;
 
-        if (velocity.x > 0)
+        if ((velocity * speed).x > 0)
             transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
-        else if (velocity.x < 0)
+        else if ((velocity * speed).x < 0)
             transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
