@@ -14,6 +14,7 @@ public class BossEvent : Event
     public override IEnumerator StartEvent()
     {
         throw new System.NotImplementedException();
+        
     }
     public override void EndEvent()
     {
