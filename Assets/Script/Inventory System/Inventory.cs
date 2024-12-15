@@ -69,12 +69,23 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void GetItem()
+    public void GetItem(sUserItem[] items)
     {
-        
+        foreach (var sItem in items)
+        {
+            Item item = ItemManager.Instance.GetItemFromID(sItem._id);
+            if (item == null)
+            {
+                Debug.LogError($"Item with ID {sItem._id} not found.");
+                continue;
+            }
+
+            AddItem(item, sItem.amount);
+        }
     }
 
-    public void AddItem(Item item)
+
+    public void AddItem(Item item, int amount = 1)
     {
         foreach (var slot in itemSlots)
         {
@@ -82,7 +93,7 @@ public class Inventory : MonoBehaviour
             {
                 if (slot.isFull) continue;
 
-                slot.AddItem(item);
+                int remainingAmount = slot.AddItem(item, amount);
 
                 if (IsSlotSelected(slot))
                 {
@@ -90,21 +101,28 @@ public class Inventory : MonoBehaviour
                 }
 
                 SortItems();
-                return;
+
+                if (remainingAmount <= 0) return;
+
+                amount = remainingAmount;
             }
         }
 
-        Debug.LogWarning("Inventory is full or no suitable slot available to add the item!");
+        if (amount > 0)
+        {
+            Debug.LogWarning($"Inventory is full or no suitable slot available to add {amount} of {item.name}!");
+        }
     }
 
-    public void RemoveItem(Item item)
+
+    public void RemoveItem(Item item,int amount = 1)
     {
         for (int i = itemSlots.Count - 1; i >= 0; i--)
         {
             var slot = itemSlots[i];
             if (slot.hasItem && slot.item == item)
             {
-                slot.RemoveItem(1);
+                slot.RemoveItem(amount);
 
                 if (IsSlotSelected(slot))
                 {

@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+using System;
 
+[Serializable]
 public class sQuest
 {
     public string _id;
@@ -8,7 +9,7 @@ public class sQuest
     public string reward;
     public List<string> Objective;
 }
-
+[Serializable]
 public class sObjective
 {
     public string _id;
@@ -17,7 +18,7 @@ public class sObjective
     public int requiredAmount;
 }
 
-
+[Serializable]
 public class sReward
 {
     public string _id;
@@ -25,6 +26,13 @@ public class sReward
     public int coin;
     public int xp;
     public List<sItem> item;
+}
+
+[Serializable]
+public class sUserItem
+{
+    public string _id;
+    public int amount;
 }
 
 public class sItem

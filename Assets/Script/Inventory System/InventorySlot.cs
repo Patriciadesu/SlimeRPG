@@ -22,17 +22,34 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
     public GameObject selectedShader;
     public bool thisItemSelected;
 
-    public void AddItem(Item item)
+    public void AddItem(Item newItem)
     {
-        if (hasItem && this.item != item) return;
+        if (hasItem && this.item != newItem) return;
 
-        this.item = item;
+        this.item = newItem;
         hasItem = true;
         itemCount++;
-
         isFull = itemCount >= item.maxItemCount;
 
         UpdateDisplay();
+    }
+
+    public int AddItem(Item newItem, int amount)
+    {
+        if (hasItem && this.item != newItem) return amount;
+
+        this.item = newItem;
+        hasItem = true;
+
+        int spaceAvailable = item.maxItemCount - itemCount;
+        int amountToAdd = Mathf.Min(spaceAvailable, amount);
+
+        itemCount += amountToAdd;
+        isFull = itemCount >= item.maxItemCount;
+
+        UpdateDisplay();
+
+        return amount - amountToAdd;
     }
 
 

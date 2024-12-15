@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SkillPlaceHolder7
   m_EditorClassIdentifier: Assembly-CSharp::Dash
-  SkillSprite: {fileID: -6470460504253458178, guid: cc2b7801fbc83f84fab76dafb275666a, type: 3}
+  SkillSprite: {fileID: 4179637941868313244, guid: 6f193eeb0136c3242b1022896ba352dc, type: 3}
   Name: 
   Description: 
   Have: 0
-  _price: 0
+  _price: 7
   coolDown: 0
   isActive: 0
   activateType: 0
-  dashSpeed: 10
   dashDistance: 5
+  dashSpeed: 10
