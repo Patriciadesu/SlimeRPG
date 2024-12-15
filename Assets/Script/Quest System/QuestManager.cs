@@ -41,12 +41,12 @@ public class QuestManager : Singleton<QuestManager>
 
             foreach (string objectiveID in squest.Objective)
             {
-                sObjective sObjective = objectivesFromDatabase.Find(o => o.objectiveID == objectiveID);
+                sObjective sObjective = objectivesFromDatabase.Find(o => o._id == objectiveID);
 
                 if (sObjective != null)
                 {
                     QuestObjective newObjective = new QuestObjective(
-                        sObjective.objectiveID,
+                        sObjective._id,
                         sObjective.name,
                         sObjective.enemyID,
                         sObjective.requiredAmount,
@@ -177,39 +177,5 @@ public class QuestManager : Singleton<QuestManager>
             }
         }
         return null;
-    }
-
-    public class sQuest
-    {
-        public string _id;
-        public string name;
-        public string description;
-        public string reward;
-        public List<string> Objective;
-    }
-
-    public class sObjective
-    {
-        public string objectiveID;
-        public string name;
-        public string enemyID;
-        public int requiredAmount;
-    }
-
-
-    public class sReward
-    {
-        public string _id;
-        public string name;
-        public int coin;
-        public int xp;
-        public List<sItem> item;
-    }
-
-    public class sItem
-    {
-        public string _id;
-        public string name;
-        public int amount;
     }
 }
