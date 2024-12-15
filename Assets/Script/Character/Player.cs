@@ -67,6 +67,10 @@ public class Player : Character
     // [Header("Inventory")]
     // public Inventory inventory;
     public Rigidbody2D rb2D;
+
+    [Header("Interact")]
+    public NPC currentNPC;
+
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -91,6 +95,10 @@ public class Player : Character
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
+        }
+        if (currentNPC != null && Input.GetKeyDown(KeyCode.E))
+        {
+            currentNPC.Interact();
         }
     }
 
@@ -179,4 +187,23 @@ public class Player : Character
     //    SetSkill(1, ScriptableObject.CreateInstance<Dash>());       // ตั้ง Dash เป็นสกิลปุ่ม E
     //    SetSkill(2, ScriptableObject.CreateInstance<Teleport>());   // ตั้ง Teleport เป็นสกิลปุ่ม F
     //}
+
+    #region onEnter/Exit
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<NPC>(out NPC npc))
+        {
+            currentNPC = npc;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent<NPC>(out NPC npc) && currentNPC == npc)
+        {
+            currentNPC.UnInteract();
+            currentNPC = null;
+        }
+    }
+    #endregion
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    public Rigidbody2D rb2D;
+    protected Rigidbody2D rb2D;
     [SerializeField] protected int _level = 1;
     public float MaxHealth { get => _maxHealth + (_maxHealth * (_level - 1) * 0.2f); }
     [SerializeField] private float _maxHealth = 100;
