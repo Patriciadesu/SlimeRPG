@@ -4,6 +4,14 @@ using UnityEngine;
 public class ItemManager : Singleton<ItemManager>
 {
     public List<Item> itemData;
+    List<sItem> sItems = new List<sItem>();
+
+    private void Awake()
+    {
+        UpdateItemData();
+    }/// <summary>
+     /// ///////////////////////
+     /// </summary>
 
     void Start()
     {
@@ -12,8 +20,6 @@ public class ItemManager : Singleton<ItemManager>
 
     public void UpdateItemData()
     {
-        List<sItem> sItems = new List<sItem>(); // sItems = getitems from database etc etc 
-
         for (int i = 0; i < itemData.Count; i++)
         {
             for (int j = 0; j < sItems.Count; j++)
