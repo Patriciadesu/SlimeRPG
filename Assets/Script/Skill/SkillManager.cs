@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance;
     [SerializeField] private Skill[] skills;
+
 
     private void Awake()
     {
@@ -40,4 +42,24 @@ public class SkillManager : MonoBehaviour
             yield return skill.OnUse(enemy);
         //yield return StartCoroutine(skill.OnUse());
     }
+
+    public Skill GetSkillByID(string ID){
+        if (skills == null || skills.Length == 0)
+        {
+            Debug.LogError("Item Data is empty.");
+            return null;
+        }
+
+        for (int i = 0; i < skills.Length; i++)
+        {
+            if (skills[i].skillID == ID)
+            {
+                return skills[i];
+            }
+        }
+        
+        Debug.LogError("This Item ID does not exist in the data.");
+        return null;
+    }
+
 }
