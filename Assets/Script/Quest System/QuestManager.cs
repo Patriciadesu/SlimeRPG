@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using static QuestManager;
 
 public class QuestManager : Singleton<QuestManager>
 {
@@ -20,6 +23,7 @@ public class QuestManager : Singleton<QuestManager>
     private void Start()
     {
         currentQuest = default(Quest);
+        GetAllQuests();
     }
     /// <summary>
     /// Get All Quest Data from database to QuestManager
@@ -29,7 +33,7 @@ public class QuestManager : Singleton<QuestManager>
         /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
         List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
 
-        List<Quest> allQuests = new List<Quest>();
+        allQuests.Clear();
 
         foreach (sQuest squest in questsFromDatabase)
         {
@@ -37,12 +41,12 @@ public class QuestManager : Singleton<QuestManager>
 
             foreach (string objectiveID in squest.Objective)
             {
-                sObjective sObjective = objectivesFromDatabase.Find(o => o.objectiveID == objectiveID);
+                sObjective sObjective = objectivesFromDatabase.Find(o => o._id == objectiveID);
 
                 if (sObjective != null)
                 {
                     QuestObjective newObjective = new QuestObjective(
-                        sObjective.objectiveID,
+                        sObjective._id,
                         sObjective.name,
                         sObjective.enemyID,
                         sObjective.requiredAmount,
@@ -137,8 +141,8 @@ public class QuestManager : Singleton<QuestManager>
     {
         questNameText.text = $"Quest: {currentQuest.name}";
         questDescriptionText.text = $"Description: {currentQuest.description}";
-        moneyRewardText.text = $"Money Reward: {currentQuest.moneyReward}";
-        expRewardText.text = $"EXP Reward: {currentQuest.expReward}";
+        moneyRewardText.text = $"Money Reward: ";/*{currentQuest.reward.moneyReward}*/
+        expRewardText.text = $"EXP Reward: ";/*{currentQuest.reward.expReward}*/
 
         if (isFinish)
         {
@@ -173,38 +177,5 @@ public class QuestManager : Singleton<QuestManager>
             }
         }
         return null;
-    }
-
-    public class sQuest
-    {
-        public string _id;
-        public string name;
-        public string description;
-        public sReward reward;
-        public List<string> Objective;
-    }
-
-    public class sObjective
-    {
-        public string objectiveID;
-        public string name;
-        public string enemyID;
-        public int requiredAmount;
-    }
-
-
-    public class sReward
-    {
-        public string _id;
-        public string name;
-        public int coin;
-        public int xp;
-        public List<sItem> item;
-    }
-
-    public class sItem
-    {
-        public string name;
-        public int amount;
     }
 }
