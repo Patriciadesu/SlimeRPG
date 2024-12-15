@@ -2,7 +2,6 @@ using System;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections;
 
 public class Player : Character
 {
@@ -68,9 +67,6 @@ public class Player : Character
     // [Header("Inventory")]
     // public Inventory inventory;
 
-    [Header("interact")]
-    private NPC currentNPC;
-
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -84,10 +80,6 @@ public class Player : Character
         }
         DontDestroyOnLoad(this);
         base.Awake();
-        if (rb2D == null)
-        {
-            rb2D = GetComponent<Rigidbody2D>(); // เชื่อมโยงกับ Rigidbody2D ถ้าไม่ถูกกำหนด
-        }
     }
     void FixedUpdate()
     {
@@ -100,10 +92,6 @@ public class Player : Character
         {
             Attack();
         }
-        if (currentNPC != null && Input.GetKeyDown(KeyCode.E))
-        {
-            currentNPC.Interact();
-        }
     }
     
     protected void Attack()
@@ -115,35 +103,11 @@ public class Player : Character
     private void PlayerInput()
     {
         // กด Q เพื่อใช้ ..... Skill
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    Debug.Log("Q key pressed");
-
-        //    // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
-        //    Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
-        //    StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
-        //}
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && superSpeedSkill != null)
         {
-            Debug.Log("Q key pressed");
+            StartCoroutine(SkillManager.Instance.UseSkill(superSpeedSkill));
+        }
 
-            // เรียกใช้ Teleport Skill
-            if (Teleport == null)
-            {
-                Teleport = ScriptableObject.CreateInstance<Teleport>();
-            }
-            StartCoroutine(SkillManager.Instance.UseSkill(Teleport));
-        }
-        // กด E หรือ Q เพื่อใช้skill heal
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
-        }
-        else if (Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
-        }
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x,y);
@@ -170,29 +134,4 @@ public class Player : Character
         // Do something with die mechanics
         base.Die();
     }
-
-    public void Heal(float amount)
-    {
-        health = Mathf.Min(MaxHealth, health + amount);
-        Debug.Log($"Player healed by {amount}. Current health: {health}");
-    }
-
-    #region onEnter/Exit
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent<NPC>(out NPC npc))
-        {
-            currentNPC = npc;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent<NPC>(out NPC npc) && currentNPC == npc)
-        {
-            currentNPC.UnInteract();
-            currentNPC = null;
-        }
-    }
-    #endregion
 }
