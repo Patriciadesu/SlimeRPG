@@ -19,6 +19,11 @@ public class SkillManager : MonoBehaviour
         }
 
         Instance = this;
+
+        if (SkillManager.Instance == null)
+        {
+            Debug.LogError("SkillManager Instance is not set!");
+        }
     }
 
     public IEnumerator UseSkill(Skill skill)

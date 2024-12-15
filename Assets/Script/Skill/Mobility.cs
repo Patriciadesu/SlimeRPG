@@ -16,59 +16,38 @@ public class Mobility : Skill
 [CreateAssetMenu(fileName = "Dash", menuName = "Skill/Mobility/Dash", order = 1)]
 public class Dash : Mobility
 {
-    public float dashSpeed = 10f; // speed of the dash
-    public float dashDistance = 5f; // maximum dash distance
-    private Camera mainCamera;
-
-    private void Awake()
-    {
-        // get main Camera
-        mainCamera = Camera.main;
-    }
+    public float dashDistance = 5f; // ระยะทางที่ Dash
+    public float dashSpeed = 20f;   // ความเร็วในการ Dash
 
     public override IEnumerator OnUse()
     {
-        Player character = Player.Instance; // reference to the player character
-        if (character == null || mainCamera == null)
-        {
-            Debug.LogError("Player or Camera is missing!");
-            yield break;
-        }
+        Debug.Log("Using Dash skill");
 
-        // get mouse position on the screen
-        Vector3 mousePosition = Input.mousePosition;
+        Player character = Player.Instance;
+        if (character == null) yield break;
 
-        // convert mouse position from screen space to world space
-        Vector2 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        // ดึงตำแหน่งจากการคลิกที่หน้าจอ
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
 
-        // calculate the direction from the player to the target position
-        Vector2 characterPosition = character.transform.position;
-        Vector2 direction = (worldPosition - characterPosition).normalized;
+        // คำนวณทิศทางจากตำแหน่งผู้เล่นไปยังตำแหน่งที่คลิก
+        Vector3 direction = (mousePosition - character.transform.position).normalized;
 
-        // clamp the dash distance to the maximum dash distance
-        Vector2 targetPosition = characterPosition + Vector2.ClampMagnitude(worldPosition - characterPosition, dashDistance);
-        // start the dash
-        yield return DashMovement(character, targetPosition);
-    }
+        // คำนวณตำแหน่งเป้าหมาย
+        Vector3 targetPosition = character.transform.position + direction * dashDistance;
 
-    private IEnumerator DashMovement(Character character, Vector2 targetPosition)
-    {
-        Vector2 startPosition = character.transform.position; // starting position
-        float journeyTime = Vector2.Distance(startPosition, targetPosition) / dashSpeed; // time required for the dash
-        float elapsedTime = 0f;
+        character.rb2D.AddRelativeForce(direction *  dashSpeed, ForceMode2D.Impulse);
 
-        // smooth movement during the dash
-        while (elapsedTime < journeyTime)
-        {
-            elapsedTime += Time.deltaTime;
-            character.transform.position = Vector2.Lerp(startPosition, targetPosition, elapsedTime / journeyTime);
-            yield return null;
-        }
+        // ใช้ Rigidbody2D เคลื่อนที่ไปยังตำแหน่งเป้าหมาย
+        //character.rb2D.linearVelocity = direction * dashSpeed;
 
-        // set the character's position to the target position
-        character.transform.position = targetPosition;
+        //// รอให้การเคลื่อนที่เสร็จสิ้น
+        //yield return new WaitForSeconds(0.1f);
 
-        Debug.Log($"Dash completed. Final position: {targetPosition}");
+        //// หยุดการเคลื่อนที่
+        //character.rb2D.linearVelocity = Vector2.zero;
+
+        //Debug.Log("Dash skill completed");
     }
 }
 [CreateAssetMenu(fileName = "Teleport", menuName = "Skill/Mobility/Teleport", order = 1)]

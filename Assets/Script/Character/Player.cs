@@ -67,7 +67,7 @@ public class Player : Character
 
     // [Header("Inventory")]
     // public Inventory inventory;
-
+    public Rigidbody2D rb2D; // ตัวแปรสำหรับอ้างอิง Rigidbody2D
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -81,6 +81,10 @@ public class Player : Character
         }
         DontDestroyOnLoad(this);
         base.Awake();
+        if (rb2D == null)
+        {
+            rb2D = GetComponent<Rigidbody2D>(); // เชื่อมโยงกับ Rigidbody2D ถ้าไม่ถูกกำหนด
+        }
     }
     void FixedUpdate()
     {
@@ -104,9 +108,13 @@ public class Player : Character
     private void PlayerInput()
     {
         // กด Q เพื่อใช้ ..... Skill
-        if (Input.GetKeyDown(KeyCode.Q) && superSpeedSkill != null)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            StartCoroutine(SkillManager.Instance.UseSkill(superSpeedSkill));
+            Debug.Log("Q key pressed");
+
+            // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
+            Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
+            StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
         }
         // กด E หรือ Q เพื่อใช้skill heal
         if (Input.GetKeyDown(KeyCode.E))
