@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Skill : ScriptableObject
 {
-    protected int level = 1;
+    [SerializeField] protected int level = 1;
     public Sprite SkillSprite;
     public string Name = string.Empty;
     public string Description = string.Empty;

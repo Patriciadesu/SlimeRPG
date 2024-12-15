@@ -63,7 +63,7 @@ public class LightBeam : ActiveSkill
 
         Player.Instance.Speed = 0;
 
-        CameraShaker.Instance.TriggerShake(0.08f, 1, 1);
+        CameraShaker.Instance.TriggerShake(0.08f, stayTime, 0.55f);
 
         yield return new WaitForSeconds(stayTime);
 
