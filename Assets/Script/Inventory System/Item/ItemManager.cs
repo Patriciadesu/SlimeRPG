@@ -12,7 +12,7 @@ public class ItemManager : Singleton<ItemManager>
 
     public void UpdateItemData()
     {
-        List<QuestManager.sItem> sItems = new List<QuestManager.sItem>(); // sItems = getitems from database etc etc 
+        List<sItem> sItems = new List<sItem>(); // sItems = getitems from database etc etc 
 
         for (int i = 0; i < itemData.Count; i++)
         {

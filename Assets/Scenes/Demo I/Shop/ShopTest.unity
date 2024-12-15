@@ -396,6 +396,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aec11407f1a57f34d8fad6189d814193, type: 2}
   - {fileID: 11400000, guid: 4209f6df25fe5cd459d2e8f42dc8b91c, type: 2}
   - {fileID: 11400000, guid: 5ddfd25f3a789e64984dcde47e59f607, type: 2}
+  - {fileID: 11400000, guid: 4f5b0ec95ad76cf44aa0cbc2d0f70849, type: 2}
+  - {fileID: 11400000, guid: 47509a5543b01e24e97861b7530cd352, type: 2}
+  - {fileID: 11400000, guid: 20d3e9767b813844bb765985a22d4520, type: 2}
+  - {fileID: 11400000, guid: f30729dba8b6ae54b9f5714f904fe2c2, type: 2}
+  - {fileID: 11400000, guid: 285a96a13a063e54496b351ef34e8c7d, type: 2}
+  - {fileID: 11400000, guid: c7df2d25a92265846b8d5e6b85e0d537, type: 2}
   skillContainers:
   - {fileID: 1820666702}
   - {fileID: 1969078236}

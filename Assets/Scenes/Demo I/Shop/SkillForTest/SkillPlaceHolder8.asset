@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: SkillTest3
+  m_Name: SkillPlaceHolder8
   m_EditorClassIdentifier: Assembly-CSharp::Dash
-  SkillSprite: {fileID: -6470460504253458178, guid: cc2b7801fbc83f84fab76dafb275666a, type: 3}
+  SkillSprite: {fileID: -4178046375966092550, guid: e32b70e4c6a99b443be85858169baddf, type: 3}
   Name: 
   Description: 
   Have: 0
