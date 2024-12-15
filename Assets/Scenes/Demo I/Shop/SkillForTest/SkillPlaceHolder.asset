@@ -16,9 +16,9 @@ MonoBehaviour:
   Name: 
   Description: 
   Have: 0
-  _price: 0
+  _price: 1
   coolDown: 0
   isActive: 0
   activateType: 0
-  dashSpeed: 10
   dashDistance: 5
+  dashSpeed: 10
