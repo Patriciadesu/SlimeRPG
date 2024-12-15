@@ -1,32 +1,45 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] Vector2[] itemSellingLocations;
+    [SerializeField] GameObject[] itemSellingGameObject;
     [SerializeField] Skill[] skillsForSale;
     [SerializeField] SkillContainer[] skillContainers;
     [SerializeField] float itemPriceMultiplier;
-    /// <summary>
-    /// idk what i am doing but whatever.
-    /// </summary>
+    private void Start()
+    {
+        RandomShopItem();
+    }
     void RandomShopItem()
     {
-        int indexA = 0;
-        int indexB = 0;
-        int indexC = 0;
-        int indexD = 0;
-        while (indexA == indexB || indexA == indexC || indexA == indexD || indexB == indexC || indexB == indexD || indexD == indexC)
+        if (skillsForSale.Length < 4)
         {
-        indexA = UnityEngine.Random.Range(0, skillsForSale.Length - 1);
-        indexB = UnityEngine.Random.Range(0, skillsForSale.Length - 1);
-        indexC = UnityEngine.Random.Range(0, skillsForSale.Length - 1);
-        indexD = UnityEngine.Random.Range(0, skillsForSale.Length - 1);
+            Debug.LogError("Not enough skills available for random selection!");
+            return;
         }
-        skillContainers[0] = GetComponent<SkillContainer>();
-        skillContainers[1] = GetComponent<SkillContainer>();
-        skillContainers[2] = GetComponent<SkillContainer>();
-        skillContainers[3] = GetComponent<SkillContainer>();
-        
+
+        List<int> indices = new List<int>();
+        while (indices.Count < 4)
+        {
+            int newIndex = UnityEngine.Random.Range(0, skillsForSale.Length);
+            if (!indices.Contains(newIndex))
+            {
+                indices.Add(newIndex);
+            }
+        }
+
+        skillContainers[0].ChangeItem(skillsForSale[indices[0]]);
+        skillContainers[1].ChangeItem(skillsForSale[indices[1]]);
+        skillContainers[2].ChangeItem(skillsForSale[indices[2]]);
+        skillContainers[3].ChangeItem(skillsForSale[indices[3]]);
+
+        foreach (var container in skillContainers)
+        {
+            container.GetSprite();
+        }
+
+
     }
 
 }
