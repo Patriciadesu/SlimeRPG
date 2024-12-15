@@ -114,13 +114,25 @@ public class Player : Character
     private void PlayerInput()
     {
         // กด Q เพื่อใช้ ..... Skill
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Debug.Log("Q key pressed");
+
+        //    // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
+        //    Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
+        //    StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
+        //}
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Q key pressed");
 
-            // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
-            Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
-            StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
+            // เรียกใช้ Teleport Skill
+            if (Teleport == null)
+            {
+                Teleport = ScriptableObject.CreateInstance<Teleport>();
+            }
+            StartCoroutine(SkillManager.Instance.UseSkill(Teleport));
         }
         // กด E หรือ Q เพื่อใช้skill heal
         if (Input.GetKeyDown(KeyCode.E))

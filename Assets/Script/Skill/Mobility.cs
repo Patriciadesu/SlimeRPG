@@ -16,42 +16,36 @@ public class Mobility : Skill
 [CreateAssetMenu(fileName = "Dash", menuName = "Skill/Mobility/Dash", order = 1)]
 public class Dash : Mobility
 {
-    public float dashDistance = 5f; // ระยะทาง Dash
-    public float dashSpeed = 20f;   // ความเร็ว Dash
-    public float dashDuration = 0.2f; // ระยะเวลาของการ Dash
+    public float dashDistance = 5f; // ระยะทางที่ Dash
+    public float dashSpeed = 20f;   // ความเร็วในการ Dash
 
     public override IEnumerator OnUse()
     {
         Debug.Log("Using Dash skill");
 
-        // ดึงตัวละคร Player
         Player character = Player.Instance;
-        if (character == null || character.rb2D == null)
-        {
-            Debug.LogError("Player or Rigidbody2D is missing!");
-            yield break;
-        }
+        if (character == null) yield break;
 
-        // ดึงทิศทางที่ตัวละครกำลังหันไป (จาก Transform)
-        Vector3 direction = character.transform.right; // หันตามแกน X (2D)
+        // ดึงตำแหน่งจากการคลิกที่หน้าจอ
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
 
-        // คำนวณแรงที่จะผลักตัวละคร
-        Vector3 dashForce = direction.normalized * dashSpeed;
+        // คำนวณทิศทางจากตำแหน่งผู้เล่นไปยังตำแหน่งที่คลิก
+        Vector3 direction = (mousePosition - character.transform.position).normalized;
 
-        // เล่น Animation (ถ้ามี)
-        if (character.animator != null)
-        {
-            character.animator.SetTrigger("Dash");
-        }
+        // คำนวณตำแหน่งเป้าหมาย
+        Vector3 targetPosition = character.transform.position + direction * dashDistance;
 
-        // ตั้งค่า Velocity สำหรับ Dash
-        character.rb2D.velocity = dashForce;
+        character.rb2D.AddRelativeForce(direction *  dashSpeed, ForceMode2D.Impulse);
 
-        // รอให้ Dash เสร็จ
-        yield return new WaitForSeconds(dashDuration);
+        // ใช้ Rigidbody2D เคลื่อนที่ไปยังตำแหน่งเป้าหมาย
+        //character.rb2D.linearVelocity = direction * dashSpeed;
 
-        // หยุดการเคลื่อนที่หลัง Dash
-        character.rb2D.velocity = Vector2.zero;
+        //// รอให้การเคลื่อนที่เสร็จสิ้น
+        //yield return new WaitForSeconds(0.1f);
+
+        //// หยุดการเคลื่อนที่
+        //character.rb2D.linearVelocity = Vector2.zero;
 
         Debug.Log("Dash skill completed");
     }
@@ -59,49 +53,58 @@ public class Dash : Mobility
 [CreateAssetMenu(fileName = "Teleport", menuName = "Skill/Mobility/Teleport", order = 1)]
 public class Teleport : Mobility
 {
-    public float maxTeleportDistance = 10f; // maximum teleport distance
-    private Camera mainCamera;
-
-    private void Awake()
-    {
-        // get main Camera
-        mainCamera = Camera.main;
-    }
+    public float teleportDistance = 10f; // ระยะที่สามารถ Teleport ได้
+    public LayerMask obstacleLayer;      // Layer สำหรับตรวจสอบสิ่งกีดขวาง (ถ้ามี)
+    private Vector3 targetPosition;      // ตำแหน่งเป้าหมายสำหรับ Teleport
 
     public override IEnumerator OnUse()
     {
-        Player character = Player.Instance; // อ้างอิงตัวละครผู้เล่น
-        if (character == null || mainCamera == null)
+        Debug.Log("Using Teleport skill");
+
+        // ดึงตัวละคร Player
+        Player character = Player.Instance;
+        if (character == null)
         {
-            Debug.LogError("Player or Camera is missing!");
+            Debug.LogError("Player is missing!");
             yield break;
         }
 
-        // detect click position in world space
-        if (Input.GetMouseButtonDown(0)) // 0 = คลิกซ้าย
+        // ดึงตำแหน่ง Mouse (cursor) ในโลก 3D
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // ตั้งค่า z ให้เป็น 0 เพื่อให้เหมาะกับเกม 2D
+
+        // คำนวณทิศทางจากตำแหน่งของผู้เล่นไปยังตำแหน่งของ cursor
+        Vector3 direction = (mousePosition - character.transform.position).normalized;
+
+        // คำนวณตำแหน่งเป้าหมายที่จะ Teleport โดยคำนึงถึงระยะทางสูงสุด
+        targetPosition = character.transform.position + direction * teleportDistance;
+
+        // ตรวจสอบสิ่งกีดขวาง (ถ้ามี)
+        RaycastHit2D hit = Physics2D.Raycast(character.transform.position, direction, teleportDistance, obstacleLayer);
+        if (hit.collider != null)
         {
-            // ดึงตำแหน่งจากจุดที่คลิกในหน้าจอ
-            Vector3 mousePosition = Input.mousePosition; // mouse position on screen
-            Vector2 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition); // convert to World Position
-
-            //Calculate the distance from the character to the target position
-            Vector2 characterPosition = character.transform.position; // position player in game
-            float distance = Vector2.Distance(characterPosition, worldPosition); // calculate distance
-
-            // Check if the target position is within teleport range
-            if (distance <= maxTeleportDistance)
-            {
-                // teleport to target postion
-                character.transform.position = worldPosition;
-                Debug.Log($"Teleported to position: {worldPosition}");
-            }
-            else
-            {
-                Debug.Log("Target position is out of range.");
-            }
+            // หากเจอสิ่งกีดขวาง Teleport ได้จนถึงจุดที่ชน
+            targetPosition = hit.point;
+            Debug.Log("Obstacle detected, teleporting to nearest point.");
         }
 
-        yield break;
+        // เล่น Animation Teleport (ถ้ามี)
+        if (character.animator != null)
+        {
+            character.animator.SetTrigger("Teleport");
+        }
+
+        // ย้ายตัวละครไปยังตำแหน่งที่คำนวณได้
+        character.transform.position = targetPosition;
+
+        Debug.Log("Teleport skill completed");
+        yield return null;
+    }
+
+    // Optional: method to set target position from player input (mouse position)
+    public void SetTargetPosition(Vector3 position)
+    {
+        targetPosition = position;
     }
 }
 
