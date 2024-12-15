@@ -23,7 +23,6 @@ public class QuestManager : Singleton<QuestManager>
     private void Start()
     {
         currentQuest = default(Quest);
-        GetAllQuests();
     }
     /// <summary>
     /// Get All Quest Data from database to QuestManager

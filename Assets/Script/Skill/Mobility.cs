@@ -16,38 +16,51 @@ public class Mobility : Skill
 [CreateAssetMenu(fileName = "Dash", menuName = "Skill/Mobility/Dash", order = 1)]
 public class Dash : Mobility
 {
-    public float dashDistance = 5f; // ระยะทางที่ Dash
-    public float dashSpeed = 20f;   // ความเร็วในการ Dash
+    public float dashDistance = 5f; // ระยะทาง Dash
+    public float dashSpeed = 20f;   // ความเร็ว Dash
+    public float dashDuration = 0.2f; // ระยะเวลาของการ Dash
 
     public override IEnumerator OnUse()
     {
         Debug.Log("Using Dash skill");
 
+        // ดึงตัวละคร Player
         Player character = Player.Instance;
-        if (character == null) yield break;
+        if (character == null || character.rb2D == null)
+        {
+            Debug.LogError("Player or Rigidbody2D is missing!");
+            yield break;
+        }
 
-        // ดึงตำแหน่งจากการคลิกที่หน้าจอ
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
+        // ดึงทิศทางที่ตัวละครกำลังหันไป (จาก Transform)
+        Vector3 direction = character.transform.right; // หันตามแกน X (2D)
 
-        // คำนวณทิศทางจากตำแหน่งผู้เล่นไปยังตำแหน่งที่คลิก
-        Vector3 direction = (mousePosition - character.transform.position).normalized;
+        // คำนวณแรงที่จะผลักตัวละคร
+        Vector3 dashForce = direction.normalized * dashSpeed;
 
+<<<<<<< HEAD
         // คำนวณตำแหน่งเป้าหมาย
         //Vector3 targetPosition = character.transform.position + direction * dashDistance;
 
         character.GetComponent<Rigidbody2D>().AddRelativeForce(direction *  dashSpeed, ForceMode2D.Impulse);
+=======
+        // เล่น Animation (ถ้ามี)
+        if (character.animator != null)
+        {
+            character.animator.SetTrigger("Dash");
+        }
 
-        // ใช้ Rigidbody2D เคลื่อนที่ไปยังตำแหน่งเป้าหมาย
-        //character.rb2D.linearVelocity = direction * dashSpeed;
+        // ตั้งค่า Velocity สำหรับ Dash
+        character.rb2D.velocity = dashForce;
+>>>>>>> 65513587be38da08b3b6e23c01e54929e5f52415
 
-        //// รอให้การเคลื่อนที่เสร็จสิ้น
-        //yield return new WaitForSeconds(0.1f);
+        // รอให้ Dash เสร็จ
+        yield return new WaitForSeconds(dashDuration);
 
-        //// หยุดการเคลื่อนที่
-        //character.rb2D.linearVelocity = Vector2.zero;
+        // หยุดการเคลื่อนที่หลัง Dash
+        character.rb2D.velocity = Vector2.zero;
 
-        //Debug.Log("Dash skill completed");
+        Debug.Log("Dash skill completed");
     }
 }
 [CreateAssetMenu(fileName = "Teleport", menuName = "Skill/Mobility/Teleport", order = 1)]
