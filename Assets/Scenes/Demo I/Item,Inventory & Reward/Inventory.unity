@@ -375,9 +375,6 @@ MonoBehaviour:
   - {fileID: 495748118}
   - {fileID: 1737034847}
   - {fileID: 562855181}
-  SUserItems:
-  - {fileID: 11400000, guid: b24a0e98360ccf3438fc62cfa7936500, type: 2}
-  - {fileID: 11400000, guid: 384b76af67144e34180dd370689ea6f6, type: 2}
   selectedSlot: {fileID: 0}
   selectedItemImage: {fileID: 485427697}
   selectedItemName: {fileID: 1960069429}
