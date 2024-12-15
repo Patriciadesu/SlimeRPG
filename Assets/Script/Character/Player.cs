@@ -2,6 +2,7 @@ using System;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class Player : Character
 {
@@ -107,7 +108,15 @@ public class Player : Character
         {
             StartCoroutine(SkillManager.Instance.UseSkill(superSpeedSkill));
         }
-
+        // กด E หรือ Q เพื่อใช้skill heal
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
+        }
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
+            StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
+        }
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x,y);
@@ -133,5 +142,11 @@ public class Player : Character
     {
         // Do something with die mechanics
         base.Die();
+    }
+
+    public void Heal(float amount)
+    {
+        health = Mathf.Min(MaxHealth, health + amount);
+        Debug.Log($"Player healed by {amount}. Current health: {health}");
     }
 }
