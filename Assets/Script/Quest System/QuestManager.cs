@@ -52,15 +52,15 @@ public class QuestManager : Singleton<QuestManager>
                 }
                 else
                 {
-                    Debug.LogWarning("Objective ID " + objectiveID + " not found for quest: " + squest._id);
+                    Debug.LogWarning($"Objective ID {objectiveID} not found for quest: {squest._id}");
                 }
             }
+
             allQuests.Add(quest);
         }
 
-        Debug.Log("All quests loaded from database.");*/
+        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");*/
     }
-
 
     public void GetQuest(string[] npcQuestIDs, int questIndex)
     {

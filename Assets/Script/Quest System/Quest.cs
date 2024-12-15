@@ -21,12 +21,5 @@ public struct Quest
         this.expReward = data.reward.xp;
 
         this.objectives = new List<QuestObjective>();
-
-        foreach (string objectiveName in data.Objective)
-        {
-            QuestObjective objective = new QuestObjective(objectiveName, "", 0);
-            this.objectives.Add(objective);
-        }
     }
-
 }
