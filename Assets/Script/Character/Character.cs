@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    protected Rigidbody2D rb2D;
+    public Rigidbody2D rb2D;
     [SerializeField] protected int _level = 1;
     public float MaxHealth { get => _maxHealth + (_maxHealth * (_level - 1) * 0.2f); }
     [SerializeField] private float _maxHealth = 100;
@@ -20,13 +20,13 @@ public abstract class Character : MonoBehaviour
     }
     public float Damage
     {
-        get => _attackDamage; // อ่านค่า
-        set => _attackDamage = Mathf.Max(value, 0); // เขียนค่าและป้องกันค่าติดลบ
+        get => _attackDamage; // ๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ
+        set => _attackDamage = Mathf.Max(value, 0); // ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝะป๏ฟฝอง๏ฟฝัน๏ฟฝ๏ฟฝาติดลบ
     }
     public float Speed
     {
         get { return speed; }
-        set { speed = Mathf.Max(value, 0); } // จะไม่ให้ speed น้อยกว่า 0
+        set { speed = Mathf.Max(value, 0); } // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ speed ๏ฟฝ๏ฟฝ๏ฟฝยก๏ฟฝ๏ฟฝ๏ฟฝ 0
     }
     public virtual void TakeDamage(float dmg)
     {
