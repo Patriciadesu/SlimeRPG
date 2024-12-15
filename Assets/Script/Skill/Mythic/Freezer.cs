@@ -24,7 +24,7 @@ public class Freezer : MonoBehaviour
             }
         }
     }
-
+    
     public void SetScale()
     {
         // Set the size of the freeze zone based on the range

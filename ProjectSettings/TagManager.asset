@@ -57,6 +57,9 @@ TagManager:
   - name: Mouse
     uniqueID: 2398626121
     locked: 0
+  - name: Effect
+    uniqueID: 586700545
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

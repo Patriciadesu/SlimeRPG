@@ -69,7 +69,7 @@ public class QuestNPC : NPC
     public override void Interact()
     {
         base.Interact();
-        QuestUI.SetActive(true);
+        QuestUI.SetActive(false);
 
 
     }
