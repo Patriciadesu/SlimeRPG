@@ -2,7 +2,6 @@ using System;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections;
 
 public class Player : Character
 {
@@ -61,12 +60,13 @@ public class Player : Character
     private SprintToEnemy SprintToEnemy;// เพิ่มตัวแปรเพื่อเก็บ SprintToEnemy
     private Teleport Teleport;// เพิ่มตัวแปรเพื่อเก็บ Teleport
     // [Header("Skill")]
-    [SerializeField] private ActiveSkill activeSkill1;
-    [SerializeField] private ActiveSkill activeSkill2;
+    // public Skill activeSkill1;
+    // public Skill activeSkill2;
     // public Skill mobilitySkill;
 
     // [Header("Inventory")]
     // public Inventory inventory;
+    //public Rigidbody2D rb2D;
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -80,10 +80,6 @@ public class Player : Character
         }
         DontDestroyOnLoad(this);
         base.Awake();
-        if (rb2D == null)
-        {
-            rb2D = GetComponent<Rigidbody2D>(); // เชื่อมโยงกับ Rigidbody2D ถ้าไม่ถูกกำหนด
-        }
     }
     void FixedUpdate()
     {
@@ -96,28 +92,6 @@ public class Player : Character
         {
             Attack();
         }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            UseSkill1();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            UseSkill2();
-        }
-    }
-
-    private void UseSkill1()
-    {
-        if (activeSkill1 != null)
-            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill1));
-    }
-
-    private void UseSkill2()
-    {
-        if (activeSkill2 != null)
-            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill2));
     }
 
     protected void Attack()
@@ -129,13 +103,25 @@ public class Player : Character
     private void PlayerInput()
     {
         // กด Q เพื่อใช้ ..... Skill
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Debug.Log("Q key pressed");
+
+        //    // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
+        //    Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
+        //    StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
+        //}
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Q key pressed");
 
-            // ใช้ Dash ที่ถูกต้องจาก ScriptableObject
-            Dash dashSkill = ScriptableObject.CreateInstance<Dash>();
-            StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
+            // เรียกใช้ Teleport Skill
+            if (Teleport == null)
+            {
+                Teleport = ScriptableObject.CreateInstance<Teleport>();
+            }
+            StartCoroutine(SkillManager.Instance.UseSkill(Teleport));
         }
         // กด E หรือ Q เพื่อใช้skill heal
         if (Input.GetKeyDown(KeyCode.E))
@@ -148,21 +134,22 @@ public class Player : Character
         }
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        Vector2 movement = new Vector2(x,y);
+        Vector2 movement = new Vector2(x, y);
 
         Move(movement);
     }
 
     protected void Move(Vector2 velocity)
     {
+
         rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity * speed * 3, Time.fixedDeltaTime * 5);
 
         float currentX = transform.rotation.eulerAngles.x;
         float currentZ = transform.rotation.eulerAngles.z;
 
-        if ((velocity * speed).x > 0)
+        if (velocity.x > 0)
             transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
-        else if ((velocity * speed).x < 0)
+        else if (velocity.x < 0)
             transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
@@ -177,4 +164,23 @@ public class Player : Character
         health = Mathf.Min(MaxHealth, health + amount);
         Debug.Log($"Player healed by {amount}. Current health: {health}");
     }
+
+    [Header("Skill Selection")]
+    public Skill activeSkill1; // สำหรับปุ่ม E
+    public Skill activeSkill2; // สำหรับปุ่ม F
+
+    public void SetSkill(int skillSlot, Skill newSkill)
+    {
+        if (skillSlot == 1)
+        {
+            activeSkill1 = newSkill;
+            Debug.Log("Skill 1 (E) set to: " + newSkill.name);
+        }
+        else if (skillSlot == 2)
+        {
+            activeSkill2 = newSkill;
+            Debug.Log("Skill 2 (F) set to: " + newSkill.name);
+        }
+    }
+
 }
