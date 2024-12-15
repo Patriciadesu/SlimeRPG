@@ -13,7 +13,7 @@ public class SkillContainer : MonoBehaviour , ICollectables
 
     void Awake()
     {
-        GetSprite();
+        
     }
     public void GetSprite()
     {
@@ -24,5 +24,6 @@ public class SkillContainer : MonoBehaviour , ICollectables
     public void ChangeItem(Skill NewSkill)
     {
         skill = NewSkill;
+        GetSprite();
     }
 }
