@@ -67,6 +67,10 @@ public class Player : Character
 
     // [Header("Inventory")]
     // public Inventory inventory;
+
+    [Header("interact")]
+    private NPC currentNPC;
+
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -95,6 +99,10 @@ public class Player : Character
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
+        }
+        if (currentNPC != null && Input.GetKeyDown(KeyCode.E))
+        {
+            currentNPC.Interact();
         }
     }
     
@@ -128,7 +136,7 @@ public class Player : Character
             StartCoroutine(SkillManager.Instance.UseSkill(Teleport));
         }
         // กด E หรือ Q เพื่อใช้skill heal
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
         }
@@ -168,4 +176,23 @@ public class Player : Character
         health = Mathf.Min(MaxHealth, health + amount);
         Debug.Log($"Player healed by {amount}. Current health: {health}");
     }
+
+    #region onEnter/Exit
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<NPC>(out NPC npc))
+        {
+            currentNPC = npc;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent<NPC>(out NPC npc) && currentNPC == npc)
+        {
+            currentNPC.UnInteract();
+            currentNPC = null;
+        }
+    }
+    #endregion
 }
