@@ -1632,12 +1632,12 @@ MonoBehaviour:
     objectives:
     - objectiveID: 
       name: c
-      enemyID: 
+      enemyID: 1
       requiredAmount: 3
       currentAmount: 0
     - objectiveID: 
       name: enemytype2
-      enemyID: 
+      enemyID: 2
       requiredAmount: 4
       currentAmount: 0
     moneyReward: 0
