@@ -5,9 +5,26 @@ public class ItemManager : Singleton<ItemManager>
 {
     public List<Item> itemData;
 
-    public void GetItemData()
+    void Start()
     {
-        // Should get the item data from database. For now, just set the data yourself in the inspector.
+        
+    }
+
+    public void UpdateItemData()
+    {
+        List<QuestManager.sItem> sItems = new List<QuestManager.sItem>(); // sItems = getitems from database etc etc 
+
+        for (int i = 0; i < itemData.Count; i++)
+        {
+            for (int j = 0; j < sItems.Count; j++)
+            {
+                if (itemData[i].itemID == sItems[j]._id)
+                {
+                    itemData[i].itemName = sItems[j].name;
+                    // update more variables in here.
+                }
+            }
+        }
     }
 
     public Item GetItemFromID(string id)

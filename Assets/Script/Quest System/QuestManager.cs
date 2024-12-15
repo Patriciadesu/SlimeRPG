@@ -208,6 +208,7 @@ public class QuestManager : Singleton<QuestManager>
 
     public class sItem
     {
+        public string _id;
         public string name;
         public int amount;
     }
