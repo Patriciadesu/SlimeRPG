@@ -36,7 +36,8 @@ public class Dash : Mobility
         // คำนวณตำแหน่งเป้าหมาย
         Vector3 targetPosition = character.transform.position + direction * dashDistance;
 
-        character.rb2D.AddRelativeForce(direction *  dashSpeed, ForceMode2D.Impulse);
+
+        character.GetComponent<Rigidbody2D>().AddRelativeForce(direction *  dashSpeed, ForceMode2D.Impulse);
 
         // ใช้ Rigidbody2D เคลื่อนที่ไปยังตำแหน่งเป้าหมาย
         //character.rb2D.linearVelocity = direction * dashSpeed;
