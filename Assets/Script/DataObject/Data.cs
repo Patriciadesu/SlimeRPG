@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class sQuest
@@ -30,14 +29,12 @@ public class sReward
     public List<sItem> item;
 }
 
-
 [Serializable]
 public class sUserItem
 {
     public string _id;
     public int amount;
 }
-
 
 public class sItem
 {

@@ -117,15 +117,36 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void RemoveItem(Item item,int amount = 1)
+    public void RemoveItem(Item item, int amount = 1)
     {
         if (amount <= 0) return;
+
+        int totalAmountInInventory = 0;
+
+        foreach (var slot in itemSlots)
+        {
+            if (slot.hasItem && slot.item == item)
+            {
+                totalAmountInInventory += slot.itemCount;
+            }
+        }
+
+
+        if (amount > totalAmountInInventory)
+        {
+            Debug.LogError($"Cannot remove {amount} {item.name}(s). Only {totalAmountInInventory} available in inventory.");
+            return;
+        }
+
         for (int i = itemSlots.Count - 1; i >= 0; i--)
         {
             var slot = itemSlots[i];
             if (slot.hasItem && slot.item == item)
             {
-                slot.RemoveItem(amount);
+                int amountToRemove = Mathf.Min(amount, slot.itemCount);
+
+                slot.RemoveItem(amountToRemove);
+                amount -= amountToRemove;
 
                 if (IsSlotSelected(slot))
                 {
@@ -136,12 +157,17 @@ public class Inventory : MonoBehaviour
                 {
                     ClearSelectedItemDisplay();
                 }
-                SortItems();
-                return;
+                if (amount <= 0)
+                {
+                    SortItems();
+                    return;
+                }
             }
         }
-        Debug.LogWarning("Item not found in inventory for removal!");
+
+        SortItems();
     }
+
 
 
     private bool IsSlotSelected(InventorySlot slot)
