@@ -10,12 +10,13 @@ public class QuestObjective
     public int requiredAmount;
     public int currentAmount;
 
-    public QuestObjective(string _name,string _enemyID, int _requiredAmount)
+    public QuestObjective(string _objectiveID, string _name, string _enemyID, int _requiredAmount, int _currentAmount = 0)
     {
+        this.objectiveID = _objectiveID;
         this.name = _name;
         this.enemyID = _enemyID;
         this.requiredAmount = _requiredAmount;
-        this.currentAmount = 0;
+        this.currentAmount = _currentAmount;
     }
 
     public void StartObjective()

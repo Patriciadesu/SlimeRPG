@@ -29,13 +29,6 @@ public class QuestManager : Singleton<QuestManager>
         /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
         List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
 
-        List<QuestObjective> allObjectives = new List<QuestObjective>();
-
-        foreach (var sObjective in objectivesFromDatabase)
-        {
-            QuestObjective newObjective = new QuestObjective(sObjective.objectiveID, sObjective.enemyID, sObjective.requiredAmount);
-            allObjectives.Add(newObjective);
-        }
         List<Quest> allQuests = new List<Quest>();
 
         foreach (sQuest squest in questsFromDatabase)
@@ -44,17 +37,24 @@ public class QuestManager : Singleton<QuestManager>
 
             foreach (string objectiveID in squest.Objective)
             {
-                QuestObjective objective = allObjectives.Find(o => o.objectiveID == objectiveID);
-                if (objective != null)
+                sObjective sObjective = objectivesFromDatabase.Find(o => o.objectiveID == objectiveID);
+
+                if (sObjective != null)
                 {
-                    quest.objectives.Add(objective);
+                    QuestObjective newObjective = new QuestObjective(
+                        sObjective.objectiveID,
+                        sObjective.name,
+                        sObjective.enemyID,
+                        sObjective.requiredAmount,
+                        0
+                    );
+                    quest.objectives.Add(newObjective);
                 }
                 else
                 {
-                    Debug.LogWarning("Objective ID " + objectiveID + " not found.");
+                    Debug.LogWarning("Objective ID " + objectiveID + " not found for quest: " + squest._id);
                 }
             }
-
             allQuests.Add(quest);
         }
 
@@ -190,8 +190,8 @@ public class QuestManager : Singleton<QuestManager>
         public string name;
         public string enemyID;
         public int requiredAmount;
-        public int currentAmount;
     }
+
 
     public class sReward
     {
