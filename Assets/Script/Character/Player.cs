@@ -54,19 +54,20 @@ public class Player : Character
     [Header("Collectable")]
     private float collectItemRange;
 
+    //[Header("Skill")]
+    //private Dash dashSkill; // Reference to the Dash skill
+    //private SuperSpeed superSpeedSkill; // เพิ่มตัวแปรเพื่อเก็บ SuperSpeed skill
+    //private SprintToEnemy SprintToEnemy;// เพิ่มตัวแปรเพื่อเก็บ SprintToEnemy
+    //private Teleport Teleport;// เพิ่มตัวแปรเพื่อเก็บ Teleport
     [Header("Skill")]
-    private Dash dashSkill; // Reference to the Dash skill
-    private SuperSpeed superSpeedSkill; // เพิ่มตัวแปรเพื่อเก็บ SuperSpeed skill
-    private SprintToEnemy SprintToEnemy;// เพิ่มตัวแปรเพื่อเก็บ SprintToEnemy
-    private Teleport Teleport;// เพิ่มตัวแปรเพื่อเก็บ Teleport
-    // [Header("Skill")]
-    // public Skill activeSkill1;
-    // public Skill activeSkill2;
-    // public Skill mobilitySkill;
+    [SerializeField] private ActiveSkill activeSkill1;
+    [SerializeField] private ActiveSkill activeSkill2;
+    [SerializeField] private Mobility mobilitySkill;
 
     // [Header("Inventory")]
     // public Inventory inventory;
     //public Rigidbody2D rb2D;
+    //private Skill activeQSkill; // สกิลที่จะใช้เมื่อกดปุ่ม Q
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -92,14 +93,43 @@ public class Player : Character
         {
             Attack();
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            UseMobility();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UseSkill1();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UseSkill2();
+        }
+        PlayerInput();
     }
-
+    
     protected void Attack()
     {
         if (normalAttack != null)
             StartCoroutine(SkillManager.Instance.UseSkill(normalAttack));
     }
 
+    private void UseMobility()
+    {
+        if (mobilitySkill != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(mobilitySkill));
+    }
+
+    private void UseSkill1()
+    {
+        if (activeSkill1 != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill1));
+    }
+    private void UseSkill2()
+    {
+        if (activeSkill2 != null)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill2));
+    }
     private void PlayerInput()
     {
         // กด Q เพื่อใช้ ..... Skill
@@ -112,31 +142,54 @@ public class Player : Character
         //    StartCoroutine(SkillManager.Instance.UseSkill(dashSkill));
         //}
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("Q key pressed");
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Debug.Log("Q key pressed");
 
-            // เรียกใช้ Teleport Skill
-            if (Teleport == null)
-            {
-                Teleport = ScriptableObject.CreateInstance<Teleport>();
-            }
-            StartCoroutine(SkillManager.Instance.UseSkill(Teleport));
-        }
-        // กด E หรือ Q เพื่อใช้skill heal
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
-        }
-        else if (Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
-        }
+        //    // เรียกใช้ Teleport Skill
+        //    if (Teleport == null)
+        //    {
+        //        Teleport = ScriptableObject.CreateInstance<Teleport>();
+        //    }
+        //    StartCoroutine(SkillManager.Instance.UseSkill(Teleport));
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    // ตรวจสอบว่า activeQSkill ไม่เป็น null ก่อนการใช้
+        //    if (activeQSkill != null)
+        //    {
+        //        Debug.Log("Using skill assigned to Q: " + activeQSkill.name);
+        //        StartCoroutine(SkillManager.Instance.UseSkill(activeQSkill));
+        //    }
+        //    else
+        //    {
+        //        Debug.LogWarning("No skill assigned to Q!");
+        //    }
+        //}
+        //// กด E หรือ Q เพื่อใช้skill heal
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
+        //}
+        //else if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
+        //}
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x, y);
 
         Move(movement);
+        //if (Input.GetKeyDown(KeyCode.Q) && activeQSkill != null)
+        //{
+        //    Debug.Log("Using skill assigned to Q: " + activeQSkill.name);
+        //    StartCoroutine(SkillManager.Instance.UseSkill(activeQSkill));
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Debug.LogWarning("No skill assigned to Q!");
+        //}
     }
 
     protected void Move(Vector2 velocity)
@@ -147,9 +200,9 @@ public class Player : Character
         float currentX = transform.rotation.eulerAngles.x;
         float currentZ = transform.rotation.eulerAngles.z;
 
-        if (velocity.x > 0)
+        if ((velocity * speed).x > 0)
             transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
-        else if (velocity.x < 0)
+        else if ((velocity * speed).x < 0)
             transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
@@ -159,28 +212,116 @@ public class Player : Character
         base.Die();
     }
 
-    public void Heal(float amount)
+    public override void Heal(float amount)
     {
-        health = Mathf.Min(MaxHealth, health + amount);
+        //health = Mathf.Min(MaxHealth, health + amount);
+        base.Heal(amount);
         Debug.Log($"Player healed by {amount}. Current health: {health}");
     }
 
-    [Header("Skill Selection")]
-    public Skill activeSkill1; // สำหรับปุ่ม E
-    public Skill activeSkill2; // สำหรับปุ่ม F
+    //[Header("Skill Selection")]
+    //public Skill activeSkill1; // สำหรับปุ่ม E
+    //public Skill activeSkill2; // สำหรับปุ่ม F
 
-    public void SetSkill(int skillSlot, Skill newSkill)
+    //public void SetSkill(int skillSlot, Skill newSkill)
+    //{
+    //    if (skillSlot == 1)
+    //    {
+    //        activeSkill1 = newSkill;
+    //        Debug.Log("Skill 1 (E) set to: " + newSkill.name);
+    //    }
+    //    else if (skillSlot == 2)
+    //    {
+    //        activeSkill2 = newSkill;
+    //        Debug.Log("Skill 2 (F) set to: " + newSkill.name);
+    //    }
+    //}
+    //public void AddSkill1()
+    //{
+    //    if (activeQSkill == null) // ตรวจสอบว่าไม่ได้กำหนดสกิลไว้แล้ว
+    //    {
+    //        activeQSkill = ScriptableObject.CreateInstance<Dash>();
+    //        Debug.Log("AddSkill1: Dash skill assigned to Q");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Q skill already assigned: " + activeQSkill.name);
+    //    }
+    //}
+
+    //public void AddSkill2()
+    //{
+    //    if (activeQSkill == null) // ตรวจสอบว่าไม่ได้กำหนดสกิลไว้แล้ว
+    //    {
+    //        activeQSkill = ScriptableObject.CreateInstance<Teleport>();
+    //        Debug.Log("AddSkill2: Teleport skill assigned to Q");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Q skill already assigned: " + activeQSkill.name);
+    //    }
+    //}
+    //public void OnClick_AddSkill1()
+    //{
+    //    if (activeQSkill == null)
+    //    {
+    //        AddSkill1(); // เรียกใช้ฟังก์ชัน AddSkill1() เพื่อกำหนด Dash ให้กับ Q
+    //        Debug.Log("Dash skill assigned to Q.");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Q skill already assigned: " + activeQSkill.name);
+    //    }
+    //}
+
+    //public void OnClick_AddSkill2()
+    //{
+    //    if (activeQSkill == null)
+    //    {
+    //        AddSkill2(); // เรียกใช้ฟังก์ชัน AddSkill2() เพื่อกำหนด Teleport ให้กับ Q
+    //        Debug.Log("Teleport skill assigned to Q.");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Q skill already assigned: " + activeQSkill.name);
+    //    }
+    //}
+    public void AddSkill(Skill skill ,SkillSlotType skillSlotType)
     {
-        if (skillSlot == 1)
+        switch (skillSlotType)
         {
-            activeSkill1 = newSkill;
-            Debug.Log("Skill 1 (E) set to: " + newSkill.name);
-        }
-        else if (skillSlot == 2)
-        {
-            activeSkill2 = newSkill;
-            Debug.Log("Skill 2 (F) set to: " + newSkill.name);
+            case SkillSlotType.NormalAttack:
+                if(skill is NormalAttack _normalAttack)
+                {
+                    normalAttack = _normalAttack;
+                }
+                break;
+            case SkillSlotType.ActiveSkill1:
+                if(skill is ActiveSkill _ActiveSkill_1)
+                {
+                    activeSkill1 = _ActiveSkill_1;
+                }
+                break;
+            case SkillSlotType.ActiveSkill2:
+                if (skill is ActiveSkill _ActiveSkill_2)
+                {
+                    activeSkill2 = _ActiveSkill_2;
+                }
+                break;
+            case SkillSlotType.Mobility:
+                if (skill is Mobility _mobility)
+                {
+                    mobilitySkill = _mobility;
+                }
+                break;
         }
     }
 
+    public enum SkillSlotType
+    {
+        NormalAttack,
+        ActiveSkill1,
+        ActiveSkill2,
+        Mobility
+    }
 }

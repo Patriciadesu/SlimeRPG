@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Mobility : Skill
@@ -70,23 +71,35 @@ public class Teleport : Mobility
             yield break;
         }
 
-        // ดึงตำแหน่ง Mouse (cursor) ในโลก 3D
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // ตั้งค่า z ให้เป็น 0 เพื่อให้เหมาะกับเกม 2D
+        //// ดึงตำแหน่ง Mouse (cursor) ในโลก 3D
+        //Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //mousePosition.z = 0; // ตั้งค่า z ให้เป็น 0 เพื่อให้เหมาะกับเกม 2D
 
-        // คำนวณทิศทางจากตำแหน่งของผู้เล่นไปยังตำแหน่งของ cursor
-        Vector3 direction = (mousePosition - character.transform.position).normalized;
+        //// คำนวณทิศทางจากตำแหน่งของผู้เล่นไปยังตำแหน่งของ cursor
+        //Vector3 direction = (mousePosition - character.transform.position).normalized;
 
         // คำนวณตำแหน่งเป้าหมายที่จะ Teleport โดยคำนึงถึงระยะทางสูงสุด
-        targetPosition = character.transform.position + direction * teleportDistance;
+        //targetPosition = character.transform.position + direction * teleportDistance;
 
+        Vector3 mousePos = MouseInput.Instance.MousePos;
+        mousePos.z = character.transform.position.z;
+        float distance = (mousePos - character.transform.position).magnitude;
         // ตรวจสอบสิ่งกีดขวาง (ถ้ามี)
-        RaycastHit2D hit = Physics2D.Raycast(character.transform.position, direction, teleportDistance, obstacleLayer);
+        Vector3 direction = (mousePos - character.transform.position).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(character.transform.position, direction, distance, obstacleLayer);
         if (hit.collider != null)
         {
             // หากเจอสิ่งกีดขวาง Teleport ได้จนถึงจุดที่ชน
             targetPosition = hit.point;
             Debug.Log("Obstacle detected, teleporting to nearest point.");
+        }
+        else if (distance <= teleportDistance)
+        {
+            targetPosition = mousePos;
+        }
+        else
+        {
+            targetPosition = character.transform.position + (direction * teleportDistance);
         }
 
         //// เล่น Animation Teleport (ถ้ามี)
