@@ -67,7 +67,6 @@ public class Player : Character
 
     // [Header("Inventory")]
     // public Inventory inventory;
-    public Rigidbody2D rb2D; // ตัวแปรสำหรับอ้างอิง Rigidbody2D
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
