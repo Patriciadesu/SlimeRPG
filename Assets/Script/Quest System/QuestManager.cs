@@ -11,8 +11,6 @@ public class QuestManager : Singleton<QuestManager>
     public List<QuestObjective> allObjectives = new List<QuestObjective>();
     public Quest currentQuest;
     public bool isFinish = false;
-    public List<sQuest> questsFromDatabase = new List<sQuest>();
-    public List<sObjective> objectivesFromDatabase = new List<sObjective>();
 
 
     [Header("Current Quest UI")]
@@ -32,8 +30,8 @@ public class QuestManager : Singleton<QuestManager>
     /// </summary>
     public void GetAllQuests()
     {
-        //List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
-        //List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
+        /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
+        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
 
         allQuests.Clear();
 
@@ -65,7 +63,7 @@ public class QuestManager : Singleton<QuestManager>
             allQuests.Add(quest);
         }
 
-        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");
+        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");*/
     }
 
     public void GetQuest(string[] npcQuestIDs, int questIndex)
@@ -143,8 +141,8 @@ public class QuestManager : Singleton<QuestManager>
     {
         questNameText.text = $"Quest: {currentQuest.name}";
         questDescriptionText.text = $"Description: {currentQuest.description}";
-        moneyRewardText.text = $"Money Reward: {currentQuest.moneyReward}";
-        expRewardText.text = $"EXP Reward: {currentQuest.expReward}";
+        moneyRewardText.text = $"Money Reward: ";/*{currentQuest.reward.moneyReward}*/
+        expRewardText.text = $"EXP Reward: ";/*{currentQuest.reward.expReward}*/
 
         if (isFinish)
         {
@@ -181,18 +179,16 @@ public class QuestManager : Singleton<QuestManager>
         return null;
     }
 
-    [CreateAssetMenu(menuName = "Quests/sQuest")]
-    public class sQuest : ScriptableObject
+    public class sQuest
     {
         public string _id;
         public string name;
         public string description;
-        public List<string> reward;
+        public string reward;
         public List<string> Objective;
     }
 
-    [CreateAssetMenu(menuName = "Quests/sObjective")]
-    public class sObjective : ScriptableObject
+    public class sObjective
     {
         public string objectiveID;
         public string name;
