@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public bool spawnable;
     public float spawnRange;
     public float spawnDelay;
-    public string enemyID;
+    public List<string> enemyIDs;
     public int maxNearbyEnemy;
     public float requiredPlayerRange;
     private List<Enemy> storedEnemy;
@@ -18,8 +17,9 @@ public class Spawner : MonoBehaviour
         while (storedEnemy.Count < maxNearbyEnemy && isPlayerInRange())
         {
             Vector2 randomSpawnPosition = CalculateSpawnPosition();
+            int randomenemy = Random.Range(0, enemyIDs.Count);
 
-            Enemy enemyspawning = Instantiate(EnemyDataManager.Instance.GetEnemy(enemyID),
+            Enemy enemyspawning = Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[randomenemy]),
              randomSpawnPosition,
               Quaternion.identity,
                this.transform)
