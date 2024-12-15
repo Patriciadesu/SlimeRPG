@@ -7,7 +7,10 @@ public class EffectManager : MonoBehaviour
     public enum Effect
     {
         SLASH,
-        LIGHTBEAM
+        LIGHTBEAM,
+        FIREBREATH1,
+        FIREBREATH2,
+        METEORITE
     }
 
     private void Awake()
@@ -40,13 +43,22 @@ public class EffectManager : MonoBehaviour
         {
             case Effect.SLASH:
                 effectObj = Instantiate(Resources.Load<Transform>("Effect/SlashEffect"));
-                effectObj.position = pos;
                 break;
             case Effect.LIGHTBEAM:
                 effectObj = Instantiate(Resources.Load<Transform>("Effect/LightBeamEffect"));
-                effectObj.position = pos;
+                break;
+            case Effect.FIREBREATH1:
+                effectObj = Instantiate(Resources.Load<Transform>("Effect/FireBreath1Effect"));
+                break;
+            case Effect.FIREBREATH2:
+                effectObj = Instantiate(Resources.Load<Transform>("Effect/FireBreath2Effect"));
+                break;
+            case Effect.METEORITE:
+                effectObj = Instantiate(Resources.Load<Transform>("Effect/MeteoriteEffect"));
                 break;
         }
+
+        effectObj.position = pos;
 
         return effectObj;
     }

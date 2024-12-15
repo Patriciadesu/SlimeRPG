@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FrozenZone : ActiveSkill
@@ -9,7 +8,6 @@ public class FrozenZone : ActiveSkill
     public float freezeArea;
     public override IEnumerator OnUse()
     {
-        //yield return base.OnUse();
         if (!isActive) yield break;
 
         isActive = false;
@@ -20,13 +18,15 @@ public class FrozenZone : ActiveSkill
             yield break;
         }
 
+        ////////////// ATTACK //////////////
         Debug.Log($"Using FrozenZone.");
         initFreeze();
+        ////////////////////////////////////
 
         yield return new WaitForSeconds(coolDown);
 
         isActive = true;
-        
+
     }
 
     void initFreeze(){

@@ -1569,6 +1569,9 @@ MonoBehaviour:
     exp: 3.4028235e+38
     coin: 3.402823e+38
     items: []
+  expBoostRate: 1
+  coinBoostRate: 1
+  dropBoostRate: 1
 --- !u!4 &961096998
 Transform:
   m_ObjectHideFlags: 0
@@ -2951,7 +2954,7 @@ PrefabInstance:
     - target: {fileID: 1685072512248702956, guid: eed96b0a93c7dcd40a179542ca82109d, type: 3}
       propertyPath: activeSkill1
       value: 
-      objectReference: {fileID: 11400000, guid: 171ccb416a8d59c4b85e386a22834182, type: 2}
+      objectReference: {fileID: 11400000, guid: 2b882cb093751e8488aa3b0acc57ddcc, type: 2}
     - target: {fileID: 1685072512248702956, guid: eed96b0a93c7dcd40a179542ca82109d, type: 3}
       propertyPath: activeSkill2
       value: 

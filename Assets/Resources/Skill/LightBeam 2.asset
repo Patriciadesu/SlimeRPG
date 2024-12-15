@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8f34f12b8b3ff4b957e5d7c4746979, type: 3}
   m_Name: LightBeam 2
   m_EditorClassIdentifier: 
+  level: 2
   SkillSprite: {fileID: 0}
   Name: LightBeam
   Description: 

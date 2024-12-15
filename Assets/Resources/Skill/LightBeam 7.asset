@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8f34f12b8b3ff4b957e5d7c4746979, type: 3}
   m_Name: LightBeam 7
   m_EditorClassIdentifier: 
+  level: 7
   SkillSprite: {fileID: 0}
   Name: LightBeam
   Description: 
   Have: 1
   _price: 0
   coolDown: 7.5
-  isActive: 0
+  isActive: 1
   activateType: 0
   NextStep: {fileID: 0}
   beamSize: 1.3

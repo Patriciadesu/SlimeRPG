@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
     [SerializeField] GameObject[] itemSellingGameObject;
-    [SerializeField] Skill[] skillsForSale;
+    [SerializeField] String[] skillsForSale;
     [SerializeField] SkillContainer[] skillContainers;
     [SerializeField] float itemPriceMultiplier;
     private void Start()
@@ -29,10 +30,10 @@ public class Shop : MonoBehaviour
             }
         }
 
-        skillContainers[0].ChangeItem(skillsForSale[indices[0]]);
-        skillContainers[1].ChangeItem(skillsForSale[indices[1]]);
-        skillContainers[2].ChangeItem(skillsForSale[indices[2]]);
-        skillContainers[3].ChangeItem(skillsForSale[indices[3]]);
+        skillContainers[0].ChangeItem(SkillManager.Instance.GetSkillByID(skillsForSale[indices[0]]));
+        skillContainers[1].ChangeItem(SkillManager.Instance.GetSkillByID(skillsForSale[indices[1]]));
+        skillContainers[2].ChangeItem(SkillManager.Instance.GetSkillByID(skillsForSale[indices[2]]));
+        skillContainers[3].ChangeItem(SkillManager.Instance.GetSkillByID(skillsForSale[indices[3]]));
 
         foreach (var container in skillContainers)
         {
