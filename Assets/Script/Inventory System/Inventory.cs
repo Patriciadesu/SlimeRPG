@@ -40,6 +40,7 @@ public class Inventory : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(this);
+
     }
     public void SortItems()
     {
@@ -87,6 +88,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item, int amount = 1)
     {
+        if (amount <= 0) return;
         foreach (var slot in itemSlots)
         {
             if (!slot.hasItem || slot.item == item)
@@ -117,6 +119,7 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(Item item,int amount = 1)
     {
+        if (amount <= 0) return;
         for (int i = itemSlots.Count - 1; i >= 0; i--)
         {
             var slot = itemSlots[i];
