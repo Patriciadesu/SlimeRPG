@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using static QuestManager;
 
@@ -17,8 +18,10 @@ public struct Quest
         this.questID = data._id;
         this.name = data.name;
         this.description = data.description;
-        this.moneyReward = data.reward.coin;
-        this.expReward = data.reward.xp;
+        moneyReward = 0;
+        expReward = 0;
+        //this.moneyReward = data.reward.coin;
+        //this.expReward = data.reward.xp;
 
         this.objectives = new List<QuestObjective>();
     }

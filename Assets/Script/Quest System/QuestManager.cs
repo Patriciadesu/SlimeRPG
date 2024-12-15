@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using static QuestManager;
 
 public class QuestManager : Singleton<QuestManager>
 {
@@ -8,6 +11,8 @@ public class QuestManager : Singleton<QuestManager>
     public List<QuestObjective> allObjectives = new List<QuestObjective>();
     public Quest currentQuest;
     public bool isFinish = false;
+    public List<sQuest> questsFromDatabase = new List<sQuest>();
+    public List<sObjective> objectivesFromDatabase = new List<sObjective>();
 
 
     [Header("Current Quest UI")]
@@ -20,16 +25,17 @@ public class QuestManager : Singleton<QuestManager>
     private void Start()
     {
         currentQuest = default(Quest);
+        GetAllQuests();
     }
     /// <summary>
     /// Get All Quest Data from database to QuestManager
     /// </summary>
     public void GetAllQuests()
     {
-        /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
-        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
+        //List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
+        //List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
 
-        List<Quest> allQuests = new List<Quest>();
+        allQuests.Clear();
 
         foreach (sQuest squest in questsFromDatabase)
         {
@@ -59,7 +65,7 @@ public class QuestManager : Singleton<QuestManager>
             allQuests.Add(quest);
         }
 
-        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");*/
+        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");
     }
 
     public void GetQuest(string[] npcQuestIDs, int questIndex)
@@ -175,16 +181,18 @@ public class QuestManager : Singleton<QuestManager>
         return null;
     }
 
-    public class sQuest
+    [CreateAssetMenu(menuName = "Quests/sQuest")]
+    public class sQuest : ScriptableObject
     {
         public string _id;
         public string name;
         public string description;
-        public sReward reward;
+        public List<string> reward;
         public List<string> Objective;
     }
 
-    public class sObjective
+    [CreateAssetMenu(menuName = "Quests/sObjective")]
+    public class sObjective : ScriptableObject
     {
         public string objectiveID;
         public string name;
