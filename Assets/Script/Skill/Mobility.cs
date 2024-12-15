@@ -47,7 +47,7 @@ public class Dash : Mobility
         //// หยุดการเคลื่อนที่
         //character.rb2D.linearVelocity = Vector2.zero;
 
-        //Debug.Log("Dash skill completed");
+        Debug.Log("Dash skill completed");
     }
 }
 [CreateAssetMenu(fileName = "Teleport", menuName = "Skill/Mobility/Teleport", order = 1)]
