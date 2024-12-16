@@ -31,7 +31,6 @@ public class BossEvent : Event
     }
     public override IEnumerator StartEvent()
     {
-        /*
         originalEnemyIDs = bossSpawner.enemyIDs;
         originalMaxNearbyEnemy = bossSpawner.maxNearbyEnemy;
 
@@ -39,7 +38,6 @@ public class BossEvent : Event
         bossSpawner.enemyIDs.Add(bossID);
         bossSpawner.maxNearbyEnemy = 1;
         bossAsNPC.BossEventOngoing = true;
-        */
 
         yield return new WaitUntil(() => activatedHour + duration == DateTime.Now.Hour);
         EndEvent();

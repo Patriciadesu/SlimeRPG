@@ -26,6 +26,7 @@ public class EventManager : Singleton<EventManager>
     }
     public void GetEvents()
     {
+        /*
         List<sBoostEvent> sBoostEvents = getBoostEventsFromDatabase();
         List<sBossEvent> sBossEvents = getBossEventsFromDatabase();
 
@@ -41,6 +42,7 @@ public class EventManager : Singleton<EventManager>
             AllEvents.Add(bossEvent);
         }
         Debug.Log($"All event loaded from database. Total event : {AllEvents.Count}");
+        */
     }
     public void CheckTodayEvents()
     {
