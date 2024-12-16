@@ -2,6 +2,7 @@ using System;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
@@ -210,6 +211,7 @@ public class Player : Character
     {
         // Do something with die mechanics
         base.Die();
+        SceneManager.LoadScene("GameOver");
     }
 
     public override void Heal(float amount)
