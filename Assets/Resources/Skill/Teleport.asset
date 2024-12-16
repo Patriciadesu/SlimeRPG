@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Teleport
   m_EditorClassIdentifier: Assembly-CSharp::Teleport
+  level: 1
   SkillSprite: {fileID: 0}
-  Name: 
+  Name: Teleport
   Description: 
+  skillID: 
   Have: 0
   _price: 0
   coolDown: 0
-  isActive: 0
+  isActive: 1
   activateType: 0
   teleportDistance: 10
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 59
