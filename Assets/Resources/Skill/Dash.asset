@@ -19,8 +19,9 @@ MonoBehaviour:
   skillID: 
   Have: 0
   _price: 0
-  coolDown: 2
+  coolDown: 10
   isActive: 1
   activateType: 0
-  dashDistance: 5
+  dashDistance: 10
   dashSpeed: 20
+  dashCooldown: 2

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Teleport
-  m_EditorClassIdentifier: Assembly-CSharp::Teleport
+  m_Name: SprintToEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::SprintToEnemy
   level: 1
   SkillSprite: {fileID: 0}
-  Name: Teleport
+  Name: SpritToEnemy
   Description: 
   skillID: 
   Have: 0
@@ -22,8 +22,9 @@ MonoBehaviour:
   coolDown: 10
   isActive: 1
   activateType: 0
-  teleportDistance: 10
+  sprintSpeed: 10
+  knockbackForce: 5
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 59
-  teleportCooldown: 5
+    m_Bits: 0
+  skillCooldown: 5
