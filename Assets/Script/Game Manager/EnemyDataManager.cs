@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyDataManager : MonoBehaviour
 {
     public static EnemyDataManager Instance {get; private set;}
-    public List<GameObject> availablEnemyPrefab;
+    public List<GameObject> availableEnemyPrefab;
 
     public void Awake(){
         if(Instance != null && Instance != this){
@@ -16,8 +16,9 @@ public class EnemyDataManager : MonoBehaviour
     }
 
     public GameObject GetEnemy(string ID){
-        foreach(GameObject enemyGO in availablEnemyPrefab){
+        foreach(GameObject enemyGO in availableEnemyPrefab){
             if(enemyGO.GetComponent<Enemy>().id.ToString() == ID){
+                Debug.Log("Get Enemy from enemy datamanager");
                 return enemyGO;
             }
         }

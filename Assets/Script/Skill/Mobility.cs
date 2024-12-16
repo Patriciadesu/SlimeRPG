@@ -1,16 +1,45 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Mobility : Skill
 {
     public ActivateType activateType;
+    public float cooldownDuration = 3f; // Default cooldown duration
+    private bool isCooldown = false;
 
     public override IEnumerator OnUse()
     {
-        Debug.Log("Using Mobility skill");
+        if (isCooldown)
+        {
+            Debug.Log($"{this.name} is on cooldown.");
+            yield break;
+        }
+
+        Debug.Log($"Using {this.name} skill.");
+        isCooldown = true;
+
+        // Execute the skill logic here
+        yield return SkillEffect();
+
+        // Start cooldown
+        yield return StartCooldown();
+    }
+
+    protected virtual IEnumerator SkillEffect()
+    {
+        Debug.Log($"Default skill effect for {this.name}");
         yield break;
+    }
+
+    private IEnumerator StartCooldown()
+    {
+        Debug.Log($"{this.name} cooldown started for {cooldownDuration} seconds.");
+        yield return new WaitForSeconds(cooldownDuration);
+        isCooldown = false;
+        Debug.Log($"{this.name} cooldown finished.");
     }
 }
 [CreateAssetMenu(fileName = "Dash", menuName = "Skill/Mobility/Dash", order = 1)]
@@ -46,22 +75,24 @@ public class Dash : Mobility
 
         //// หยุดการเคลื่อนที่
         //character.rb2D.linearVelocity = Vector2.zero;
-
+        // หลังจากคูลดาวน์เสร็จ
+        // ตั้งเวลา cooldown
         Debug.Log("Dash skill completed");
     }
 }
 [CreateAssetMenu(fileName = "Teleport", menuName = "Skill/Mobility/Teleport", order = 1)]
 public class Teleport : Mobility
 {
-    public float teleportDistance = 10f; // ระยะที่สามารถ Teleport ได้
-    public LayerMask obstacleLayer;      // Layer สำหรับตรวจสอบสิ่งกีดขวาง (ถ้ามี)
-    private Vector3 targetPosition;      // ตำแหน่งเป้าหมายสำหรับ Teleport
+    public float teleportDistance = 10f; // Distance the player can teleport
+    public LayerMask obstacleLayer;      // Layer for detecting obstacles
+
 
     public override IEnumerator OnUse()
     {
+
         Debug.Log("Using Teleport skill");
 
-        // ดึงตัวละคร Player
+        // Get the player instance
         Player character = Player.Instance;
         if (character == null)
         {
@@ -69,42 +100,33 @@ public class Teleport : Mobility
             yield break;
         }
 
-        // ดึงตำแหน่ง Mouse (cursor) ในโลก 3D
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // ตั้งค่า z ให้เป็น 0 เพื่อให้เหมาะกับเกม 2D
+        // Get mouse position
+        Vector3 mousePos = MouseInput.Instance.MousePos;
+        mousePos.z = character.transform.position.z;
+        float distance = (mousePos - character.transform.position).magnitude;
 
-        // คำนวณทิศทางจากตำแหน่งของผู้เล่นไปยังตำแหน่งของ cursor
-        Vector3 direction = (mousePosition - character.transform.position).normalized;
-
-        // คำนวณตำแหน่งเป้าหมายที่จะ Teleport โดยคำนึงถึงระยะทางสูงสุด
-        targetPosition = character.transform.position + direction * teleportDistance;
-
-        // ตรวจสอบสิ่งกีดขวาง (ถ้ามี)
-        RaycastHit2D hit = Physics2D.Raycast(character.transform.position, direction, teleportDistance, obstacleLayer);
+        // Calculate teleport direction and target
+        Vector3 direction = (mousePos - character.transform.position).normalized;
+        Vector3 targetPosition;
+        RaycastHit2D hit = Physics2D.Raycast(character.transform.position, direction, distance, obstacleLayer);
         if (hit.collider != null)
         {
-            // หากเจอสิ่งกีดขวาง Teleport ได้จนถึงจุดที่ชน
-            targetPosition = hit.point;
+            targetPosition = hit.point; // Adjust to the nearest point if blocked
             Debug.Log("Obstacle detected, teleporting to nearest point.");
         }
+        else if (distance <= teleportDistance)
+        {
+            targetPosition = mousePos; // Teleport directly to mouse position
+        }
+        else
+        {
+            targetPosition = character.transform.position + (direction * teleportDistance); // Max distance teleport
+        }
 
-        //// เล่น Animation Teleport (ถ้ามี)
-        //if (character.animator != null)
-        //{
-        //    character.animator.SetTrigger("Teleport");
-        //}
-
-        // ย้ายตัวละครไปยังตำแหน่งที่คำนวณได้
+        // Teleport the player
         character.transform.position = targetPosition;
 
         Debug.Log("Teleport skill completed");
-        yield return null;
-    }
-
-    // Optional: method to set target position from player input (mouse position)
-    public void SetTargetPosition(Vector3 position)
-    {
-        targetPosition = position;
     }
 }
 
@@ -179,51 +201,93 @@ public class SuperSpeed : Mobility
 [CreateAssetMenu(fileName = "SprintToEnemy", menuName = "Skill/Mobility/SprintToEnemy", order = 1)]
 public class SprintToEnemy : Mobility
 {
-    public Enemy Enemy; // Reference to the enemy to sprint toward
-    public float sprintDistance = 2f; // Distance to sprint toward the enemy
-    public float damageMultiplier = 1.5f; // Damage multiplier after sprinting
+    public float sprintSpeed = 20f;         // Speed of the sprint
+    public float knockbackForce = 5f;      // Force applied to knockback the enemy
+    public LayerMask obstacleLayer;        // Layer to detect obstacles
+
+    //public float skillCooldown = 5f;       // Cooldown duration in seconds
+    //private bool isCooldown = false;       // Is the skill on cooldown?
 
     public override IEnumerator OnUse()
     {
+        //if (isCooldown)
+        //{
+        //    Debug.Log("Skill is on cooldown.");
+        //    yield break;
+        //}
+
         Player character = Player.Instance;
-        if (Enemy != null && character != null)
+        if (character == null)
         {
-            Debug.Log("Using SprintToEnemy skill on enemy: " + Enemy.name + " with damage multiplier: " + damageMultiplier);
+            Debug.LogError("Player not found.");
+            yield break;
+        }
 
-            // Calculate direction from the player to enemy
-            Vector3 directionToEnemy = (Enemy.transform.position - character.transform.position).normalized;
+        // Get the mouse position
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = character.transform.position.z; // Align with the player's Z-axis in a 2D game
 
-            // calculate the new position to move to
-            Vector3 sprintPosition = character.transform.position + directionToEnemy * sprintDistance;
+        // Calculate direction and target position
+        Vector3 directionToMouse = (mousePosition - character.transform.position).normalized;
+        Vector3 targetPosition = mousePosition;
 
-            // move player to new position
-            yield return SprintMovement(character, sprintPosition);
+        // Check for obstacles along the path
+        float distanceToMouse = Vector3.Distance(character.transform.position, mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(character.transform.position, directionToMouse, distanceToMouse, obstacleLayer);
+        if (hit.collider != null)
+        {
+            targetPosition = hit.point; // Adjust target position to the obstacle point
+            Debug.Log("Obstacle detected. Sprinting to closest possible point.");
+        }
 
-            // after sprint, increase the character's damage
-            character.Damage *= damageMultiplier;
-            Debug.Log("Damage increased by multiplier: " + damageMultiplier);
+        // Perform the sprint movement
+        SprintMovement(character, targetPosition);
 
-            // revert damage increase after a period of time
-            yield return new WaitForSeconds(2f);
-            character.Damage /= damageMultiplier;
-            Debug.Log("Damage reverted to original.");
+        // Apply knockback to the enemy (if any nearby)
+        Enemy closestEnemy = FindClosestEnemy(character, targetPosition);
+        if (closestEnemy != null)
+        {
+            KnockbackEnemy(closestEnemy, directionToMouse);
+        }
+
+    }
+
+
+    private void SprintMovement(Player character, Vector3 targetPosition)
+    {
+        // Move the character directly toward the target position
+        character.transform.position = targetPosition;
+    }
+
+    private void KnockbackEnemy(Enemy enemy, Vector3 direction)
+    {
+        Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+        if (enemyRb != null)
+        {
+            // Directly set velocity for knockback
+            enemyRb.linearVelocity = direction * knockbackForce;
+            Debug.Log("Enemy knocked back with force: " + knockbackForce);
         }
     }
 
-    private IEnumerator SprintMovement(Character character, Vector2 targetPosition)
+    private Enemy FindClosestEnemy(Player character, Vector3 position)
     {
-        float sprintSpeed = 10f;
-        float distance = Vector2.Distance(character.transform.position, targetPosition);
-        float journeyTime = distance / sprintSpeed;
-        float startTime = Time.time;
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        if (enemies.Length == 0) return null;
 
-        // move toward the target position
-        while (Time.time - startTime < journeyTime)
+        Enemy closestEnemy = null;
+        float shortestDistance = Mathf.Infinity;
+
+        foreach (Enemy enemy in enemies)
         {
-            character.transform.position = Vector2.Lerp(character.transform.position, targetPosition, (Time.time - startTime) / journeyTime);
-            yield return null;
+            float distance = Vector3.Distance(position, enemy.transform.position);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                closestEnemy = enemy;
+            }
         }
 
-        character.transform.position = targetPosition; // Ensure final position is accurate
+        return closestEnemy;
     }
 }

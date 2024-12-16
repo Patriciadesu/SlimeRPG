@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
-public class MainManu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public string playerID;
 
@@ -23,7 +25,7 @@ public class MainManu : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MainManu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()

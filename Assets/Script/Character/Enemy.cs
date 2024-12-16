@@ -93,6 +93,10 @@ public class Enemy : Character
     {
         RewardManager.Instance.GiveReward(rewardID);
         GameManager.OnEnemyKilled(this);
+        Spawner spawner = transform.parent.GetComponent<Spawner>();
+        if(spawner != null){
+            spawner.storedEnemy.Remove(this);
+        }
 
         base.Die();
     }
