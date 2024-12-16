@@ -7,6 +7,29 @@ public class ProgressionBoostEvent : Event
     public float expMultiplier;
     public float coinMultiplier;
     public float itemDropRateMultiplier;
+
+    public ProgressionBoostEvent(sBoostEvent data)
+    {
+        this.eventID = data._id;
+        this.Name = data.name;
+        this.activatedHour = data.activatedHour;
+        this.duration = data.duration;
+
+        foreach (EventManager.DayInWeek day in Enum.GetValues(typeof(EventManager.DayInWeek)))
+        {
+            foreach (string d in data.activatedDays)
+            {
+                if (d.ToLower() == day.ToString().ToLower())
+                {
+                    activatedDay.Add(day);
+                }
+            }
+        }
+        expMultiplier = data.expMultiplier;
+        coinMultiplier = data.coinMultiplier;
+        itemDropRateMultiplier = data.itemDropRateMultiplier;
+    }
+
     public override IEnumerator StartEvent()
     {
         RewardManager.Instance.expBoostRate = expMultiplier;
