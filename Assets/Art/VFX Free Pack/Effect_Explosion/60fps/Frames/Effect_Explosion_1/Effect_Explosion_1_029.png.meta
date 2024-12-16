@@ -959,7 +959,41 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Effect_Explosion_1_029_0: 3242650625318250739
+      Effect_Explosion_1_029_1: -7717433484644482628
+      Effect_Explosion_1_029_10: 5983826881244625501
+      Effect_Explosion_1_029_11: -3844242899978811883
+      Effect_Explosion_1_029_12: 9186657967130559488
+      Effect_Explosion_1_029_13: 7068310792678992135
+      Effect_Explosion_1_029_14: -2905901937577615841
+      Effect_Explosion_1_029_15: 7710157678120355620
+      Effect_Explosion_1_029_16: -2397971465144900578
+      Effect_Explosion_1_029_17: -6702203106486564363
+      Effect_Explosion_1_029_18: 5667195128480317341
+      Effect_Explosion_1_029_19: -4552730284811673480
+      Effect_Explosion_1_029_2: -6680949851559826059
+      Effect_Explosion_1_029_20: 3385729035763196076
+      Effect_Explosion_1_029_21: -5355311401195038818
+      Effect_Explosion_1_029_22: 177520573854983794
+      Effect_Explosion_1_029_23: 142626129670460388
+      Effect_Explosion_1_029_24: 4652523551003121031
+      Effect_Explosion_1_029_25: -8190288396382300378
+      Effect_Explosion_1_029_26: 1757747655309612414
+      Effect_Explosion_1_029_27: -6025257250271682974
+      Effect_Explosion_1_029_28: -3693810560703004990
+      Effect_Explosion_1_029_29: 9129305861843306228
+      Effect_Explosion_1_029_3: 6495096693409975884
+      Effect_Explosion_1_029_30: 4831090369901251917
+      Effect_Explosion_1_029_31: 1765206983938469474
+      Effect_Explosion_1_029_32: -1587028332659341779
+      Effect_Explosion_1_029_33: -8162573117871921767
+      Effect_Explosion_1_029_4: -8503569473810223182
+      Effect_Explosion_1_029_5: -1982011960249903101
+      Effect_Explosion_1_029_6: -1066106197028969710
+      Effect_Explosion_1_029_7: 1678154344483577929
+      Effect_Explosion_1_029_8: 7241088174169050677
+      Effect_Explosion_1_029_9: -5102799316508482711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
