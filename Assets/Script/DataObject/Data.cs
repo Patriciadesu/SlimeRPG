@@ -36,12 +36,15 @@ public class sUserItem
     public int amount;
 }
 
+[Serializable]
 public class sItem
 {
     public string _id;
     public string name;
     public int amount;
 }
+
+[Serializable]
 public class sBoostEvent
 {
     public string _id;
@@ -54,6 +57,8 @@ public class sBoostEvent
     public float coinMultiplier;
     public float itemDropRateMultiplier;
 }
+
+[Serializable]
 public class sBossEvent
 {
     public string _id;
@@ -65,6 +70,8 @@ public class sBossEvent
     public string bossSpawner;
 
 }
+
+[Serializable]
 public class sSpawner
 {
     public string name;
@@ -75,6 +82,7 @@ public class sSpawner
     public sSpawnPos spawnPos;
 }
 
+[Serializable]
 public class sSpawnPos
 {
     public float x;
