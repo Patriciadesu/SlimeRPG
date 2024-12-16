@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class UsableItem : Item
 {
-    public enum itemType
+    public Player player;
+    public void Start()
     {
-
+        player = player.GetComponent<Player>();
     }
-    private int level;
-    private float cooldown;
+
     
-    public void Used()
+    public virtual void Used()
     {
 
     }
