@@ -32,7 +32,11 @@ public class BossEvent : Event
         Spawner[] allSpawner = FindObjectsByType<Spawner>(FindObjectsSortMode.None);
         foreach (Spawner spawner in allSpawner)
         {
-            if (spawner.gameObject.CompareTag("Boss")) bossSpawner = spawner;
+            if (spawner.gameObject.CompareTag("Boss"))
+            {
+                bossSpawner = spawner;
+                Debug.Log("Spawner Found");
+            }
         }
         bossSpawner.ForceSpawn();
         //bossAsNPC.BossEventOngoing = true;

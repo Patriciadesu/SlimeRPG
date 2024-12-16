@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CoinEvent
   m_EditorClassIdentifier: 
   eventID: 
-  Name: 
-  activatedDay: 
-  activatedHour: 0
-  duration: 0
-  expMultiplier: 0
-  coinMultiplier: 0
-  itemDropRateMultiplier: 0
+  Name: Coin
+  activatedDay: 02000000
+  activatedHour: 22
+  duration: 1
+  expMultiplier: 1
+  coinMultiplier: 2
+  itemDropRateMultiplier: 1

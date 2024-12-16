@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExpEvent
   m_EditorClassIdentifier: 
   eventID: 
-  Name: 
+  Name: Exp
   activatedDay: 07000000
   activatedHour: 20
   duration: 2

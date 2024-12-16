@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: AllBoostEvent
   m_EditorClassIdentifier: 
   eventID: 
-  Name: 
-  activatedDay: 
-  activatedHour: 0
-  duration: 0
-  expMultiplier: 0
-  coinMultiplier: 0
-  itemDropRateMultiplier: 0
+  Name: All
+  activatedDay: 07000000
+  activatedHour: 22
+  duration: 1
+  expMultiplier: 2
+  coinMultiplier: 2
+  itemDropRateMultiplier: 2
