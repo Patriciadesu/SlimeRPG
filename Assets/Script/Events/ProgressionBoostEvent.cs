@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "ProgressionBoostEvent")]
+[Serializable]
 public class ProgressionBoostEvent : Event
 {
     public float expMultiplier;

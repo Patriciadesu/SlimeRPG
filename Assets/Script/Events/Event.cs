@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-[System.Serializable]
-public abstract class Event : MonoBehaviour
+public abstract class Event : ScriptableObject
 {
     public string eventID;
     public string Name;
