@@ -74,9 +74,15 @@ public class EventManager : Singleton<EventManager>
             yield return null;
         }
         Event _event = TodayEvents[Array.IndexOf(waitTime, waitTime.Min())];
-        if (waitTime.Min() < 0) Debug.Log("An event is currently happening");
-        else Debug.Log($"Next event will start in approximately {waitTime.Min()} hours");
-        yield return new WaitUntil(() => _event.activatedHour <= DateTime.Now.Hour);
+        if (waitTime.Min() <= 0)
+        {
+            Debug.Log("An event is currently happening");
+        }
+        else
+        {
+            Debug.Log($"Next event will start in approximately {waitTime.Min()} hours");
+            yield return new WaitUntil(() => _event.activatedHour == DateTime.Now.Hour);
+        }
         AddEvent(_event);
     }
     public void AddEvent(Event _event)

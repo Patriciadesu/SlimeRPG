@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class ProgressionBoostEvent : Event
 {
+    [Space(10f)]
     public float expMultiplier;
     public float coinMultiplier;
     public float itemDropRateMultiplier;

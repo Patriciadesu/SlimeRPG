@@ -15,8 +15,8 @@ MonoBehaviour:
   eventID: 
   Name: Exp
   activatedDay: 07000000
-  activatedHour: 20
-  duration: 2
+  activatedHour: 8
+  duration: 1
   expMultiplier: 2
   coinMultiplier: 1
   itemDropRateMultiplier: 1
