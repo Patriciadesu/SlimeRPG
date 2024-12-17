@@ -17,6 +17,12 @@ public static class API
 
 public class DatabaseManager : SingletonPersistent<DatabaseManager>
 {
+    public string playerId;
+    public void Start()
+    {
+        
+    }
+
     #region Get
     /// <summary>
     ///
@@ -108,10 +114,6 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
     /// 
     /// </summary>
     /// <param name="Api"></param>
-    public void Start()
-    {
-        Post("http://localhost:4500/addItem?playerID=675c5288ead37b27205267d7&itemID=675c442db0fc615388eb4d04&amount=1");
-    }
     public void Post(string Api)
     {
         Debug.Log("Send Request To : " + Api);
