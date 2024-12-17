@@ -15,11 +15,12 @@ MonoBehaviour:
   level: 1
   SkillSprite: {fileID: 0}
   Name: Meteorite
-  Description: 
-  Have: 0
+  skillID: 
+  Have: 1
   _price: 0
   coolDown: 12
   isActive: 1
+  rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: 7fefc6e1e5db1374397056b17305d950, type: 2}
   meteoriteSize: 1
