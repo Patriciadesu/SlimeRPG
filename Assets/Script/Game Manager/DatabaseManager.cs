@@ -108,27 +108,38 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
     /// 
     /// </summary>
     /// <param name="Api"></param>
-
+    public void Start()
+    {
+        Post("http://localhost:4500/addItem?playerID=675c5288ead37b27205267d7&itemID=675c442db0fc615388eb4d04&amount=1");
+    }
     public void Post(string Api)
     {
-        StartCoroutine(Api);
+        Debug.Log("Send Request To : " + Api);
+        StartCoroutine(SendRequest(Api));
     }
     public IEnumerator SendRequest(string Api)
-    { 
-        UnityWebRequest request = new UnityWebRequest(Api, "POST");
-        request.SetRequestHeader("Content-Type", "application/json");
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        using (request)
+    {
+        using (UnityWebRequest request = new UnityWebRequest(Api, "POST"))
         {
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            // Add Content-Type header (important for POST requests)
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            // Send the request and wait for it to complete
             yield return request.SendWebRequest();
 
+            // Check for errors
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Success");
+                Debug.Log("Response: " + request.downloadHandler.text);
             }
             else
-                Debug.LogError(string.Format("Something went wrong: {0}", request.error));
+            {
+                Debug.LogError($"Error: {request.responseCode} - {request.error}");
+            }
         }
+        
     }
 
     #endregion
