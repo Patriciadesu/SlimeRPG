@@ -22,6 +22,7 @@ public static class API
     public static string updateObjective(string objectiveId)            => www + $"getQuestProgress?playerID={DatabaseManager.Instance.playerId}&objectiveID={objectiveId}";
     public static string addUserProgress(string objectiveId)            => www + $"addProgress?playerID={DatabaseManager.Instance.playerId}&objectiveID={objectiveId}";
     public static string getAllItem                                     = www + "getItem";
+    public static string getAllQuest                                    = www + "getQuest";
     public static string getAllSkill                                    = www + "getSkill";
     public static string getAllReward                                   = www + "getRewards";
     public static string getAllEnemySpawner                             = www + "getEnemySpawner";
