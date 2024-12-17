@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventID: 
   Name: Coin
-  activatedDay: 02000000
+  activatedDay: 01000000
   activatedHour: 22
   duration: 1
   expMultiplier: 1

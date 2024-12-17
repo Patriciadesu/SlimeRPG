@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventID: 
   Name: Boss
-  activatedDay: 01000000
-  activatedHour: 22
-  duration: 1
+  activatedDay: 02000000
+  activatedHour: 10
+  duration: 2
