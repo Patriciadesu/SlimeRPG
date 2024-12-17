@@ -19,12 +19,12 @@ MonoBehaviour:
   skillID: 
   Have: 0
   _price: 0
-  coolDown: 10
+  coolDown: 2
   isActive: 1
   activateType: 0
+  cooldownDuration: 2
   sprintSpeed: 10
   knockbackForce: 5
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
-  skillCooldown: 5
