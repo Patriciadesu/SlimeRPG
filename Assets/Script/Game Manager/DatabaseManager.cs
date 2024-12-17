@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using System.Text;
+using UnityEngine.Playables;
 
 public static class API
 {
@@ -13,7 +15,7 @@ public static class API
     //const string userPath = www + "user";
 }
 
-public class DatabaseManager : MonoBehaviour
+public class DatabaseManager : SingletonPersistent<DatabaseManager>
 {
     #region Get
     /// <summary>
@@ -42,9 +44,9 @@ public class DatabaseManager : MonoBehaviour
     ///
     /// About API :
     /// Here a example of API that Butter have sent http://localhost:4500/getRewards?questID={}
-    /// You have to replace {} with the parameter (In this case is Quest Id)
-    /// So to use this api you have to do like this http://localhost:4500/getRewards?questID=64c9e52aabf4a73983fbd681
-    /// You see? i replace {} with my quest id which is 64c9e52aabf4a73983fbd681 then its gonna work
+    /// So to use this api you have to do like this     string Api = "http://localhost:4500/getRewards?questID=64c9e52aabf4a73983fbd681"
+    /// Or like this                                    string Api = $"http://localhost:4500/getRewards?questID={64c9e52aabf4a73983fbd681}" (Recommended)
+    ///
     /// 
     /// Explanation Here :
     /// 1. Dont worry that your OnGetQuestData will not run, it wall AUTOMATICALLY run after get response from database :)
@@ -96,6 +98,32 @@ public class DatabaseManager : MonoBehaviour
     #endregion
 
     #region Post
+
+    public void Post(string Api,Dictionary<string, object> data)
+    {
+        StartCoroutine(Api,data);
+    }
+    public IEnumerator SendRequest(string Api,Dictionary<string,object> data)
+    {
+        string jsonData = JsonConvert.SerializeObject(data);
+
+        UnityWebRequest request = new UnityWebRequest(Api, "POST");
+        request.SetRequestHeader("Content-Type", "application/json");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        using (request)
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("Success");
+            }
+            else
+                Debug.LogError(string.Format("Something went wrong: {0}", request.error));
+        }
+    }
 
     #endregion
 
