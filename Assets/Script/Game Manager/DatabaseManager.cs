@@ -98,19 +98,25 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
     #endregion
 
     #region Post
+    /// <summary>
+    ///
+    /// This one is very easy to use wa
+    ///
+    /// About API :
+    /// Here a example of API that Butter have sent                    http://localhost:4500/addItem?playerID={}&itemID={}&amount={} 
+    /// So to use this api you have to do like this     string Api = $"http://localhost:4500/addItem?playerID={64c9e52aabf4a73983fbd681}&itemID={675c442db0fc615388eb4d04}&amount={}"
+    /// 
+    /// </summary>
+    /// <param name="Api"></param>
 
-    public void Post(string Api,Dictionary<string, object> data)
+    public void Post(string Api)
     {
-        StartCoroutine(Api,data);
+        StartCoroutine(Api);
     }
-    public IEnumerator SendRequest(string Api,Dictionary<string,object> data)
-    {
-        string jsonData = JsonConvert.SerializeObject(data);
-
+    public IEnumerator SendRequest(string Api)
+    { 
         UnityWebRequest request = new UnityWebRequest(Api, "POST");
         request.SetRequestHeader("Content-Type", "application/json");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         using (request)
         {
