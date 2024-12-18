@@ -5255,7 +5255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: cfb5b0e4ddc51c6459c267adf47a86b0, type: 2}
+  skill: {fileID: 0}
   skillSlotType: 3
 --- !u!1 &801511229
 GameObject:
@@ -5976,7 +5976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: 2bdbdcb7a5b5dc2489f592f47dee287e, type: 2}
+  skill: {fileID: 0}
   skillSlotType: 3
 --- !u!1 &1044630196
 GameObject:
@@ -6328,7 +6328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: fe46d10ec6bccd1448c242c48b761be9, type: 2}
+  skill: {fileID: 0}
   skillSlotType: 3
 --- !u!114 &1096038691 stripped
 MonoBehaviour:
@@ -7041,6 +7041,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 387296281265933767, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886816860}
+    - target: {fileID: 387296281265933767, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GetQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 596474965295765326, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886816860}
+    - target: {fileID: 596474965295765326, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GetQuest
+      objectReference: {fileID: 0}
     - target: {fileID: 650846069771400317, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
       propertyPath: m_Name
       value: Dialog
@@ -7048,6 +7064,14 @@ PrefabInstance:
     - target: {fileID: 1770399480384688597, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5393962782393271985, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886816860}
+    - target: {fileID: 5393962782393271985, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GetQuest
       objectReference: {fileID: 0}
     - target: {fileID: 6056132293468062283, guid: 010bd5eb527f66641bba3379b44f3b2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7307,7 +7331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: 4f52ee396b62c2844b0cb505d93fb98f, type: 2}
+  skill: {fileID: 0}
   skillSlotType: 3
 --- !u!1 &1941793090
 GameObject:
