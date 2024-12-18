@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBreath 7
   m_EditorClassIdentifier: 
   level: 7
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: -7921052967969465774, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: FireBreath
   skillID: 
   Have: 0

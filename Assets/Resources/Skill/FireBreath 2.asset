@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: FireBreath 2
   m_EditorClassIdentifier: 
   level: 2
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: -7921052967969465774, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: FireBreath
-  Description: 
+  skillID: 
   Have: 1
   _price: 0
   coolDown: 6
   isActive: 1
+  rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: c663e89e565e85140ab533b6ae5b120c, type: 2}
   fireBreathSize: 1.2

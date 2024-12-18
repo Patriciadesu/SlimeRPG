@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8f34f12b8b3ff4b957e5d7c4746979, type: 3}
   m_Name: LightBeam 1
   m_EditorClassIdentifier: 
-  SkillSprite: {fileID: 0}
+  level: 1
+  SkillSprite: {fileID: 5777552420452043588, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: LightBeam
-  Description: 
+  skillID: 2
   Have: 1
   _price: 0
   coolDown: 12
-  isActive: 0
+  isActive: 1
+  rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: 4ce3e981de877d44da2380887ae5f9aa, type: 2}
   beamSize: 1

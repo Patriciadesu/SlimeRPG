@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Meteorite 1
   m_EditorClassIdentifier: 
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: 6985626698306143173, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: Meteorite
-  skillID: 
+  skillID: 3
   Have: 1
   _price: 0
   coolDown: 12

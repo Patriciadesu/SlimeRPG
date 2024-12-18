@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SprintToEnemy
   m_EditorClassIdentifier: Assembly-CSharp::SprintToEnemy
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: 6413020478584453356, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: SpritToEnemy
-  Description: 
-  skillID: 
+  skillID: 4
   Have: 0
   _price: 0
   coolDown: 2
