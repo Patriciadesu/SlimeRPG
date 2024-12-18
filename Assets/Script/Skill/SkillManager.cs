@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance;
-    [SerializeField] private Skill[] skills;
+    public Skill[] skills { get; private set; }
+    public UnityAction onSkillChanged;
 
 
     private void Awake()
@@ -21,10 +24,18 @@ public class SkillManager : MonoBehaviour
         }
 
         Instance = this;
+    }
 
-        if (SkillManager.Instance == null)
+    private void FixedUpdate()
+    {
+        var newSkills = Resources.LoadAll<Skill>("Skill");
+        int newHaveSkillCount = newSkills.Where(s => s.Have).Count();
+        int oldHaveSkillCount = skills.Where(s => s.Have).Count();
+
+        if (newHaveSkillCount != oldHaveSkillCount)
         {
-            Debug.LogError("SkillManager Instance is not set!");
+            skills = newSkills;
+            onSkillChanged?.Invoke();
         }
     }
 
@@ -61,5 +72,4 @@ public class SkillManager : MonoBehaviour
         Debug.LogError("This Item ID does not exist in the data.");
         return null;
     }
-
 }

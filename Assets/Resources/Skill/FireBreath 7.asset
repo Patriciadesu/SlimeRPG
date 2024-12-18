@@ -15,11 +15,12 @@ MonoBehaviour:
   level: 7
   SkillSprite: {fileID: 0}
   Name: FireBreath
-  Description: 
-  Have: 1
+  skillID: 
+  Have: 0
   _price: 0
   coolDown: 5
-  isActive: 0
+  isActive: 1
+  rarity: 0
   activateType: 0
   NextStep: {fileID: 0}
   fireBreathSize: 1.8

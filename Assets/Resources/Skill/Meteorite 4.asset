@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf6294639d96674c8a66e89ec089f9c, type: 3}
   m_Name: Meteorite 4
   m_EditorClassIdentifier: 
-  level: 1
+  level: 4
   SkillSprite: {fileID: 0}
   Name: Meteorite
-  Description: 
-  Have: 0
+  skillID: 
+  Have: 1
   _price: 0
   coolDown: 10
   isActive: 1
+  rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: 25cb4b7cf5c88bc4893a177d6be9706e, type: 2}
   meteoriteSize: 2

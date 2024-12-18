@@ -8,8 +8,8 @@ public abstract class Event : ScriptableObject
     public string eventID;
     public string Name;
     public List<EventManager.DayInWeek> activatedDay = new List<EventManager.DayInWeek>();
-    public int activatedHour;
-    public float duration;
+    [Tooltip("Time that the event start.(24H)")]public int activatedHour;
+    [Tooltip("How many hours the event will last.")]public float duration;
     public abstract IEnumerator StartEvent();
     public abstract void EndEvent();
 

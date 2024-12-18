@@ -3,8 +3,17 @@ using System.Collections;
 
 public abstract class ActiveSkill : Skill
 {
+    public Rarity rarity;
     public ActivateType activateType;
     public ActiveSkill NextStep;
+
+    public enum Rarity
+    {
+        Common,
+        Epic,
+        Mythic,
+        Legendary
+    }
 }
 
 public enum ActivateType
