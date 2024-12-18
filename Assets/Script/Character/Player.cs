@@ -12,6 +12,7 @@ public class Player : Character
     [Header("Player Stats")]
     public int Level { get => _level; }
     public float MaxExp { get => ((float)Math.Pow(1.1f, _level - 1)) * 100; }
+    IInteractable iInteractable;
     public float dodgeRate
     {
         get
@@ -107,6 +108,14 @@ public class Player : Character
             UseSkill2();
         }
         PlayerInput();
+        if(iInteractable!= null )
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                iInteractable.Interact();
+            }
+            
+        }
     }
     
     protected void Attack()
@@ -325,5 +334,20 @@ public class Player : Character
         ActiveSkill1,
         ActiveSkill2,
         Mobility
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+                                   
+        if(other.TryGetComponent<IInteractable>(out iInteractable))
+        {
+        }
+    }
+       
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent<IInteractable>(out iInteractable))
+        {
+            iInteractable.UnInteract();
+        }
     }
 }
