@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.7500003, y: -0.77000046, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6111406294739235415}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4534020925078494341
@@ -371,7 +371,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.74999833, y: -0.77000046, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6111406294739235415}
@@ -428,7 +428,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6699763275462743511
@@ -609,7 +609,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.2499986, y: -0.77000046, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6111406294739235415}
@@ -666,7 +666,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3090494594460457191
@@ -794,16 +794,13 @@ MonoBehaviour:
   - {fileID: 4052184310254195274}
   - {fileID: 4548015915804568518}
   skillsForSale:
-  - {fileID: 11400000, guid: 47b63d118b29e2848a459d3b8600658a, type: 2}
-  - {fileID: 11400000, guid: 8f407301848c01640bf35304d98429b4, type: 2}
-  - {fileID: 11400000, guid: 13ede169b48d07143b83ad886b2d782e, type: 2}
-  - {fileID: 11400000, guid: dc4f6a81d832b6b4f931b3127b7a4a93, type: 2}
-  - {fileID: 11400000, guid: 224d090f133acb54bb5ef75ddef3bd2f, type: 2}
-  - {fileID: 11400000, guid: fbe06149b59191a4e96ab7486d10791b, type: 2}
-  - {fileID: 11400000, guid: 3f0d5a2ab05820d48804ee3ec892f739, type: 2}
-  - {fileID: 11400000, guid: ba9c631fb306ccf4ea6287f595cc95ba, type: 2}
-  - {fileID: 11400000, guid: b3acc3ca4ef1b504980056e1fdee5fa6, type: 2}
-  - {fileID: 11400000, guid: 6a4120c07472f2149975704a55046542, type: 2}
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
   skillContainers:
   - {fileID: 2932965084304585679}
   - {fileID: 4534020925078494341}
@@ -838,7 +835,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.2500014, y: -0.77000135, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6111406294739235415}
@@ -895,7 +892,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2932965084304585679
