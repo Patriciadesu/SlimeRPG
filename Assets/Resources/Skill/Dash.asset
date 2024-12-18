@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: Assembly-CSharp::Dash
   level: 1
-  SkillSprite: {fileID: 1514181049279601983, guid: fd2051243a918446390cc9cd26660049, type: 3}
-  Name: Dash
-  skillID: 0
+  SkillSprite: {fileID: 0}
+  Name: 
+  skillID: 
   Have: 0
   _price: 0
-  coolDown: 10
-  isActive: 1
+  coolDown: 0
+  isActive: 0
   activateType: 0
   cooldownDuration: 3
-  dashDistance: 10
+  dashDistance: 5
   dashSpeed: 20

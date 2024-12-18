@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: SprintToEnemy
   m_EditorClassIdentifier: Assembly-CSharp::SprintToEnemy
   level: 1
-  SkillSprite: {fileID: 6413020478584453356, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
-  Name: SpritToEnemy
-  skillID: 4
+  SkillSprite: {fileID: 0}
+  Name: 
+  skillID: 
   Have: 0
   _price: 0
-  coolDown: 2
-  isActive: 1
+  coolDown: 0
+  isActive: 0
   activateType: 0
-  cooldownDuration: 2
-  sprintSpeed: 10
+  cooldownDuration: 3
+  sprintSpeed: 20
   knockbackForce: 5
   obstacleLayer:
     serializedVersion: 2

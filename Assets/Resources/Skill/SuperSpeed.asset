@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: SuperSpeed
   m_EditorClassIdentifier: Assembly-CSharp::SuperSpeed
   level: 1
-  SkillSprite: {fileID: 3062383759408700104, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
-  Name: SuperSpeed
-  skillID: 5
+  SkillSprite: {fileID: 0}
+  Name: 
+  skillID: 
   Have: 0
-  _price: 30
-  coolDown: 10
-  isActive: 1
+  _price: 0
+  coolDown: 0
+  isActive: 0
   activateType: 0
   cooldownDuration: 3
   UseTime: 2
