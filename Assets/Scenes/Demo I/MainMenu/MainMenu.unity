@@ -1201,6 +1201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ecbdc251444a84ea97442734f637bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneChange: TestCombat
   playerID: 
 --- !u!1 &2070866513
 GameObject:

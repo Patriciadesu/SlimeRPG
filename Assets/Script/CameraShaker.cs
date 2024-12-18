@@ -6,9 +6,6 @@ public class CameraShaker : MonoBehaviour
 {
     public static CameraShaker Instance;
     [SerializeField] private CinemachineFollow cinemachineFollow;
-    [SerializeField] private float m_shakeDuration;
-    [SerializeField] private float m_shakeTime;
-    [SerializeField] private float m_shakeMagnitude;
 
     private void Awake()
     {
@@ -16,16 +13,7 @@ public class CameraShaker : MonoBehaviour
             Destroy(Instance.gameObject);
 
         Instance = this;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            TriggerShake(m_shakeDuration,m_shakeTime, m_shakeMagnitude);
-        }
-    }                
-
+    }         
 
     public void TriggerShake(float shakeDuration, float shakeTime, float shakeMagnitude) =>
         StartCoroutine(TriggerShakeIE(shakeDuration, shakeTime, shakeMagnitude));

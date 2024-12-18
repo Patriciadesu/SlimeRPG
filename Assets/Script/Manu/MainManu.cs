@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private string sceneChange = "MainMap";
     public string playerID;
 
     private void Start()
@@ -20,7 +21,7 @@ public class MainMenu : MonoBehaviour
     #region SceneChange
     public void EnterGame()
     {
-        SceneManager.LoadScene("MainMap");
+        SceneManager.LoadScene(sceneChange);
     }
 
     public void BackToMenu()

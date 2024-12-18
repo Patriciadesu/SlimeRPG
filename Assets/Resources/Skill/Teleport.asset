@@ -19,10 +19,10 @@ MonoBehaviour:
   Have: 0
   _price: 0
   coolDown: 0
-  isActive: 0
+  isActive: 1
   activateType: 0
   cooldownDuration: 3
-  teleportDistance: 10
+  teleportDistance: 15
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0

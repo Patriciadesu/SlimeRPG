@@ -19,7 +19,7 @@ MonoBehaviour:
   Have: 1
   _price: 0
   coolDown: 7.5
-  isActive: 1
+  isActive: 0
   rarity: 0
   activateType: 0
   NextStep: {fileID: 0}
