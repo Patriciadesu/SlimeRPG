@@ -9,7 +9,6 @@ using Helios.GUI;
 #if UNITY_EDITOR
 using System.IO;
 using System.Linq;
-using UnityEditor;
 #endif
 
 namespace Coffee.UIExtensions

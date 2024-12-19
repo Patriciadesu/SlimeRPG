@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
-using static QuestManager;
 
 public class QuestManager : Singleton<QuestManager>
 {
