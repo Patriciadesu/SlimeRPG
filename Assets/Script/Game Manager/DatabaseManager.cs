@@ -57,7 +57,7 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
     ///
     /// public void Awake()
     /// {
-    ///     GetDataObject<sQuest[]>(myApi,OnGetQuestData);
+    ///     DatabaseManager.Instance.GetDataObject<sQuest[]>(myApi,OnGetQuestData);
     /// }
     ///
     /// public void OnGetQuestData(sQuest[] questDatas)
