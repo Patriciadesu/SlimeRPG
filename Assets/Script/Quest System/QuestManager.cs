@@ -129,9 +129,7 @@ public class QuestManager : Singleton<QuestManager>
         isFinish = true;
         UpdateQuestUI();
         currentQuest = default(Quest);
-        //currentQuest = null; may by use | Quest? currentQuest = null;
         //Add Reward
-        //Add remove quest duay naa
     }
 
     public void UpdateQuestUI()
