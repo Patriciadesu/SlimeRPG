@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> allQuests = new List<Quest>();
     public List<QuestObjective> allObjectives = new List<QuestObjective>();
+    private List<sQuest> questsFromDatabase = new List<sQuest>();
+    private List<sObjective> objectivesFromDatabase = new List<sObjective>();
     public Quest currentQuest;
     public bool isFinish = false;
 
@@ -18,17 +21,37 @@ public class QuestManager : Singleton<QuestManager>
     public TMP_Text expRewardText;
     public TMP_Text objectivesText;
 
+    private void Awake()
+    {
+        allQuests.Clear();
+        allObjectives.Clear();
+        DatabaseManager.Instance.GetDataObejct<sQuest[]>(API.getAllQuest, GetQuestsFromDatabase);
+        DatabaseManager.Instance.GetDataObejct<sObjective[]>(API.getAllObjective, GetObjectivesFromDatabase);
+        CreateAllQuests();
+    }
+
     private void Start()
     {
         currentQuest = default(Quest);
     }
+
+    public void GetQuestsFromDatabase(sQuest[] quests)
+    {
+        questsFromDatabase = quests.ToList();
+    }
+
+    public void GetObjectivesFromDatabase(sObjective[] objectives)
+    {
+        objectivesFromDatabase = objectives.ToList();
+    }
+
     /// <summary>
     /// Get All Quest Data from database to QuestManager
     /// </summary>
-    public void GetAllQuests()
+    public void CreateAllQuests()
     {
         /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
-        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
+        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();*/
 
         allQuests.Clear();
 
@@ -60,8 +83,11 @@ public class QuestManager : Singleton<QuestManager>
             allQuests.Add(quest);
         }
 
-        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");*/
+        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");
+        Debug.Log($"All objectives loaded from database. Total objectives: {allObjectives.Count}");
     }
+
+    
 
     public void GetQuest(string[] npcQuestIDs, int questIndex)
     {

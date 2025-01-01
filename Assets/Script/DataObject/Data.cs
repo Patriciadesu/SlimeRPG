@@ -17,6 +17,7 @@ public class sObjective
     public string name;
     public string enemyID;
     public int requiredAmount;
+    public int currentAmount;
 }
 
 [Serializable]
