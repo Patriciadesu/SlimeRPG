@@ -9,7 +9,7 @@ using UnityEngine.Playables;
 
 public static class API
 {
-    const string www = "http://localhost:4500/";
+    const string www = "http://152.42.196.107:3000/";
     const string createPlayer                                           = www + "createPlayer";
     public static string getUser                                        = www + $"getPlayer?playerID={DatabaseManager.Instance.playerId}"; // player id
     public static string getUserItem                                    = www + $"getItem?playerID={DatabaseManager.Instance.playerId}";
