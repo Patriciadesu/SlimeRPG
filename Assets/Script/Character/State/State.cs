@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public abstract class State
 {
     public UnityEvent onEventChanged;
+    public UnityAction<Vector2> onMoveTick;
 
     public enum STATE
     {

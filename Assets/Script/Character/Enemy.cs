@@ -51,24 +51,12 @@ public class Enemy : Character
         chaseDistance = Mathf.Max(chaseDistance, attackDistance);
 
         state = new Patrol(this, chaseDistance, attackDistance);
+        state.onMoveTick += Move;
     }
 
     private void Update()
     {
         state = state.Process();
-    }
-
-    public void Move(Vector2 velocity)
-    {
-        rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity.normalized * speed * 2.5f, Time.fixedDeltaTime * 5);
-
-        float currentX = transform.rotation.eulerAngles.x;
-        float currentZ = transform.rotation.eulerAngles.z;
-
-        if (velocity.x > 0)
-            transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
-        else if (velocity.x < 0)
-            transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
     public Skill Attack()

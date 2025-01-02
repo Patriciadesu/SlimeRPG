@@ -11,7 +11,7 @@ public class Attack : State
 
     protected override void Enter()
     {
-        enemy.Move(Vector2.zero);
+        onMoveTick?.Invoke(Vector2.zero);
         animator.SetBool("isWalking", false);
 
         skillAttacker = enemy.Attack();
@@ -53,6 +53,6 @@ public class Attack : State
                 _event = EVENT.EXIT;
             }
         }
-        else enemy.Move(Vector2.zero);
+        else onMoveTick?.Invoke(Vector2.zero);
     }
 }
