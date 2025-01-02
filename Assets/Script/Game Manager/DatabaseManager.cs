@@ -35,7 +35,7 @@ public static class API
 
 }
 
-public class DatabaseManager : SingletonPersistent<DatabaseManager>
+public class DatabaseManager : Singleton<DatabaseManager>
 {
     public string playerId;
     public void Start()
