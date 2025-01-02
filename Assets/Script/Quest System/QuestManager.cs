@@ -9,8 +9,10 @@ public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> allQuests = new List<Quest>();
     public List<QuestObjective> allObjectives = new List<QuestObjective>();
+
     private List<sQuest> _questsFromDatabase = new List<sQuest>();
     private List<sObjective> _objectivesFromDatabase = new List<sObjective>();
+
     public Quest currentQuest;
     private bool isFinish = false;
 
@@ -110,7 +112,7 @@ public class QuestManager : Singleton<QuestManager>
         }
 
         Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");
-        Debug.Log($"All objectives loaded from database. Total objectives: {allObjectives.Count}");
+        //Debug.Log($"All objectives loaded from database. Total objectives: {allObjectives.Count}");
     }
 
     
