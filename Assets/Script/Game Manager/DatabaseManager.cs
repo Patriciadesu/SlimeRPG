@@ -94,6 +94,7 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
     }
     private IEnumerator GetData<T>(string Api, Action<T> callback) where T : class
     {
+        Debug.Log("Calling API : " + Api);
         using (UnityWebRequest request = UnityWebRequest.Get(Api))
         {
             yield return request.SendWebRequest();
