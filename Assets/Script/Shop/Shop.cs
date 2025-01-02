@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] GameObject[] itemSellingGameObject;
-    [SerializeField] String[] skillsForSale;
-    [SerializeField] SkillContainer[] skillContainers;
-    [SerializeField] float itemPriceMultiplier;
+    [SerializeField, Tooltip("ID from Database")] String[] skillsForSale;  //Go Check Skill ID in SKillManager or Server IDK
+    [SerializeField, Tooltip("Container GameObject")] SkillContainer[] skillContainers; 
+    //[SerializeField, Tooltip("Multiply price")] float itemPriceMultiplier; //Not implemented
     private void Start()
     {
         RandomShopItem();
     }
+    /// <summary>
+    /// Random Item in shop by creating List and random 4 number in it
+    /// then use the number to Get ID from skillmanager and boom! it should appear in shop
+    /// </summary>
     void RandomShopItem()
     {
         if (skillsForSale.Length < 4)
@@ -19,7 +22,6 @@ public class Shop : MonoBehaviour
             Debug.LogError("Not enough skills available for random selection!");
             return;
         }
-
         List<int> indices = new List<int>();
         while (indices.Count < 4)
         {
