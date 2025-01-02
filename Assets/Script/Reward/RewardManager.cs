@@ -7,10 +7,13 @@ public class RewardManager : Singleton<RewardManager>
     public float expBoostRate = 1f;
     public float coinBoostRate = 1f;
     public float dropBoostRate = 1f;
+    
+    /*
     public void GetAllRewards()
     {
         //rewards = get from databse;
     }
+    */
 
     public void GiveReward(string rewardID)
     {

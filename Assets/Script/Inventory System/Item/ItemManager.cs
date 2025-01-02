@@ -9,9 +9,7 @@ public class ItemManager : Singleton<ItemManager>
     private void Awake()
     {
         UpdateItemData();
-    }/// <summary>
-     /// ///////////////////////
-     /// </summary>
+    }
 
     void Start()
     {
