@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -8,10 +9,10 @@ public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> allQuests = new List<Quest>();
     public List<QuestObjective> allObjectives = new List<QuestObjective>();
-    private List<sQuest> questsFromDatabase = new List<sQuest>();
-    private List<sObjective> objectivesFromDatabase = new List<sObjective>();
+    private List<sQuest> _questsFromDatabase = new List<sQuest>();
+    private List<sObjective> _objectivesFromDatabase = new List<sObjective>();
     public Quest currentQuest;
-    public bool isFinish = false;
+    private bool isFinish = false;
 
 
     [Header("Current Quest UI")]
@@ -21,14 +22,39 @@ public class QuestManager : Singleton<QuestManager>
     public TMP_Text expRewardText;
     public TMP_Text objectivesText;
 
+
+    private bool questsLoaded = false;
+    private bool objectivesLoaded = false;
+
     private void Awake()
     {
         allQuests.Clear();
         allObjectives.Clear();
+        Debug.Log(API.getAllQuest);
+
+        StartCoroutine(LoadDataAndCreateQuests());
+    }
+
+    private IEnumerator LoadDataAndCreateQuests()
+    {
+        if (DatabaseManager.Instance == null)
+        {
+            Debug.LogError("DatabaseManager.Instance is null!");
+            yield break;
+        }
+
         DatabaseManager.Instance.GetDataObejct<sQuest[]>(API.getAllQuest, GetQuestsFromDatabase);
         DatabaseManager.Instance.GetDataObejct<sObjective[]>(API.getAllObjective, GetObjectivesFromDatabase);
+
+        yield return new WaitUntil(() =>
+        {
+            Debug.Log($"Waiting for data... Quests: {_questsFromDatabase.Count}, Objectives: {_objectivesFromDatabase.Count}");
+            return _questsFromDatabase.Count > 0 && _objectivesFromDatabase.Count > 0;
+        });
+
         CreateAllQuests();
     }
+
 
     private void Start()
     {
@@ -37,12 +63,12 @@ public class QuestManager : Singleton<QuestManager>
 
     public void GetQuestsFromDatabase(sQuest[] quests)
     {
-        questsFromDatabase = quests.ToList();
+        _questsFromDatabase = quests.ToList();
     }
 
     public void GetObjectivesFromDatabase(sObjective[] objectives)
     {
-        objectivesFromDatabase = objectives.ToList();
+        _objectivesFromDatabase = objectives.ToList();
     }
 
     /// <summary>
@@ -55,13 +81,13 @@ public class QuestManager : Singleton<QuestManager>
 
         allQuests.Clear();
 
-        foreach (sQuest squest in questsFromDatabase)
+        foreach (sQuest squest in _questsFromDatabase)
         {
             Quest quest = new Quest(squest);
 
             foreach (string objectiveID in squest.Objective)
             {
-                sObjective sObjective = objectivesFromDatabase.Find(o => o._id == objectiveID);
+                sObjective sObjective = _objectivesFromDatabase.Find(o => o._id == objectiveID);
 
                 if (sObjective != null)
                 {

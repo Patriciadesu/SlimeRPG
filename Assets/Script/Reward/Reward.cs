@@ -8,11 +8,11 @@ public struct Reward
     public string rewardID;
     public float exp;
     public float coin;
-    public List<ItemReward> items;
+    public List<DropRate> items;
 }
 
 [Serializable]
-public struct ItemReward
+public struct DropRate
 {
     public string itemID;
     [Range(0f, 1f)] public float dropRate;

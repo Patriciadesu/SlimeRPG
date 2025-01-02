@@ -43,7 +43,7 @@ public class Chase : State
         }
         else if (distance <= chaseDistance)
         {
-            enemy.Move(direction);
+            onMoveTick?.Invoke(direction);
         }
         else
         {
