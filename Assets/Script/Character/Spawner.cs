@@ -19,13 +19,9 @@ public class Spawner : MonoBehaviour
         {
             //Debug.Log("Start spawning enemy in");
             Vector2 randomSpawnPosition = CalculateSpawnPosition();
-            int randomenemy = Random.Range(0, enemyIDs.Count);
+            int randomEnemy = RandomInRange(enemyIDs.Count);
 
-            Enemy enemyspawning = Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[randomenemy]),
-             randomSpawnPosition,
-              Quaternion.identity,
-               this.transform)
-               .GetComponent<Enemy>();
+            Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy , randomSpawnPosition);
             storedEnemy.Add(enemyspawning);
             //Debug.Log("spawning should be right now");
             yield return new WaitForSeconds(spawnDelay);
@@ -64,18 +60,24 @@ public class Spawner : MonoBehaviour
         {
             //Debug.Log("Start spawning enemy in");
             Vector2 randomSpawnPosition = CalculateSpawnPosition();
-            int randomenemy = Random.Range(0, enemyIDs.Count);
+            int randomEnemy = RandomInRange(enemyIDs.Count);
 
-            Enemy enemyspawning = Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[randomenemy]),
-             randomSpawnPosition,
-              Quaternion.identity,
-               this.transform)
-               .GetComponent<Enemy>();
+            Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy , randomSpawnPosition);
             storedEnemy.Add(enemyspawning);
             //Debug.Log("spawning should be right now");
             yield return new WaitForSeconds(spawnDelay);
         }
         yield return null;
+    }
+    private int RandomInRange(int count){
+        return Random.Range(0, count);
+    }
+    private Enemy SpawnEnemyOnPosition(int ID , Vector2 pos){
+        return Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[ID]),
+        pos,
+        Quaternion.identity,
+        this.transform)
+        .GetComponent<Enemy>();
     }
 
     public void ForceDie(){
