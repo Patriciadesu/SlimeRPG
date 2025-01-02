@@ -17,7 +17,7 @@ public class ProgressionBoostEvent : Event
         this.activatedHour = data.activatedHour;
         this.duration = data.duration;
 
-        foreach (EventManager.DayInWeek day in Enum.GetValues(typeof(EventManager.DayInWeek)))
+        foreach (EventManager.DAYINWEEK day in Enum.GetValues(typeof(EventManager.DAYINWEEK)))
         {
             foreach (string d in data.activatedDays)
             {

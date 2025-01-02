@@ -61,4 +61,6 @@ public abstract class Character : MonoBehaviour
         else if ((velocity * speed).x < 0)
             transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
+
+    protected abstract void Attack();
 }

@@ -9,16 +9,16 @@ public class EventManager : Singleton<EventManager>
     public List<Event> AllEvents = new List<Event>();
     public List<Event> TodayEvents = new List<Event>();
 
-    public enum DayInWeek
+    public enum DAYINWEEK
     {
-        Sunday,
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Everyday
+        SUNDAY,
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY,
+        EVERYDAY
     }
     private void Awake()
     {
@@ -53,7 +53,7 @@ public class EventManager : Singleton<EventManager>
         {
             foreach (var day in _event.activatedDay)
             {
-                if (day.ToString().ToLower() == DateTime.Now.DayOfWeek.ToString().ToLower() || day == DayInWeek.Everyday)
+                if (day.ToString().ToLower() == DateTime.Now.DayOfWeek.ToString().ToLower() || day == DAYINWEEK.EVERYDAY)
                 {
                     TodayEvents.Add(_event);
                 }
