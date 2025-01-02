@@ -51,7 +51,7 @@ public class Idle : State
         
         if (runTime <= maxIdleTime)
         {
-            enemy.Move(Vector2.zero);
+            onMoveTick?.Invoke(Vector2.zero);
         }
         else
         {
