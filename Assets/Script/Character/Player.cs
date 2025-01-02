@@ -118,7 +118,7 @@ public class Player : Character
         }
     }
     
-    protected void Attack()
+    protected override void Attack()
     {
         if (normalAttack != null)
             StartCoroutine(SkillManager.Instance.UseSkill(normalAttack));
