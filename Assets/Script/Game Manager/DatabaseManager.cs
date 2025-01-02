@@ -108,6 +108,7 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
                 try
                 {
                     string jsonResponse = request.downloadHandler.text;
+                    Debug.Log("Respose : "+jsonResponse);
                     T data = JsonConvert.DeserializeObject<T>(jsonResponse);
 
                     callback(data);
