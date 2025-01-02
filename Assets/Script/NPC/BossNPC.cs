@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossNPC : NPC
 {
-    [SerializeField] private string[] BossActiveDialog;
+    [SerializeField, Tooltip("Input Dialog After Boss is Active")] private string[] BossActiveDialog;
     public bool BossEventOngoing;
     void Start()
     {
@@ -16,7 +16,7 @@ public class BossNPC : NPC
             Interact();
 
         }
-        if (BossEventOngoing == true)
+        if (BossEventOngoing == true) //Check if Boss is active or not then run the right system
         {   
             PlayBossDialog();
            

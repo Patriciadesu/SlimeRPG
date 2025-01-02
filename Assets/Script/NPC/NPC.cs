@@ -2,44 +2,44 @@
 using TMPro;
 public class NPC : MonoBehaviour , IInteractable
 {
-    [SerializeField, Tooltip("Your NPC Name")] protected string npcName;
-    [SerializeField, Tooltip("Put Your NPC Dialogue in here, Create more index for more dialogue.")] protected string[] npcDialog;
-    [SerializeField, Tooltip("Put Your Dialogue TMP_Text here")] protected TMP_Text dialogText;
-    [SerializeField, Tooltip("Put Your NPC Name TMP_Text Here")] protected TMP_Text nameText;
-    [SerializeField, Tooltip("Don't Touch Pls")] protected int currentDialog;
-    [SerializeField, Tooltip("Put Your Entire Dialog Canvas in here!")] protected GameObject dialogInterface;
+    [Header("Input Things Here")]
+    [SerializeField, Tooltip("Insert NPC name")] protected string npcName;
+    [SerializeField, Tooltip("Input your NPC Dialog in here")] protected string[] npcDialog;
+    [SerializeField, Tooltip("Insert Dialogue TMP_Text From Inspector")] protected TMP_Text dialogText;
+    [SerializeField, Tooltip("Insert NPC Name TMP_Text From Inspector")] protected TMP_Text nameText;
+    [SerializeField, Tooltip("Put Entire Dialog GameObject here")] protected GameObject dialogInterface;
+    [Space(2)]
     [Header("Key Input")]
     [SerializeField, Tooltip("Uhh Key to move to next Dialogue")] protected KeyCode dialogProgressingKey = KeyCode.Mouse0;
-
+    [Space(2)]
+    [Header("Do not touch")]
+    [SerializeField, Tooltip("Don't Touch Pls")] protected int currentDialog;
     protected virtual void Start()
     {
-        dialogInterface.SetActive(false);
-        
+        dialogInterface.SetActive(false); //Just in Case
     }
 
     
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) // ¯\_(ツ)_/¯
         {
             Interact();
-            
         }
-        DialogSystem();
+        DialogSystem(); //The Command that run Dialog System
     }
     
     public virtual void DialogSystem()
-    {
-        if (dialogInterface.activeSelf)
+    {  
+        nameText.text = npcName; // Set NPC Text Name
+        if (dialogInterface.activeSelf) //Check if Dialog is Active
         {
             if(Input.GetKeyDown(dialogProgressingKey)) 
             {
                 currentDialog += 1;
             }
         }
-        nameText.text = npcName;
-
-        if (currentDialog > 0 && currentDialog <= npcDialog.Length)
+        if (currentDialog > 0 && currentDialog <= npcDialog.Length) //System
         {
             dialogText.text = npcDialog[currentDialog - 1];
         }
@@ -49,13 +49,13 @@ public class NPC : MonoBehaviour , IInteractable
         }
     }
 
-    public virtual void Interact()
+    public virtual void Interact() // <-- Name Tell it all
     {
         currentDialog = 1;
         dialogInterface.SetActive(true);
     }
 
-    public virtual void UnInteract()
+    public virtual void UnInteract() // <-- Name Tell it all
     {
         dialogInterface.SetActive(false);
     }
