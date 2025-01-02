@@ -6,8 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SuperSpeed", menuName = "Skill/Mobility/SuperSpeed", order = 1)]
 public class SuperSpeed : Mobility
 {
-    public float UseTime = 2f; // Time to apply super speed in seconds
-    private float originalSpeed; // To store the character's original speed
+    public float UseTime = 2f; // ถึงเวลาใช้ความเร็วสูงสุดในไม่กี่วินาที
+    private float originalSpeed; // เพื่อเก็บความเร็วดั้งเดิมของตัวละคร
 
     public override IEnumerator OnUse()
     {
@@ -23,12 +23,12 @@ public class SuperSpeed : Mobility
             yield break;
         }
 
-        originalSpeed = character.Speed; // Store the original speed
-        character.Speed *= 2; // Increase speed by a factor of 2 (or any desired value)
+        originalSpeed = character.Speed; // เก็บความเร็วเดิมไว้
+        character.Speed *= 2; //เพิ่มความเร็วเป็น 2 เท่า (หรือค่าใดก็ได้ที่ต้องการ)
 
         yield return new WaitForSeconds(UseTime);
 
-        // Revert the speed to original value
+        // เปลี่ยนความเร็วกลับเป็นค่าเดิม
         if (character != null)
         {
             character.Speed = originalSpeed;
@@ -37,37 +37,5 @@ public class SuperSpeed : Mobility
         yield return new WaitForSeconds(coolDown);
 
         isActive = true;
-
-        // Check if the speed is not already boosted
-        /*if (!isSpeedActive)
-        {
-            isSpeedActive = true;
-            Debug.Log("Using SuperSpeed skill for " + UseTime + " seconds");
-            // Increase character speed
-            Character character = GetComponent<Character>();
-            if (character != null)
-            {
-                originalSpeed = character.Speed; // Store the original speed
-                character.Speed *= 2; // Increase speed by a factor of 2 (or any desired value)
-            }
-
-            // Start the timer to revert speed after UseTime seconds
-            CoroutineRunner.instance.StartCoroutine(SpeedCooldown());
-        }*/
     }
-
-    /*private IEnumerator SpeedCooldown()
-    {
-        yield return new WaitForSeconds(UseTime);
-
-        // Revert the speed to original value
-        Character character = GetComponent<Character>();
-        if (character != null)
-        {
-            character.Speed = originalSpeed;
-        }
-
-        Debug.Log("SuperSpeed expired, reverting speed.");
-        isSpeedActive = false;
-    }*/
 }

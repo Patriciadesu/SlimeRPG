@@ -31,16 +31,6 @@ public class Dash : Mobility
 
         character.GetComponent<Rigidbody2D>().AddRelativeForce(direction * dashSpeed * 50, ForceMode2D.Impulse);
 
-        // ใช้ Rigidbody2D เคลื่อนที่ไปยังตำแหน่งเป้าหมาย
-        //character.rb2D.linearVelocity = direction * dashSpeed;
-
-        //// รอให้การเคลื่อนที่เสร็จสิ้น
-        //yield return new WaitForSeconds(0.1f);
-
-        //// หยุดการเคลื่อนที่
-        //character.rb2D.linearVelocity = Vector2.zero;
-        // หลังจากคูลดาวน์เสร็จ
-        // ตั้งเวลา cooldown
         Debug.Log("Dash skill completed");
 
         yield return new WaitForSeconds(coolDown);

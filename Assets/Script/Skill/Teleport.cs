@@ -6,8 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Teleport", menuName = "Skill/Mobility/Teleport", order = 1)]
 public class Teleport : Mobility
 {
-    public float teleportDistance = 10f; // Distance the player can teleport
-    public LayerMask obstacleLayer;      // Layer for detecting obstacles
+    public float teleportDistance = 10f; // ระยะทางที่ผู้เล่นสามารถเทเลพอร์ตได้
+    public LayerMask obstacleLayer;      // ชั้นสำหรับตรวจจับสิ่งกีดขวาง
 
 
     public override IEnumerator OnUse()
@@ -18,7 +18,7 @@ public class Teleport : Mobility
 
         Debug.Log("Using Teleport skill");
 
-        // Get the player instance
+        // รับอินสแตนซ์ของผู้เล่น
         Player character = Player.Instance;
         if (character == null)
         {
@@ -27,30 +27,30 @@ public class Teleport : Mobility
             yield break;
         }
 
-        // Get mouse position
+        // รับตำแหน่งMouse
         Vector3 mousePos = MouseInput.Instance.MousePos;
         mousePos.z = character.transform.position.z;
         float distance = (mousePos - character.transform.position).magnitude;
 
-        // Calculate teleport direction and target
+        // คำนวณระยะและเป้าหมาย
         Vector3 direction = (mousePos - character.transform.position).normalized;
         Vector3 targetPosition;
         RaycastHit2D hit = Physics2D.Raycast(character.transform.position, direction, distance, obstacleLayer);
         if (hit.collider != null)
         {
-            targetPosition = hit.point; // Adjust to the nearest point if blocked
+            targetPosition = hit.point; // ปรับไปยังจุดที่ใกล้ที่สุดหากถูกบล็อก
             Debug.Log("Obstacle detected, teleporting to nearest point.");
         }
         else if (distance <= teleportDistance)
         {
-            targetPosition = mousePos; // Teleport directly to mouse position
+            targetPosition = mousePos; // teleportโดยตรงไปยังตำแหน่งmouse
         }
         else
         {
-            targetPosition = character.transform.position + (direction * teleportDistance); // Max distance teleport
+            targetPosition = character.transform.position + (direction * teleportDistance); // ระยะTeleport สูงสุด
         }
 
-        // Teleport the player
+        // teleport ผู้เล่น
         character.transform.position = targetPosition;
 
         Debug.Log("Teleport skill completed");
