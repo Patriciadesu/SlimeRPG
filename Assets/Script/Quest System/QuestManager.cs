@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -7,8 +9,10 @@ public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> allQuests = new List<Quest>();
     public List<QuestObjective> allObjectives = new List<QuestObjective>();
+    private List<sQuest> _questsFromDatabase = new List<sQuest>();
+    private List<sObjective> _objectivesFromDatabase = new List<sObjective>();
     public Quest currentQuest;
-    public bool isFinish = false;
+    private bool isFinish = false;
 
 
     [Header("Current Quest UI")]
@@ -18,27 +22,72 @@ public class QuestManager : Singleton<QuestManager>
     public TMP_Text expRewardText;
     public TMP_Text objectivesText;
 
+
+    private bool questsLoaded = false;
+    private bool objectivesLoaded = false;
+
+    private void Awake()
+    {
+        allQuests.Clear();
+        allObjectives.Clear();
+        Debug.Log(API.getAllQuest);
+
+        StartCoroutine(LoadDataAndCreateQuests());
+    }
+
+    private IEnumerator LoadDataAndCreateQuests()
+    {
+        if (DatabaseManager.Instance == null)
+        {
+            Debug.LogError("DatabaseManager.Instance is null!");
+            yield break;
+        }
+
+        DatabaseManager.Instance.GetDataObejct<sQuest[]>(API.getAllQuest, GetQuestsFromDatabase);
+        DatabaseManager.Instance.GetDataObejct<sObjective[]>(API.getAllObjective, GetObjectivesFromDatabase);
+
+        yield return new WaitUntil(() =>
+        {
+            Debug.Log($"Waiting for data... Quests: {_questsFromDatabase.Count}, Objectives: {_objectivesFromDatabase.Count}");
+            return _questsFromDatabase.Count > 0 && _objectivesFromDatabase.Count > 0;
+        });
+
+        CreateAllQuests();
+    }
+
+
     private void Start()
     {
         currentQuest = default(Quest);
     }
+
+    public void GetQuestsFromDatabase(sQuest[] quests)
+    {
+        _questsFromDatabase = quests.ToList();
+    }
+
+    public void GetObjectivesFromDatabase(sObjective[] objectives)
+    {
+        _objectivesFromDatabase = objectives.ToList();
+    }
+
     /// <summary>
     /// Get All Quest Data from database to QuestManager
     /// </summary>
-    public void GetAllQuests()
+    public void CreateAllQuests()
     {
         /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
-        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();
+        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();*/
 
         allQuests.Clear();
 
-        foreach (sQuest squest in questsFromDatabase)
+        foreach (sQuest squest in _questsFromDatabase)
         {
             Quest quest = new Quest(squest);
 
             foreach (string objectiveID in squest.Objective)
             {
-                sObjective sObjective = objectivesFromDatabase.Find(o => o._id == objectiveID);
+                sObjective sObjective = _objectivesFromDatabase.Find(o => o._id == objectiveID);
 
                 if (sObjective != null)
                 {
@@ -60,8 +109,11 @@ public class QuestManager : Singleton<QuestManager>
             allQuests.Add(quest);
         }
 
-        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");*/
+        Debug.Log($"All quests loaded from database. Total quests: {allQuests.Count}");
+        Debug.Log($"All objectives loaded from database. Total objectives: {allObjectives.Count}");
     }
+
+    
 
     public void GetQuest(string[] npcQuestIDs, int questIndex)
     {
@@ -129,9 +181,7 @@ public class QuestManager : Singleton<QuestManager>
         isFinish = true;
         UpdateQuestUI();
         currentQuest = default(Quest);
-        //currentQuest = null; may by use | Quest? currentQuest = null;
         //Add Reward
-        //Add remove quest duay naa
     }
 
     public void UpdateQuestUI()

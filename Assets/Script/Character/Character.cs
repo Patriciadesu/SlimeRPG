@@ -47,4 +47,20 @@ public abstract class Character : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    protected void Move(Vector2 velocity)
+    {
+
+        rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity * speed * (this is Player ? 3 : 2.5f), Time.fixedDeltaTime * 5);
+
+        float currentX = transform.rotation.eulerAngles.x;
+        float currentZ = transform.rotation.eulerAngles.z;
+
+        if ((velocity * speed).x > 0)
+            transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
+        else if ((velocity * speed).x < 0)
+            transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
+    }
+
+    protected abstract void Attack();
 }

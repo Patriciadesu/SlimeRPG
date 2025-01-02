@@ -14,13 +14,13 @@ public class QuestNPC : NPC
     protected override void Start()
     {
         base.Start();
-       
+
     }
     protected override void Update()
     {
         DialogSystem();
     }
-    public void GiveQuest(int index)
+    public void GiveQuest(int index)  
     {
         QuestManager.Instance.GetQuest(questAvailableList, index);
     }
@@ -59,7 +59,7 @@ public class QuestNPC : NPC
             ChooseQuest();
         }
     }
-    public void GetQuest(int QuestIndex)
+    public void GetQuest(int QuestIndex) //Use in button Uniti in case you are wondering
     {
         UnInteract();
         GiveQuest(QuestIndex);

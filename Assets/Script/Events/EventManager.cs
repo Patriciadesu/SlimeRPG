@@ -23,26 +23,29 @@ public class EventManager : Singleton<EventManager>
     private void Awake()
     {
         CheckTodayEvents();
-    }
-    public void GetEvents()
-    {
-        /*
-        List<sBoostEvent> sBoostEvents = getBoostEventsFromDatabase();
-        List<sBossEvent> sBossEvents = getBossEventsFromDatabase();
-
         AllEvents.Clear();
+        DatabaseManager.Instance.GetDataObejct<sBoostEvent[]>(API.getAllGrindingEvent, OnGetBoostEventData);
+        DatabaseManager.Instance.GetDataObejct<sBossEvent[]>(API.getAllBossEvent, OnGetBossEventData);
+    }
+    public void OnGetBoostEventData(sBoostEvent[] boostEvents)
+    {      
+        List<sBoostEvent> sBoostEvents = boostEvents.ToList();
         foreach (sBoostEvent _event in sBoostEvents)
         {
             ProgressionBoostEvent boostEvent = new ProgressionBoostEvent(_event);
             AllEvents.Add(boostEvent);
         }
+        Debug.Log($"Boost events loaded from database. Total event : {AllEvents.Count}");
+    }
+    public void OnGetBossEventData(sBossEvent[] bossEvents) 
+    {
+        List<sBossEvent> sBossEvents = bossEvents.ToList();
         foreach (sBossEvent _event in sBossEvents)
         {
             BossEvent bossEvent = new BossEvent(_event);
             AllEvents.Add(bossEvent);
         }
-        Debug.Log($"All event loaded from database. Total event : {AllEvents.Count}");
-        */
+        Debug.Log($"All events loaded from database. Total event : {AllEvents.Count}");
     }
     public void CheckTodayEvents()
     {

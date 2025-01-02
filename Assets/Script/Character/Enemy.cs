@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : Character
@@ -35,6 +36,21 @@ public class Enemy : Character
         }
     }
 
+    public bool canAttack
+    {
+        get
+        {
+            var allSkills = skills.Clone().ConvertTo<List<EnemyAttack>>();
+            allSkills.Add((EnemyAttack) normalAttack);
+
+            foreach (var skill in allSkills)
+                if (skill.isActive)
+                    return true;
+
+            return false;
+        }
+    }
+
     public string id;
 
     [SerializeField] private EnemyAttack[] skills;
@@ -50,7 +66,12 @@ public class Enemy : Character
 
         chaseDistance = Mathf.Max(chaseDistance, attackDistance);
 
+        normalAttack = Instantiate(normalAttack);
+        skills.Where(s => Instantiate(s));
+
         state = new Patrol(this, chaseDistance, attackDistance);
+        state.onMoveTick += Move;
+        state.onAttackTick += Attack;
     }
 
     private void Update()
@@ -58,35 +79,18 @@ public class Enemy : Character
         state = state.Process();
     }
 
-    public void Move(Vector2 velocity)
-    {
-        rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity.normalized * speed * 2.5f, Time.fixedDeltaTime * 5);
-
-        float currentX = transform.rotation.eulerAngles.x;
-        float currentZ = transform.rotation.eulerAngles.z;
-
-        if (velocity.x > 0)
-            transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
-        else if (velocity.x < 0)
-            transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
-    }
-
-    public Skill Attack()
+    protected override void Attack()
     {
         var skillCanUse = skills.ToList().Find(s => s.isActive);
 
         if (skillCanUse != null)
         {
             StartCoroutine(SkillManager.Instance.UseSkill(this, skillCanUse));
-            return skillCanUse;
         }
         else if (normalAttack != null && normalAttack.isActive)
         {
             StartCoroutine(SkillManager.Instance.UseSkill(this, (EnemyAttack)normalAttack));
-            return normalAttack;
         }
-
-        return null;
     }
 
     protected override void Die()

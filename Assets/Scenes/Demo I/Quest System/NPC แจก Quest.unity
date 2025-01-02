@@ -304,14 +304,14 @@ MonoBehaviour:
   - HElp mE
   dialogText: {fileID: 1532439202}
   nameText: {fileID: 863677729}
-  currentDialog: 0
   dialogInterface: {fileID: 1914412882}
   dialogProgressingKey: 323
+  currentDialog: 0
   npcMidQuestDialog:
   - G
   - G
   questAvailableList:
-  - A
+  - 64c9e52aabf4a73983fbd681
   - B
   - C
   QuestName1: {fileID: 2003062864}
@@ -1651,46 +1651,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e08e2d5665a9346a4b34e42bcfe66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allQuests:
-  - questID: A
-    name: Rookie
-    description: ForTesting1
-    objectives:
-    - objectiveID: 
-      name: Kill Enemy 1
-      enemyID: 1
-      requiredAmount: 5
-      currentAmount: 0
-  - questID: B
-    name: Medium
-    description: ForTesting2
-    objectives:
-    - objectiveID: 
-      name: Kill Enemy 2
-      enemyID: 2
-      requiredAmount: 3
-      currentAmount: 0
-  - questID: C
-    name: Test3
-    description: ForTesting3
-    objectives:
-    - objectiveID: 
-      name: c
-      enemyID: 1
-      requiredAmount: 3
-      currentAmount: 0
-    - objectiveID: 
-      name: enemytype2
-      enemyID: 2
-      requiredAmount: 4
-      currentAmount: 0
+  allQuests: []
   allObjectives: []
   currentQuest:
     questID: 
     name: 
     description: 
     objectives: []
-  isFinish: 0
   questNameText: {fileID: 1195685103}
   questDescriptionText: {fileID: 1990688921}
   moneyRewardText: {fileID: 1736693440}
@@ -1792,6 +1759,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057397326}
   m_CullTransparentMesh: 1
+--- !u!1 &1115807602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115807604}
+  - component: {fileID: 1115807603}
+  m_Layer: 0
+  m_Name: DatabaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1115807603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115807602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f197385e998fb2c4eaa5e14b11bbe46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 
+--- !u!4 &1115807604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115807602}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1294765, y: -0.22622126, z: 0.03818547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195685101
 GameObject:
   m_ObjectHideFlags: 0
@@ -3641,9 +3653,9 @@ MonoBehaviour:
   - I vanished
   dialogText: {fileID: 1532439202}
   nameText: {fileID: 863677729}
-  currentDialog: 0
   dialogInterface: {fileID: 1914412882}
   dialogProgressingKey: 323
+  currentDialog: 0
 --- !u!4 &1877065055
 Transform:
   m_ObjectHideFlags: 0
@@ -4403,6 +4415,7 @@ SceneRoots:
   - {fileID: 1914412886}
   - {fileID: 601708248}
   - {fileID: 1580461634}
+  - {fileID: 1115807604}
   - {fileID: 1050824351}
   - {fileID: 1934384954}
   - {fileID: 1906920418}

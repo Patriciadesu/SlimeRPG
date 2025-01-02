@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Attack : State
 {
-    private Skill skillAttacker;
-
     public Attack(Enemy _enemy, float _chaseDistance, float _attackDistance) : base(_enemy, _chaseDistance, _attackDistance)
     {
 
@@ -11,10 +9,10 @@ public class Attack : State
 
     protected override void Enter()
     {
-        enemy.Move(Vector2.zero);
+        onMoveTick?.Invoke(Vector2.zero);
         animator.SetBool("isWalking", false);
 
-        skillAttacker = enemy.Attack();
+        onAttackTick?.Invoke();
 
         base.Enter();
     }
@@ -28,7 +26,7 @@ public class Attack : State
     {
         base.Update();
 
-        if (skillAttacker == null || skillAttacker.isActive || runTime > 2.5f)
+        if (enemy.canAttack || runTime > 2.5f)
         {
             if (Player.Instance == null)
             {
@@ -53,6 +51,6 @@ public class Attack : State
                 _event = EVENT.EXIT;
             }
         }
-        else enemy.Move(Vector2.zero);
+        else onMoveTick?.Invoke(Vector2.zero);
     }
 }

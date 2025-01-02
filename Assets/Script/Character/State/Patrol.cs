@@ -51,7 +51,7 @@ public class Patrol : State
         
         if (runTime <= maxPatrolTime && direction.magnitude > 0.05f)
         {
-            enemy.Move(direction);
+            onMoveTick?.Invoke(direction);
         }
         else
         {

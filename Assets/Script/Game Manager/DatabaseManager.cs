@@ -9,32 +9,33 @@ using UnityEngine.Playables;
 
 public static class API
 {
-    const string www = "http://localhost:4500/";
+    const string www = "http://152.42.196.107:3000/";
     const string createPlayer                                           = www + "createPlayer";
-    public static string getUser                                        = www + $"getPlayer?playerID={DatabaseManager.Instance.playerId}"; // player id
-    public static string getUserItem                                    = www + $"getItem?playerID={DatabaseManager.Instance.playerId}";
+    public static string getUser                                        => www + $"getPlayer?playerID={DatabaseManager.Instance.playerId}"; // player id
+    public static string getUserItem                                    => www + $"getItem?playerID={DatabaseManager.Instance.playerId}";
     public static string addUserItem(string itemId, int amount = 1)     => www + $"addItem?playerID={DatabaseManager.Instance.playerId}&itemID={itemId}&amount={amount}";
     public static string deleteUserItem(string itemId , int amount=1)   => www + $"deleteItem?playerID={DatabaseManager.Instance.playerId}&itemID={itemId}&amount={amount}";
-    public static string getUserSkill                                   = www + $"getSkill?playerID={DatabaseManager.Instance.playerId}";
+    public static string getUserSkill                                   => www + $"getSkill?playerID={DatabaseManager.Instance.playerId}";
     public static string addUserSkill(string skillId)                   => www + $"addSkill?playerID={DatabaseManager.Instance.playerId}&skillID={skillId}";
     public static string deleteUserSkill(string skillId)                => www + $"deleteSkill?playerID={DatabaseManager.Instance.playerId}&skillID={skillId}";
     public static string addUserQuest(string questId)                   => www + $"addCurrentQuest?playerID={DatabaseManager.Instance.playerId}&questID={questId}";
     public static string updateObjective(string objectiveId)            => www + $"getQuestProgress?playerID={DatabaseManager.Instance.playerId}&objectiveID={objectiveId}";
     public static string addUserProgress(string objectiveId)            => www + $"addProgress?playerID={DatabaseManager.Instance.playerId}&objectiveID={objectiveId}";
-    public static string getAllItem                                     = www + "getItem";
-    public static string getAllQuest                                    = www + "getQuest";
-    public static string getAllSkill                                    = www + "getSkill";
-    public static string getAllReward                                   = www + "getRewards";
-    public static string getAllEnemySpawner                             = www + "getEnemySpawner";
-    public static string getAllEnemy                                    = www + "getEnemy";
+    public static string getAllItem                                     => www + "getItem";
+    public static string getAllQuest                                    => www + "getQuest";
+    public static string getAllObjective                                => www + "getObjective";
+    public static string getAllSkill                                    => www + "getSkill";
+    public static string getAllReward                                   => www + "getRewards";
+    public static string getAllEnemySpawner                             => www + "getEnemySpawner";
+    public static string getAllEnemy                                    => www + "getEnemy";
     public static string getEnemyById(string enemyId)                   => www + $"getEnemy?enemyID={enemyId}";
-    public static string getAllBossEvent                                = www + "getBossEvent";
-    public static string getAllGrindingEvent                            = www + "getGrindingEvent";
+    public static string getAllBossEvent                                => www + "getBossEvent";
+    public static string getAllGrindingEvent                            => www + "getGrindingEvent";
 
 
 }
 
-public class DatabaseManager : SingletonPersistent<DatabaseManager>
+public class DatabaseManager : Singleton<DatabaseManager>
 {
     public string playerId;
     public void Start()
@@ -57,7 +58,7 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
     ///
     /// public void Awake()
     /// {
-    ///     GetDataObject<sQuest[]>(myApi,OnGetQuestData);
+    ///     DatabaseManager.Instance.GetDataObject<sQuest[]>(myApi,OnGetQuestData);
     /// }
     ///
     /// public void OnGetQuestData(sQuest[] questDatas)
@@ -93,6 +94,7 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
     }
     private IEnumerator GetData<T>(string Api, Action<T> callback) where T : class
     {
+        Debug.Log("Calling API : " + Api);
         using (UnityWebRequest request = UnityWebRequest.Get(Api))
         {
             yield return request.SendWebRequest();
@@ -107,6 +109,7 @@ public class DatabaseManager : SingletonPersistent<DatabaseManager>
                 try
                 {
                     string jsonResponse = request.downloadHandler.text;
+                    Debug.Log("Respose : "+jsonResponse);
                     T data = JsonConvert.DeserializeObject<T>(jsonResponse);
 
                     callback(data);
