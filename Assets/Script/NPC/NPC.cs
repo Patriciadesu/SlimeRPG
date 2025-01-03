@@ -3,17 +3,24 @@ using TMPro;
 public class NPC : MonoBehaviour , IInteractable
 {
     [Header("Input Things Here")]
-    [SerializeField, Tooltip("Insert NPC name")] protected string npcName;
-    [SerializeField, Tooltip("Input your NPC Dialog in here")] protected string[] npcDialog;
-    [SerializeField, Tooltip("Insert Dialogue TMP_Text From Inspector")] protected TMP_Text dialogText;
-    [SerializeField, Tooltip("Insert NPC Name TMP_Text From Inspector")] protected TMP_Text nameText;
-    [SerializeField, Tooltip("Put Entire Dialog GameObject here")] protected GameObject dialogInterface;
+    [SerializeField, Tooltip("Insert NPC name")] 
+    protected string npcName;
+    [SerializeField, Tooltip("Input your NPC Dialog in here")] 
+    protected string[] npcDialog;
+    [SerializeField, Tooltip("Insert Dialogue TMP_Text From Inspector")] 
+    protected TMP_Text dialogText;
+    [SerializeField, Tooltip("Insert NPC Name TMP_Text From Inspector")] 
+    protected TMP_Text nameText;
+    [SerializeField, Tooltip("Put Entire Dialog GameObject here")] 
+    protected GameObject dialogInterface;
     [Space(2)]
     [Header("Key Input")]
-    [SerializeField, Tooltip("Uhh Key to move to next Dialogue")] protected KeyCode dialogProgressingKey = KeyCode.Mouse0;
+    [SerializeField, Tooltip("KeyToContinueDialog")] 
+    protected KeyCode dialogProgressingKey = KeyCode.Mouse0;
     [Space(2)]
     [Header("Do not touch")]
-    [SerializeField, Tooltip("Don't Touch Pls")] protected int currentDialog;
+    [SerializeField, Tooltip("Don't Touch Pls")] 
+    protected int currentDialog;
     protected virtual void Start()
     {
         dialogInterface.SetActive(false); //Just in Case

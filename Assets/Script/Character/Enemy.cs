@@ -99,7 +99,7 @@ public class Enemy : Character
         GameManager.OnEnemyKilled(this);
         Spawner spawner = transform.parent.GetComponent<Spawner>();
         if(spawner != null){
-            spawner.storedEnemy.Remove(this);
+            spawner.storedEnemies.Remove(this);
         }
 
         base.Die();
