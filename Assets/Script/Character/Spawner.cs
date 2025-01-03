@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
         {
             //Debug.Log("Start spawning enemy in");
             Vector2 randomSpawnPosition = CalculateSpawnPosition();
-            int randomEnemy = RandomInRange(enemyIDs.Count);
+            int randomEnemy = Random.Range(0, enemyIDs.Count);
 
             Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy , randomSpawnPosition);
             storedEnemies.Add(enemyspawning);
@@ -55,13 +55,14 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public IEnumerator ForceSpawn(){
+    public IEnumerator ForceSpawn()
+    {
         while (storedEnemies.Count < maxNearbyEnemy)
         {
             //Debug.Log("Start spawning enemy in");
             Vector2 randomSpawnPosition = CalculateSpawnPosition();
-            int randomEnemy = RandomInRange(enemyIDs.Count);
-
+            int randomEnemy = Random.Range(0, enemyIDs.Count);
+           
             Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy , randomSpawnPosition);
             storedEnemies.Add(enemyspawning);
             //Debug.Log("spawning should be right now");
@@ -69,19 +70,15 @@ public class Spawner : MonoBehaviour
         }
         yield return null;
     }
-    private int RandomInRange(int count){
-        return Random.Range(0, count);
-    }
-    private Enemy SpawnEnemyOnPosition(int ID , Vector2 pos){
-        return Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[ID]),
-        pos,
-        Quaternion.identity,
-        this.transform)
-        .GetComponent<Enemy>();
+    private Enemy SpawnEnemyOnPosition(int ID , Vector2 pos)
+    {
+        return Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[ID]),pos,Quaternion.identity,this.transform).GetComponent<Enemy>();
     }
 
-    public void ForceDie(){
-        foreach(Enemy enemy in storedEnemies){
+    public void ForceDie()
+    {
+        foreach(Enemy enemy in storedEnemies)
+        {
             storedEnemies.Remove(enemy);
             Destroy(enemy);
         }
