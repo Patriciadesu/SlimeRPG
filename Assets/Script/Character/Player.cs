@@ -142,6 +142,7 @@ public class Player : Character
     }
     private void PlayerInput()
     {
+        #region notUse
         // กด Q เพื่อใช้ ..... Skill
         //if (Input.GetKeyDown(KeyCode.Q))
         //{
@@ -186,11 +187,13 @@ public class Player : Character
         //{
         //    StartCoroutine(SkillManager.Instance.UseSkill(new HealSkill()));
         //}
+        #endregion
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x, y);
 
         Move(movement);
+        #region notUse
         //if (Input.GetKeyDown(KeyCode.Q) && activeQSkill != null)
         //{
         //    Debug.Log("Using skill assigned to Q: " + activeQSkill.name);
@@ -200,13 +203,25 @@ public class Player : Character
         //{
         //    Debug.LogWarning("No skill assigned to Q!");
         //}
+        #endregion
     }
 
     protected override void Die()
     {
         // Do something with die mechanics
         base.Die();
+        Debug.Log("Player died.");
+
+        // ตรวจสอบว่า ActiveSkill ถูกเซ็ตไว้หรือไม่
+        if (activeSkill1 != null)
+        {
+            // เรียกใช้สกิล BodyExplodeWhenDied (ถ้าเซ็ตให้ activeSkill1)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill1));
+        }
+
+        // โหลดฉาก Game Over
         SceneManager.LoadScene("GameOver");
+
     }
 
     public override void Heal(float amount)
@@ -215,7 +230,7 @@ public class Player : Character
         base.Heal(amount);
         Debug.Log($"Player healed by {amount}. Current health: {health}");
     }
-
+    #region notUse
     //[Header("Skill Selection")]
     //public Skill activeSkill1; // สำหรับปุ่ม E
     //public Skill activeSkill2; // สำหรับปุ่ม F
@@ -283,6 +298,7 @@ public class Player : Character
     //        Debug.Log("Q skill already assigned: " + activeQSkill.name);
     //    }
     //}
+    #endregion
     public void AddSkill(Skill skill ,SkillSlotType skillSlotType)
     {
         switch (skillSlotType)

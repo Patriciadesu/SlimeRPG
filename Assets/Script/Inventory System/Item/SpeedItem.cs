@@ -1,13 +1,17 @@
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "SpeedItem")]
 public class SpeedItem : UsableItem
 {
-    void Start()
+    public float speedBonus;
+
+    public override void ApplyEffect()
     {
-        base.Start();
+        Player.Instance.Speed += speedBonus;
     }
-    public override void Used()
+
+    public override void RemoveEffect()
     {
-       //???
+        Player.Instance.Speed -= speedBonus;
     }
+
 }

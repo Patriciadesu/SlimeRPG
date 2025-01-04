@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 7edc7f4f5b5c90a49b2a77dd0acf4498, type: 3}
   m_Name: Teleport
   m_EditorClassIdentifier: Assembly-CSharp::Teleport
   level: 1
@@ -19,10 +19,9 @@ MonoBehaviour:
   Have: 0
   _price: 0
   coolDown: 0
-  isActive: 1
+  isActive: 0
   activateType: 0
-  cooldownDuration: 3
-  teleportDistance: 15
+  teleportDistance: 10
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0

@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class UsableItem : Item
+public abstract class UsableItem : Item
 {
     public Player player;
-    public void Start()
-    {
-        player = player.GetComponent<Player>();
-    }
+    public int priority;
+    public float duration;
 
-    
-    public virtual void Used()
-    {
-
-    }
+    public abstract void ApplyEffect();
+    public abstract void RemoveEffect();
 }

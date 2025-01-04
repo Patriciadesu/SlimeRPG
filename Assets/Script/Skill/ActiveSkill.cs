@@ -22,19 +22,19 @@ public enum ActivateType
     Charged,
     Passive
 }
-public class HealSkill : ActiveSkill
-{
-    public float healAmount = 50f; 
+//public class HealSkill : ActiveSkill
+//{
+//    public float healAmount = 50f; 
 
-    public override IEnumerator OnUse()
-    {
-        Debug.Log($"Using HealSkill. Healing for {healAmount} HP");
+//    public override IEnumerator OnUse()
+//    {
+//        Debug.Log($"Using HealSkill. Healing for {healAmount} HP");
 
-        if (Player.Instance != null)
-        {
-            Player.Instance.Heal(healAmount);
-        }
+//        if (Player.Instance != null)
+//        {
+//            Player.Instance.Heal(healAmount);
+//        }
 
-        yield break;
-    }
-}
+//        yield break;
+//    }
+//}

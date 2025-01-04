@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "FrozenZone", menuName = "Skill/ActiveSkill/FrozenZone", order = 1)]
 public class FrozenZone : ActiveSkill
 {
     public GameObject freezingObjPrefab;

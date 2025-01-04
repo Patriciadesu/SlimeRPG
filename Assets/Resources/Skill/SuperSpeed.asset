@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f3d69cc562152844187cb90b929666c6, type: 3}
   m_Name: SuperSpeed
   m_EditorClassIdentifier: Assembly-CSharp::SuperSpeed
   level: 1
@@ -21,5 +21,4 @@ MonoBehaviour:
   coolDown: 0
   isActive: 0
   activateType: 0
-  cooldownDuration: 3
   UseTime: 2

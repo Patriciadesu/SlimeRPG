@@ -1,13 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "HealItem")]
 public class HealItem : UsableItem
 {
-    void Start()
+
+    public float healAmount;
+
+    public override void ApplyEffect()
     {
-        base.Start();
+        Player.Instance.Heal(healAmount);
     }
-    public override void Used()
+
+    public override void RemoveEffect()
     {
-        player.Heal(20);
+        // Healing is instant, so no need to remove anything
     }
 }

@@ -81,6 +81,7 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
         if (itemName != null) itemName.text = string.Empty;
         if (itemCountText != null) itemCountText.text = string.Empty;
         if (itemImage != null) itemImage.sprite = null;
+        Inventory.Instance.usedButton.SetActive(false);
 
         UpdateDisplay();
     }
@@ -112,6 +113,15 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
         Inventory.Instance.selectedSlot = this;
         selectedShader.SetActive(true);
         Inventory.Instance.UpdateSelectedItemDisplay(item);
+        if (item is UsableItem)
+        {
+            Inventory.Instance.usedButton.SetActive(true);
+            Debug.Log($"Used item: {item.itemName}");
+        }
+        else
+        {
+            if (item != null) Debug.Log($"Item {item.itemName} is not usable");
+        }
     }
 
 
@@ -122,6 +132,7 @@ public class InventorySlot : MonoBehaviour , IPointerClickHandler
 
         isSelected = false;
         Inventory.Instance.selectedSlot = null;
+        Inventory.Instance.usedButton.SetActive(false);
         UpdateDisplay();
     }
 
