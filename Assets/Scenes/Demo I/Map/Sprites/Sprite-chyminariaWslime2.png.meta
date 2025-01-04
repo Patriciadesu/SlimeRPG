@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 559408f760950414eaf48c88a397b896
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5773157045865027656
+    second: Sprite-chyminariaWslime2_0
+  - first:
+      213: -3214684876816126578
+    second: Sprite-chyminariaWslime2_1
+  - first:
+      213: -1337758035570188001
+    second: Sprite-chyminariaWslime2_2
+  - first:
+      213: 1937486122647630764
+    second: Sprite-chyminariaWslime2_3
+  - first:
+      213: -6620323541898470441
+    second: Sprite-chyminariaWslime2_4
+  - first:
+      213: 5991530454214431910
+    second: Sprite-chyminariaWslime2_5
+  - first:
+      213: -7651386321395632822
+    second: Sprite-chyminariaWslime2_6
+  - first:
+      213: 2442546665044957376
+    second: Sprite-chyminariaWslime2_7
+  - first:
+      213: 7575866129014313431
+    second: Sprite-chyminariaWslime2_8
+  - first:
+      213: -6171108237535641072
+    second: Sprite-chyminariaWslime2_9
+  - first:
+      213: 5668683557408843672
+    second: Sprite-chyminariaWslime2_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 67
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8481457eebf5e1050800000000000000
+      internalID: 5773157045865027656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 0
+        width: 60
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8ded8cf2252363d0800000000000000
+      internalID: -3214684876816126578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 125
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f112a6687245f6de0800000000000000
+      internalID: -1337758035570188001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_3
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 1
+        width: 15
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca339a10d5553ea10800000000000000
+      internalID: 1937486122647630764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_4
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 55
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db5cfa80d2ef14a0800000000000000
+      internalID: -6620323541898470441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_5
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 3
+        width: 45
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a4d2602431362350800000000000000
+      internalID: 5991530454214431910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_6
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 0
+        width: 47
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a453ee1fda0d0d590800000000000000
+      internalID: -7651386321395632822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_7
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 0
+        width: 57
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8d15d204ba5e120800000000000000
+      internalID: 2442546665044957376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_8
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 53
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d1dfcd0b12e22960800000000000000
+      internalID: 7575866129014313431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_9
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 0
+        width: 47
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012833ff0c1db5aa0800000000000000
+      internalID: -6171108237535641072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-chyminariaWslime2_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 15
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 897a37759a53bae40800000000000000
+      internalID: 5668683557408843672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Sprite-chyminariaWslime2_0: 5773157045865027656
+      Sprite-chyminariaWslime2_1: -3214684876816126578
+      Sprite-chyminariaWslime2_10: 5668683557408843672
+      Sprite-chyminariaWslime2_2: -1337758035570188001
+      Sprite-chyminariaWslime2_3: 1937486122647630764
+      Sprite-chyminariaWslime2_4: -6620323541898470441
+      Sprite-chyminariaWslime2_5: 5991530454214431910
+      Sprite-chyminariaWslime2_6: -7651386321395632822
+      Sprite-chyminariaWslime2_7: 2442546665044957376
+      Sprite-chyminariaWslime2_8: 7575866129014313431
+      Sprite-chyminariaWslime2_9: -6171108237535641072
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
