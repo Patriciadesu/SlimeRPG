@@ -20,6 +20,9 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
 
+    //Use
+    public List<Item> currentUseItems;
+
 
     private void Update()
     {
@@ -209,4 +212,16 @@ public class Inventory : MonoBehaviour
         selectedItemName.text = "";
         selectedItemDescription.text = "";
     }
+
+    #region OnUse
+    public void Use(){
+        if(selectedSlot== null) return;
+        currentUseItems.Add(selectedSlot.item);
+        selectedSlot.RemoveItem(1);
+        foreach(UsableItem usableItem in currentUseItems){
+            //check if the item is not currently
+        }
+    }
+
+    #endregion
 }
