@@ -314,9 +314,7 @@ MonoBehaviour:
   - 64c9e52aabf4a73983fbd681
   - B
   - C
-  QuestName1: {fileID: 2003062864}
-  QuestName2: {fileID: 1295759107}
-  QuestName3: {fileID: 838205076}
+  QuestNames: []
   QuestUI: {fileID: 1021530953}
 --- !u!4 &213676436
 Transform:

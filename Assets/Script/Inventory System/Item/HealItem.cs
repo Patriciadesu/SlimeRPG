@@ -1,13 +1,22 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealItem : UsableItem
 {
-    void Start()
+    public override void Start()
     {
         base.Start();
     }
-    public override void Used()
+
+    public float healAmount;
+
+    public override void ApplyEffect()
     {
-        player.Heal(20);
+        player.Heal(healAmount);
+    }
+
+    public override void RemoveEffect()
+    {
+        // Healing is instant, so no need to remove anything
     }
 }

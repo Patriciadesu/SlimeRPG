@@ -3,7 +3,9 @@ using UnityEngine;
 public class UsableItem : Item
 {
     public Player player;
-    public void Start()
+    public int priority;
+    public float duration;
+    public virtual void Start()
     {
         player = player.GetComponent<Player>();
     }
@@ -12,5 +14,14 @@ public class UsableItem : Item
     public virtual void Used()
     {
 
+    }
+
+    public virtual void ApplyEffect()
+    {
+
+    }
+    public virtual void RemoveEffect()
+    {
+        
     }
 }
