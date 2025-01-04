@@ -2,8 +2,8 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerAttackTest", menuName = "Skill/NormalAttack/PlayerAttackTest", order = 1)]
-public class PlayerAttackTest : NormalAttack
+[CreateAssetMenu(fileName = "PlayerSlashAttack", menuName = "Skill/NormalAttack/PlayerSlashAttack", order = 1)]
+public class PlayerSlashAttack : NormalAttack
 {
     [SerializeField] private Vector2 effectScale = new Vector2(2.5f, 1.5f);
     [SerializeField] private Vector2 attackCast = Vector2.one * 3;

@@ -3,8 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "EnemyAttackTest", menuName = "Skill/EnemyAttack/EnemyAttackTest", order = 1)]
-public class EnemyAttackTest : EnemyAttack
+[CreateAssetMenu(fileName = "EnemySlashAttack", menuName = "Skill/EnemyAttack/EnemySlashAttack", order = 1)]
+public class EnemySlashAttack : EnemyAttack
 {
     [SerializeField] private Vector2 effectScale = new Vector2(2.5f, 1.5f);
     [SerializeField] private Vector2 attackCast = Vector2.one * 3;

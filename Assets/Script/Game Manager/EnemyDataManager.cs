@@ -17,6 +17,7 @@ public class EnemyDataManager : MonoBehaviour
 
     public GameObject GetEnemy(string ID){
         foreach(GameObject enemyGO in availableEnemyPrefab){
+            Debug.Log(enemyGO.GetComponent<Enemy>().id);
             if(enemyGO.GetComponent<Enemy>().id.ToString() == ID){
                 Debug.Log("Get Enemy from enemy datamanager");
                 return enemyGO;

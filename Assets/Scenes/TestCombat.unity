@@ -158,6 +158,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableEnemyPrefab:
   - {fileID: 113568758980343755, guid: b17b1e4464c4eb24d8faadd46fd5d165, type: 3}
+  - {fileID: 113568758980343755, guid: dd5f163884cc26c409de92ad7d1c7022, type: 3}
+  - {fileID: 113568758980343755, guid: d16d280d4c9e6a24890ee2d989c54550, type: 3}
+  - {fileID: 113568758980343755, guid: 57a4f96acc7142049b39c5d10e100c32, type: 3}
+  - {fileID: 113568758980343755, guid: 2972563b2fd9b9b479a851f999355f2b, type: 3}
+  - {fileID: 113568758980343755, guid: cec63878220064f46bbffc3cc474e38c, type: 3}
 --- !u!4 &92445843
 Transform:
   m_ObjectHideFlags: 0
@@ -7572,6 +7577,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 157211542503892240, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
       propertyPath: maxNearbyEnemy
       value: 5
@@ -7579,6 +7588,10 @@ PrefabInstance:
     - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
       propertyPath: requiredPlayerRange
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: 'enemyIDs.Array.data[0]'
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6408802698975769688, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
       propertyPath: m_Name

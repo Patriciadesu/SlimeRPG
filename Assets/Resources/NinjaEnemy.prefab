@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5303882059436560210}
   - component: {fileID: 4894024916759641693}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: NinjaEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,9 +54,10 @@ MonoBehaviour:
   _attackDamage: 10
   normalAttack: {fileID: 11400000, guid: cae5d8353da568b418427ffbcccc55d5, type: 2}
   speed: 1
-  id: 0
+  id: 3
   skills:
   - {fileID: 11400000, guid: 105950d07991d2246802b2e4dc887072, type: 2}
+  - {fileID: 11400000, guid: 5249abddf8dd2df43907e3e67b96760f, type: 2}
   chaseDistance: 8
   attackDistance: 2
   rewardID: Test

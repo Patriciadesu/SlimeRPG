@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 602bb29faa384d845adf90056b43c3f9, type: 3}
-  m_Name: EnemyAttackTest
+  m_Name: EnemyBigSlashAttack
   m_EditorClassIdentifier: 
   SkillSprite: {fileID: 0}
-  Name: EnemyAttackTest
+  Name: EnemyAttackTest1
   Description: Test
   Have: 0
   _price: 0
-  coolDown: 3
-  isActive: 0
+  coolDown: 10
+  isActive: 1
   stayTime: 1
-  effectScale: {x: 2.5, y: 1.5}
-  attackMultiply: 1
-  knockbackPower: 2.5
-  attackCast: {x: 3, y: 3}
+  effectScale: {x: 5, y: 3}
+  attackMultiply: 2.5
+  knockbackPower: 8
+  attackCast: {x: 6, y: 6}

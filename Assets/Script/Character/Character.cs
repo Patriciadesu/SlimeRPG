@@ -18,11 +18,6 @@ public abstract class Character : MonoBehaviour
         _level = Mathf.Max(_level, 1);
         health = MaxHealth;
     }
-    public float Damage
-    {
-        get => _attackDamage; // ��ҹ���
-        set => _attackDamage = Mathf.Max(value, 0); // ��¹�����л�ͧ�ѹ��ҵԴź
-    }
     public float Speed
     {
         get { return speed; }
