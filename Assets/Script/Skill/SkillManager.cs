@@ -72,4 +72,9 @@ public class SkillManager : MonoBehaviour
         Debug.LogError("This Item ID does not exist in the data.");
         return null;
     }
+
+    public Coroutine StartSkillCoroutine(IEnumerator coroutine)
+    {
+        return StartCoroutine(coroutine);
+    }
 }

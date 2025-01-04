@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f5220267bcf8f44ae38251f201ba05, type: 3}
-  m_Name: SprintToEnemy
-  m_EditorClassIdentifier: Assembly-CSharp::SprintToEnemy
+  m_Script: {fileID: 11500000, guid: 3da27116b6a3369499a7807fd7f464a3, type: 3}
+  m_Name: FireBall
+  m_EditorClassIdentifier: 
   level: 1
   SkillSprite: {fileID: 0}
   Name: 
@@ -19,10 +19,17 @@ MonoBehaviour:
   Have: 0
   _price: 0
   coolDown: 0
-  isActive: 0
+  isActive: 1
+  rarity: 0
   activateType: 0
-  knockbackRadious: 5
-  knockbackForce: 1
-  obstacleLayer:
+  NextStep: {fileID: 0}
+  damage: 20
+  debuffDamage: 5
+  debuffDuration: 3
+  range: 5
+  cooldown: 5
+  fireBallPrefab: {fileID: 5219110895033281203, guid: 3fd15ee8e05cba54e9e226e402450fe0, type: 3}
+  effectSpeed: 10
+  targetLayer:
     serializedVersion: 2
     m_Bits: 0

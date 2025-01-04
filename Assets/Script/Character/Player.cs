@@ -206,7 +206,18 @@ public class Player : Character
     {
         // Do something with die mechanics
         base.Die();
+        Debug.Log("Player died.");
+
+        // ตรวจสอบว่า ActiveSkill ถูกเซ็ตไว้หรือไม่
+        if (activeSkill1 != null)
+        {
+            // เรียกใช้สกิล BodyExplodeWhenDied (ถ้าเซ็ตให้ activeSkill1)
+            StartCoroutine(SkillManager.Instance.UseSkill(activeSkill1));
+        }
+
+        // โหลดฉาก Game Over
         SceneManager.LoadScene("GameOver");
+
     }
 
     public override void Heal(float amount)

@@ -11,6 +11,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private float _attackDamage = 10;
     [SerializeField] protected NormalAttack normalAttack;
     [SerializeField] protected float speed = 1;
+    [SerializeField] public float range = 5f;
 
     protected virtual void Awake() {
         rb2D = GetComponent<Rigidbody2D>();
@@ -41,6 +42,11 @@ public abstract class Character : MonoBehaviour
     public virtual void Heal(float h)
     {
         health = Mathf.Max(health + h, MaxHealth);
+        float newHealth = Mathf.Min(health + h, MaxHealth); // ไม่ให้เกิน MaxHealth
+        float healedAmount = newHealth - health; // คำนวณจำนวนที่เพิ่มขึ้นจริง
+        health = newHealth;
+
+        Debug.Log($"{gameObject.name} healed for {healedAmount}. Current Health: {health}/{MaxHealth}");
     }
 
     protected virtual void Die()
@@ -63,4 +69,18 @@ public abstract class Character : MonoBehaviour
     }
 
     protected abstract void Attack();
+
+    public virtual void ApplyDebuff(DamageOverTimeDebuff debuff)
+    {
+        StartCoroutine(debuff.ApplyDebuff(this));
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (Player.Instance != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(Player.Instance.transform.position, range);
+        }
+    }
+
 }
