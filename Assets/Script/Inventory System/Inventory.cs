@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
     public Image selectedItemImage;
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
+    public GameObject usedButton;
 
     //Use
     public List<Item> currentUseItems;
@@ -31,7 +32,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        player = player.GetComponent<Player>();
+        player = FindFirstObjectByType<Player>();
     }
 
     private void Update()
@@ -250,9 +251,13 @@ public class Inventory : MonoBehaviour
     public void Use(){
         if(selectedSlot== null) return;
         currentUseItems.Add(selectedSlot.item);
-        selectedSlot.RemoveItem(1);
-        foreach(UsableItem usableItem in currentUseItems){
-            //check if the item is not currently
+        RemoveItem(selectedSlot.item,1);
+        //foreach(UsableItem usableItem in currentUseItems){
+        //    //check if the item is not currently
+        //}
+        if (selectedSlot.item is UsableItem)
+        {
+            UseItem((UsableItem)selectedSlot.item);
         }
     }
 
@@ -262,9 +267,14 @@ public class Inventory : MonoBehaviour
 
         if (activeEffects.TryGetValue(itemType, out ActiveEffect existingEffect))
         {
-            if (existingEffect.item.priority >= item.priority)
+            if (existingEffect.item.priority == item.priority)
             {
                 existingEffect.remainingTime = existingEffect.item.duration;
+                return;
+            }
+            else if (existingEffect.item.priority > item.priority)
+            {
+                AddItem(selectedSlot.item, 1);
                 return;
             }
 

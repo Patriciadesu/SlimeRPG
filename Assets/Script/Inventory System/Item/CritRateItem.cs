@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class CritRateItem : UsableItem
 {
-    void Start()
+    //void Start()
+    //{
+    //    base.Start();
+    //}
+    //public override void Used()
+    //{
+    //   //bro
+    //}
+
+    public override void ApplyEffect()
     {
-        base.Start();
     }
-    public override void Used()
+
+    public override void RemoveEffect()
     {
-       //bro
     }
 }

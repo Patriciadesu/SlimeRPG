@@ -2,12 +2,19 @@
 
 public class DodgeRateItem : UsableItem
 {
-    void Start()
+    //void Start()
+    //{
+    //    base.Start();
+    //}
+    //public override void Used()
+    //{
+    //    //คือมันเป็น read only
+    //}
+    public override void ApplyEffect()
     {
-        base.Start();
     }
-    public override void Used()
+
+    public override void RemoveEffect()
     {
-        //คือมันเป็น read only
     }
 }
