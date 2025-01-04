@@ -2,12 +2,21 @@ using UnityEngine;
 
 public class SpeedItem : UsableItem
 {
-    void Start()
+    public override void Start()
     {
         base.Start();
     }
-    public override void Used()
+
+    public float speedBonus;
+
+    public override void ApplyEffect()
     {
-       //???
+        player.Speed += speedBonus;
     }
+
+    public override void RemoveEffect()
+    {
+        player.Speed -= speedBonus;
+    }
+
 }

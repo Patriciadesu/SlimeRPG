@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,15 @@ public class Inventory : MonoBehaviour
     //Use
     public List<Item> currentUseItems;
 
+    public Player player;
+
+    private Dictionary<System.Type, ActiveEffect> activeEffects = new Dictionary<System.Type, ActiveEffect>();
+
+
+    private void Start()
+    {
+        player = player.GetComponent<Player>();
+    }
 
     private void Update()
     {
@@ -32,6 +42,29 @@ public class Inventory : MonoBehaviour
             Time.timeScale = menuActivated ? 0f : 1.0f;
             inventoryMenu.SetActive(menuActivated);
             DeselectedAllSlot();
+        }
+
+        List<System.Type> effectsToRemove = new List<System.Type>();
+
+        // Update active effects
+        foreach (var i in activeEffects)
+        {
+            ActiveEffect effect = i.Value;
+            if (!effect.isActive) continue;
+
+            effect.remainingTime -= Time.deltaTime;
+            if (effect.remainingTime <= 0)
+            {
+                effect.item.RemoveEffect();
+                effect.isActive = false;
+                effectsToRemove.Add(i.Key);
+            }
+        }
+
+        // Remove expired effects
+        foreach (var type in effectsToRemove)
+        {
+            activeEffects.Remove(type);
         }
     }
 
@@ -220,6 +253,39 @@ public class Inventory : MonoBehaviour
         selectedSlot.RemoveItem(1);
         foreach(UsableItem usableItem in currentUseItems){
             //check if the item is not currently
+        }
+    }
+
+    public void UseItem(UsableItem item)
+    {
+        System.Type itemType = item.GetType();
+
+        if (activeEffects.TryGetValue(itemType, out ActiveEffect existingEffect))
+        {
+            if (existingEffect.item.priority >= item.priority)
+            {
+                existingEffect.remainingTime = existingEffect.item.duration;
+                return;
+            }
+
+            existingEffect.item.RemoveEffect();
+            existingEffect.isActive = false;
+        }
+
+        ActiveEffect newEffect = new ActiveEffect(item);
+        item.ApplyEffect();
+        activeEffects[itemType] = newEffect;
+    }
+
+    public void PrintActiveEffects()
+    {
+        Debug.Log("Currently Active Effects:");
+        foreach (var effect in activeEffects)
+        {
+            if (effect.Value.isActive)
+            {
+                Debug.Log($"{effect.Value.item.itemName}: {effect.Value.remainingTime:F1}s remaining");
+            }
         }
     }
 
