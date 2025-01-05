@@ -19,7 +19,7 @@ MonoBehaviour:
   Have: 1
   _price: 0
   coolDown: 12
-  isActive: 1
+  isActive: 0
   rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: 7fefc6e1e5db1374397056b17305d950, type: 2}

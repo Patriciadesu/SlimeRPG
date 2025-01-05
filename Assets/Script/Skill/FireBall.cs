@@ -26,23 +26,33 @@ public class FireBall : ActiveSkill
             yield break;
         }
 
-        // คำนวณตำแหน่งการยิง
         Vector3 playerPosition = Player.Instance.transform.position;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
+        mousePosition.z = playerPosition.z;
 
         Vector3 direction = (mousePosition - playerPosition).normalized;
         Vector3 targetPosition = playerPosition + direction * range;
 
-        // แสดงผลลูกบอลไฟ
         if (fireBallPrefab != null)
         {
             GameObject fireBallEffect = Instantiate(fireBallPrefab, playerPosition, Quaternion.identity);
-            SkillManager.Instance.StartSkillCoroutine(MoveEffectToTarget(fireBallEffect, targetPosition));
+            if (SkillManager.Instance != null)
+            {
+                SkillManager.Instance.StartSkillCoroutine(MoveEffectToTarget(fireBallEffect, targetPosition));
+            }
+            else
+            {
+                Debug.LogError("SkillManager.Instance is null");
+            }
+        }
+        else
+        {
+            Debug.LogError("fireBallPrefab is null");
         }
 
-        // ตรวจหาเป้าหมายในระยะ
-        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(targetPosition, 0.5f, targetLayer);
+        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(targetPosition, 1f, targetLayer);
+        Debug.Log($"Hit Targets: {hitTargets.Length}");
+
         foreach (Collider2D targetCollider in hitTargets)
         {
             if (targetCollider.TryGetComponent<Character>(out var target))

@@ -2675,7 +2675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 11400000, guid: 8377a49a13e519348903a780689b794b, type: 2}
-  skillSlotType: 1
+  skillSlotType: 2
 --- !u!114 &797504637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3428,8 +3428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -628, y: -462}
-  m_SizeDelta: {x: 274.4338, y: 94.083}
+  m_AnchoredPosition: {x: -628, y: -461.99994}
+  m_SizeDelta: {x: 307.7537, y: 94.083}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177043594
 MonoBehaviour:
@@ -4282,7 +4282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: 4f52ee396b62c2844b0cb505d93fb98f, type: 2}
+  skill: {fileID: 11400000, guid: 57fe94f4921367842a6e9e1596242bc2, type: 2}
   skillSlotType: 3
 --- !u!1 &1540922453
 GameObject:
@@ -4687,8 +4687,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -628, y: -333}
-  m_SizeDelta: {x: 274.4338, y: 94.083}
+  m_AnchoredPosition: {x: -626.33, y: -333}
+  m_SizeDelta: {x: 304.4217, y: 94.083}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687569301
 MonoBehaviour:

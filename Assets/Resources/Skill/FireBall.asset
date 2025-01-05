@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   SkillSprite: {fileID: 0}
-  Name: 
+  Name: FireBall
   skillID: 
-  Have: 0
+  Have: 1
   _price: 0
   coolDown: 0
   isActive: 1
@@ -28,8 +28,8 @@ MonoBehaviour:
   debuffDuration: 3
   range: 5
   cooldown: 5
-  fireBallPrefab: {fileID: 5219110895033281203, guid: 3fd15ee8e05cba54e9e226e402450fe0, type: 3}
-  effectSpeed: 10
+  fireBallPrefab: {fileID: -2253911629886400664, guid: 8e8cdf24de93dbd4b8d84c2b7b9123b9, type: 3}
+  effectSpeed: 5
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
