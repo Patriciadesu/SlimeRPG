@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 1
   SkillSprite: {fileID: 0}
   Name: 
-  skillID: 
+  skillID: 677a869758eb4c39ccd12970
   Have: 0
   _price: 0
   coolDown: 0
