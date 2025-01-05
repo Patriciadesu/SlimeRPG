@@ -83,6 +83,11 @@ public class Player : Character
         }
         DontDestroyOnLoad(this);
         base.Awake();
+
+        SkillSlotUI.Instance?.SetSkillImage(normalAttack, SkillSlotType.NormalAttack);
+        SkillSlotUI.Instance?.SetSkillImage(activeSkill1, SkillSlotType.ActiveSkill1);
+        SkillSlotUI.Instance?.SetSkillImage(activeSkill2, SkillSlotType.ActiveSkill2);
+        SkillSlotUI.Instance?.SetSkillImage(mobilitySkill, SkillSlotType.Mobility);
     }
     void FixedUpdate()
     {
@@ -328,6 +333,8 @@ public class Player : Character
                 }
                 break;
         }
+
+        SkillSlotUI.Instance?.SetSkillImage(skill, skillSlotType);
     }
 
     public enum SkillSlotType
