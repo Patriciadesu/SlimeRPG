@@ -10,22 +10,35 @@ public class Spawner : MonoBehaviour
     public int maxNearbyEnemy;
     public float triggerZoneRange;
     public List<Enemy> storedEnemies = new List<Enemy>();
+    private bool canSpawn = true; // Flag to control spawning
 
     public IEnumerator SpawnEnemy()
     {
-        //Debug.Log("Start spawn function");
         while (storedEnemies.Count < maxNearbyEnemy && isPlayerInRange())
         {
-            //Debug.Log("Start spawning enemy in");
-            Vector2 randomSpawnPosition = CalculateSpawnPosition();
-            int randomEnemy = Random.Range(0, enemyIDs.Count);
+            if (canSpawn)
+            {
+                canSpawn = false; // Set the flag to prevent spawning during the delay
+                Vector2 randomSpawnPosition = CalculateSpawnPosition();
+                int randomEnemy = Random.Range(0, enemyIDs.Count);
 
-            Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy , randomSpawnPosition);
-            storedEnemies.Add(enemyspawning);
-            //Debug.Log("spawning should be right now");
-            yield return new WaitForSeconds(spawnDelay);
+                Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy, randomSpawnPosition);
+                storedEnemies.Add(enemyspawning);
+
+                yield return StartCoroutine(StartSpawnDelay());
+            }
+            else
+            {
+                yield return null; // Wait for the delay to finish
+            }
         }
         yield return null;
+    }
+
+    private IEnumerator StartSpawnDelay()
+    {
+        yield return new WaitForSeconds(spawnDelay);
+        canSpawn = true; // Allow spawning again after the delay
     }
 
     private Vector2 CalculateSpawnPosition()
@@ -50,7 +63,6 @@ public class Spawner : MonoBehaviour
         {
             Debug.Log("Player is in Spawner Trigger");
             StartCoroutine(SpawnEnemy());
-            //Debug.Log($"Stored enemy count ={storedEnemies.Count}");
         }
     }
 
@@ -58,25 +70,33 @@ public class Spawner : MonoBehaviour
     {
         while (storedEnemies.Count < maxNearbyEnemy)
         {
-            //Debug.Log("Start spawning enemy in");
-            Vector2 randomSpawnPosition = CalculateSpawnPosition();
-            int randomEnemy = Random.Range(0, enemyIDs.Count);
-           
-            Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy , randomSpawnPosition);
-            storedEnemies.Add(enemyspawning);
-            //Debug.Log("spawning should be right now");
-            yield return new WaitForSeconds(spawnDelay);
+            if (canSpawn)
+            {
+                canSpawn = false; // Set the flag to prevent spawning during the delay
+                Vector2 randomSpawnPosition = CalculateSpawnPosition();
+                int randomEnemy = Random.Range(0, enemyIDs.Count);
+
+                Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy, randomSpawnPosition);
+                storedEnemies.Add(enemyspawning);
+
+                yield return StartCoroutine(StartSpawnDelay());
+            }
+            else
+            {
+                yield return null; // Wait for the delay to finish
+            }
         }
         yield return null;
     }
-    private Enemy SpawnEnemyOnPosition(int ID , Vector2 pos)
+
+    private Enemy SpawnEnemyOnPosition(int ID, Vector2 pos)
     {
-        return Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[ID]),pos,Quaternion.identity,this.transform).GetComponent<Enemy>();
+        return Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[ID]), pos, Quaternion.identity, this.transform).GetComponent<Enemy>();
     }
 
     public void ForceDie()
     {
-        foreach(Enemy enemy in storedEnemies)
+        foreach (Enemy enemy in storedEnemies)
         {
             storedEnemies.Remove(enemy);
             Destroy(enemy);
