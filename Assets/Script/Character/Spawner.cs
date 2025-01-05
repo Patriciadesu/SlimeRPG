@@ -11,7 +11,6 @@ public class Spawner : MonoBehaviour
     public float triggerZoneRange;
     public List<Enemy> storedEnemies = new List<Enemy>();
 
-
     public IEnumerator SpawnEnemy()
     {
         //Debug.Log("Start spawn function");

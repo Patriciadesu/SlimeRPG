@@ -6,6 +6,7 @@ public class CameraShaker : MonoBehaviour
 {
     public static CameraShaker Instance;
     [SerializeField] private CinemachineFollow cinemachineFollow;
+    private Vector3 defaultOffset;
 
     private void Awake()
     {
@@ -13,6 +14,8 @@ public class CameraShaker : MonoBehaviour
             Destroy(Instance.gameObject);
 
         Instance = this;
+
+        defaultOffset = cinemachineFollow.FollowOffset;
     }         
 
     public void TriggerShake(float shakeDuration, float shakeTime, float shakeMagnitude) =>
@@ -22,7 +25,7 @@ public class CameraShaker : MonoBehaviour
     {
         float start = 0;
 
-        Vector3 firstPos = cinemachineFollow.FollowOffset;
+        Vector3 firstPos = defaultOffset;
 
         while (true)
         {
