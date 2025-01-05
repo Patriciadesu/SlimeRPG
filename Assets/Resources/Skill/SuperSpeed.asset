@@ -15,10 +15,10 @@ MonoBehaviour:
   level: 1
   SkillSprite: {fileID: 0}
   Name: 
-  skillID: 
+  skillID: 677a870b58eb4c39ccd12975
   Have: 0
   _price: 0
   coolDown: 0
-  isActive: 0
+  isActive: 1
   activateType: 0
   UseTime: 2
