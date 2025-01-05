@@ -7582,8 +7582,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: spawnDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
       propertyPath: maxNearbyEnemy
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: triggerZoneRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: enemyIDs.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
       propertyPath: requiredPlayerRange
@@ -7591,7 +7603,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
       propertyPath: 'enemyIDs.Array.data[0]'
-      value: 0
+      value: 677a33b558eb4c39ccd12967
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: 'enemyIDs.Array.data[1]'
+      value: 677a33c358eb4c39ccd12968
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: 'enemyIDs.Array.data[2]'
+      value: 676020852f796b22622d849c
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542231258717994723, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
+      propertyPath: 'enemyIDs.Array.data[3]'
+      value: 677a339658eb4c39ccd12965
       objectReference: {fileID: 0}
     - target: {fileID: 6408802698975769688, guid: 6218e8d103a45384589be7dd82a6cdf8, type: 3}
       propertyPath: m_Name

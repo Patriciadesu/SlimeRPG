@@ -54,7 +54,8 @@ MonoBehaviour:
   _attackDamage: 10
   normalAttack: {fileID: 11400000, guid: fa1cd065519e6c6498fd6502250fd599, type: 2}
   speed: 1
-  id: 4
+  range: 5
+  id: 677a338158eb4c39ccd12964
   skills:
   - {fileID: 11400000, guid: e17485388e5d4514d95ba9c233b469de, type: 2}
   chaseDistance: 8
