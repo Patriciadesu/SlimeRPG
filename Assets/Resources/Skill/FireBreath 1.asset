@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 1
   SkillSprite: {fileID: -7921052967969465774, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: FireBreath
-  skillID: 1
+  skillID: 677a864758eb4c39ccd1296f
   Have: 1
   _price: 0
   coolDown: 6
