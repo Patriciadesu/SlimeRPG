@@ -23,7 +23,7 @@ public class SkillContainer : MonoBehaviour , ICollectables
     {
         if(other.CompareTag("Player"))
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.B))
             {
                 Collect();
             }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SuperSpeed
   m_EditorClassIdentifier: Assembly-CSharp::SuperSpeed
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: 6413020478584453356, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: 
   skillID: 677a870b58eb4c39ccd12975
   Have: 0

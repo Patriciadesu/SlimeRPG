@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField, Tooltip("ID from Database")] String[] skillsForSale;  //Go Check Skill ID in SKillManager or Server IDK
+    [SerializeField, Tooltip("ID from Database")] string[] skillsForSale;  //Go Check Skill ID in SKillManager or Server IDK
     [SerializeField, Tooltip("Container GameObject")] SkillContainer[] skillContainers; 
     //[SerializeField, Tooltip("Multiply price")] float itemPriceMultiplier; //Not implemented
     private void Start()
