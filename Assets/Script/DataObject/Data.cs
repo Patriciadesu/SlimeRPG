@@ -89,3 +89,9 @@ public class sSpawnPos
     public float x;
     public float y;
 }
+[Serializable]
+public class sEnemy{
+    public string _id;
+    public string name;
+    public string rewardID;
+}

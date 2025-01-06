@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SprintToEnemy
   m_EditorClassIdentifier: Assembly-CSharp::SprintToEnemy
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: -1297572194080285004, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: 
   skillID: 677a86fb58eb4c39ccd12974
   Have: 0

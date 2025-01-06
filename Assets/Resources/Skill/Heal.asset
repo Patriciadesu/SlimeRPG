@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: 8020143640844766479, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: 
   skillID: 677a86ad58eb4c39ccd12971
   Have: 0

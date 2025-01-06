@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Teleport
   m_EditorClassIdentifier: Assembly-CSharp::Teleport
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: -5895191231709818157, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: 
   skillID: 677a871a58eb4c39ccd12976
   Have: 0
