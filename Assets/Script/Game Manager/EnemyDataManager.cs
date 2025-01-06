@@ -19,12 +19,14 @@ public class EnemyDataManager : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(this);
+        GetEnemyData();
     }
 
     public GameObject GetEnemy(string ID){
         foreach(GameObject enemyGO in availableEnemyPrefab){
             if(enemyGO.GetComponent<Enemy>().id.ToString() == ID){
                 Debug.Log("Get Enemy from enemy datamanager");
+                
                 return enemyGO;
             }
         }
@@ -34,12 +36,12 @@ public class EnemyDataManager : MonoBehaviour
         _enemiesFromDatabase = enemies.ToList();
     }
 
-    public IEnumerator GetEnemyRewardData(){
+    public IEnumerator GetEnemyData(){
         if(DatabaseManager.Instance == null){
             Debug.LogError("DatabaseManager.Instance is null!");
             yield break;
         }
-        DatabaseManager.Instance.GetDataObejct<sEnemy[]>(API.getAllEnemy , GetEnemyRewardData);
+        DatabaseManager.Instance.GetDataObejct<sEnemy[]>(API.getAllEnemy , GetEnemiesFromDatabase);
 
 
         yield return new WaitUntil(() => {
@@ -47,4 +49,5 @@ public class EnemyDataManager : MonoBehaviour
             return rewardloaded == availableEnemyPrefab.Count-1;
         });
     }
+
 }
