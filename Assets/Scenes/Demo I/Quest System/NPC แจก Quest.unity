@@ -1044,7 +1044,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 213676435}
         m_TargetAssemblyTypeName: QuestNPC, Assembly-CSharp
-        m_MethodName: GetQuest
+        m_MethodName: GiveQuest
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3159,7 +3159,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 213676435}
         m_TargetAssemblyTypeName: QuestNPC, Assembly-CSharp
-        m_MethodName: GetQuest
+        m_MethodName: GiveQuest
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3292,7 +3292,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 213676435}
         m_TargetAssemblyTypeName: QuestNPC, Assembly-CSharp
-        m_MethodName: GetQuest
+        m_MethodName: GiveQuest
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
