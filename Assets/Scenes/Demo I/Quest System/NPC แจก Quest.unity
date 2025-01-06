@@ -1655,6 +1655,7 @@ MonoBehaviour:
     questID: 
     name: 
     description: 
+    reward: 
     objectives: []
   questNameText: {fileID: 1195685103}
   questDescriptionText: {fileID: 1990688921}
@@ -2266,6 +2267,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295759105}
   m_CullTransparentMesh: 1
+--- !u!1 &1314907246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1314907248}
+  - component: {fileID: 1314907247}
+  m_Layer: 0
+  m_Name: RewardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1314907247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314907246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da94de9103673d946aefe621e4a01c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewards: []
+  expBoostRate: 1
+  coinBoostRate: 1
+  dropBoostRate: 1
+--- !u!4 &1314907248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314907246}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.0446177, y: -4.272887, z: 0.033685446}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1363885976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4415,6 +4464,7 @@ SceneRoots:
   - {fileID: 1580461634}
   - {fileID: 1115807604}
   - {fileID: 1050824351}
+  - {fileID: 1314907248}
   - {fileID: 1934384954}
   - {fileID: 1906920418}
   - {fileID: 1234718937}
