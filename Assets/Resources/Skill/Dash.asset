@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: Assembly-CSharp::Dash
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: 1111231892956182058, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: 
   skillID: 675d1eceb0fc615388eb4d1f
   Have: 0

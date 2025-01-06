@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBall
   m_EditorClassIdentifier: 
   level: 1
-  SkillSprite: {fileID: 0}
+  SkillSprite: {fileID: 9141367087265494435, guid: 8a6b11c22aa2d384fb2e32d6ed6714ef, type: 3}
   Name: FireBall
   skillID: 677a85f758eb4c39ccd1296e
   Have: 1
