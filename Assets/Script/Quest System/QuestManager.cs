@@ -181,8 +181,9 @@ public class QuestManager : Singleton<QuestManager>
     {
         Debug.Log($"Quest '{currentQuest.name}' completed!");
         isFinish = true;
-        UpdateQuestUI();
+        RewardManager.Instance.GiveReward(currentQuest.reward);
         currentQuest = default(Quest);
+        UpdateQuestUI();
         //Add Reward
     }
 
