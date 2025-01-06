@@ -22,28 +22,16 @@ public class SkillSlotUI : MonoBehaviour
         switch (skillSlotType)
         {
             case Player.SkillSlotType.NormalAttack:
-                if (skill is NormalAttack)
-                {
-                    normalAttackImg.sprite = skill.SkillSprite;
-                }
+                normalAttackImg.sprite = skill?.SkillSprite;
                 break;
             case Player.SkillSlotType.ActiveSkill1:
-                if (skill is ActiveSkill)
-                {
-                    activeSkill1Img.sprite = skill.SkillSprite;
-                }
+                activeSkill1Img.sprite = skill?.SkillSprite;
                 break;
             case Player.SkillSlotType.ActiveSkill2:
-                if (skill is ActiveSkill)
-                {
-                    activeSkill2Img.sprite = skill.SkillSprite;
-                }
+                activeSkill2Img.sprite = skill?.SkillSprite;
                 break;
             case Player.SkillSlotType.Mobility:
-                if (skill is Mobility)
-                {
-                    mobilitySkillImg.sprite = skill.SkillSprite;
-                }
+                mobilitySkillImg.sprite = skill?.SkillSprite;
                 break;
         }
     }

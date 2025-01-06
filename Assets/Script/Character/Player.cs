@@ -100,27 +100,30 @@ public class Player : Character
         {
             Attack();
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             UseMobility();
         }
-        if (Input.GetKeyDown(KeyCode.E))
+
+        if (iInteractable != null)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                iInteractable.Interact();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             UseSkill1();
         }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             UseSkill2();
         }
+
         PlayerInput();
-        if(iInteractable!= null )
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                iInteractable.Interact();
-            }
-            
-        }
     }
     
     protected override void Attack()
@@ -306,6 +309,27 @@ public class Player : Character
     #endregion
     public void AddSkill(Skill skill ,SkillSlotType skillSlotType)
     {
+        if (normalAttack != null && skill.GetType() == normalAttack.GetType())
+        {
+            normalAttack = null;
+            SkillSlotUI.Instance?.SetSkillImage(null, SkillSlotType.NormalAttack);
+        }
+        if (activeSkill1 != null && skill.GetType() == activeSkill1.GetType())
+        {
+            activeSkill1 = null;
+            SkillSlotUI.Instance?.SetSkillImage(null, SkillSlotType.ActiveSkill1);
+        }
+        if (activeSkill2 != null && skill.GetType() == activeSkill2.GetType())
+        {
+            activeSkill2 = null;
+            SkillSlotUI.Instance?.SetSkillImage(null, SkillSlotType.ActiveSkill2);
+        }
+        if (mobilitySkill != null && skill.GetType() == mobilitySkill.GetType())
+        {
+            mobilitySkill = null;
+            SkillSlotUI.Instance?.SetSkillImage(null, SkillSlotType.Mobility);
+        }
+
         switch (skillSlotType)
         {
             case SkillSlotType.NormalAttack:
