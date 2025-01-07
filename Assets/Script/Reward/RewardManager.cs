@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RewardManager : Singleton<RewardManager>
@@ -9,6 +10,34 @@ public class RewardManager : Singleton<RewardManager>
     public float coinBoostRate = 1f;
     public float dropBoostRate = 1f;
     
+
+    private void _Ready()
+    {
+        DatabaseManager.Instance.GetDataObejct<sReward[]>(API.getAllReward, OnGetRewardData);
+    }
+
+    public void OnGetRewardData(sReward[] allReward)
+    {
+        if (allReward == null) { Debug.LogError("Could not get all rewards ;-;"); return; }
+        foreach (sReward reward in allReward)
+        {
+            Reward rewardToAdd;
+            rewardToAdd.rewardID = reward._id;
+            rewardToAdd.exp = reward.xp;
+            rewardToAdd.coin = reward.coin;
+            rewardToAdd.items = new List<DropRate>();
+
+            foreach (sItem item in reward.item)
+            {
+                DropRate itemToAdd;
+                itemToAdd.dropRate = 0.5f; // no drop rate in sItem, defaulting to this
+                itemToAdd.itemID = item._id;
+                rewardToAdd.items.Add(itemToAdd);
+            }
+
+            rewards.Add(rewardToAdd);
+        }
+    }
     /*
     public void GetAllRewards()
     {
