@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FireBreath", menuName = "Skill/ActiveSkill/FireBreath", order = 1)]
 public class FireBreath : ActiveSkill
 {
+    [SerializeField] private GameObject fireBreathEffectPrefab; // Prefab อันเดียว
+
     [SerializeField] private float fireBreathSize = 1;
     [SerializeField] private float damageMultiply = 0.15f;
     [SerializeField] private float knockbackPower = 4;
@@ -31,17 +33,15 @@ public class FireBreath : ActiveSkill
         var mousePos = MouseInput.Instance.MousePos;
         var direction = (mousePos - plrPos).normalized;
 
-        var effectObj = EffectManager.Instance.CreateEffect(
-            level < 4 ? EffectManager.Effect.FIREBREATH1 : EffectManager.Effect.FIREBREATH2,
+        var effectObj = Instantiate(
+            fireBreathEffectPrefab,
             plrPos + (direction * (fireBreathSize * 0.15f)),
-            Quaternion.Euler(
-                0,
-                0,
-                Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg
-            ),
+            Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg),
             Player.Instance.transform
         );
-        effectObj.localScale = Vector3.one * fireBreathSize;
+
+        effectObj.transform.localScale = Vector3.one * fireBreathSize;
+
         var attackObject = effectObj.AddComponent<AttackObject>();
         attackObject.Setup(KnockbackPosition.Player, damage, knockbackPower, tickTime);
 

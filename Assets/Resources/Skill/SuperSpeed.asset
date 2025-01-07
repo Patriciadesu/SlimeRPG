@@ -18,7 +18,8 @@ MonoBehaviour:
   skillID: 677a870b58eb4c39ccd12975
   Have: 0
   _price: 0
-  coolDown: 0
+  coolDown: 3
   isActive: 1
   activateType: 0
-  UseTime: 2
+  UseTime: 5
+  SpeedMultiplier: 5

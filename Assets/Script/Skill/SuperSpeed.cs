@@ -6,36 +6,47 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SuperSpeed", menuName = "Skill/Mobility/SuperSpeed", order = 1)]
 public class SuperSpeed : Mobility
 {
-    public float UseTime = 2f; // ถึงเวลาใช้ความเร็วสูงสุดในไม่กี่วินาที
-    private float originalSpeed; // เพื่อเก็บความเร็วดั้งเดิมของตัวละคร
+    public float UseTime = 2f; // ระยะเวลาใช้งาน SuperSpeed
+    public float SpeedMultiplier = 3f; // ความเร็วที่สามารถปรับได้ (Multiplier)
+    private float originalSpeed; // ความเร็วดั้งเดิมของตัวละคร
 
     public override IEnumerator OnUse()
     {
-        if (!isActive) yield break;
+        if (!isActive)
+        {
+            Debug.Log("SuperSpeed is not active.");
+            yield break;
+        }
 
         isActive = false;
+        Debug.Log("SuperSpeed skill activated!");
 
         Player character = Player.Instance;
 
         if (character == null)
         {
+            Debug.LogWarning("Player instance is null. SuperSpeed cannot be used.");
             isActive = true;
             yield break;
         }
 
-        originalSpeed = character.Speed; // เก็บความเร็วเดิมไว้
-        character.Speed *= 2; //เพิ่มความเร็วเป็น 2 เท่า (หรือค่าใดก็ได้ที่ต้องการ)
+        // เก็บความเร็วเดิมและเพิ่มความเร็วตามค่าที่กำหนด
+        originalSpeed = character.Speed;
+        character.Speed *= SpeedMultiplier;
+        Debug.Log($"Speed increased to {character.Speed}.");
 
         yield return new WaitForSeconds(UseTime);
 
-        // เปลี่ยนความเร็วกลับเป็นค่าเดิม
+        // คืนค่าความเร็วเดิม
         if (character != null)
         {
             character.Speed = originalSpeed;
+            Debug.Log($"Speed reverted to {character.Speed}.");
         }
 
         yield return new WaitForSeconds(coolDown);
 
+        Debug.Log("SuperSpeed skill cooldown completed.");
         isActive = true;
     }
 }

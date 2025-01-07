@@ -18,7 +18,8 @@ MonoBehaviour:
   skillID: 675d1eceb0fc615388eb4d1f
   Have: 0
   _price: 0
-  coolDown: 0
+  coolDown: 5
   isActive: 1
   activateType: 0
-  dashSpeed: 1
+  dashDistance: 2
+  dashDuration: 0.2
