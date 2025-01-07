@@ -129,7 +129,10 @@ public class Player : Character
     protected override void Attack()
     {
         if (normalAttack != null)
+        {
+            animator.SetTrigger("attack");
             StartCoroutine(SkillManager.Instance.UseSkill(normalAttack));
+        }
     }
 
     private void UseMobility()
@@ -199,6 +202,16 @@ public class Player : Character
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x, y);
+
+        bool isRun = movement.magnitude > 0;
+
+        animator.SetBool("run", isRun);
+
+        if (isRun)
+        {
+            animator.SetFloat("X", movement.normalized.x);
+            animator.SetFloat("Y", movement.normalized.y);
+        }
 
         Move(movement);
         #region notUse

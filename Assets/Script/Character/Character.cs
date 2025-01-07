@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     protected Rigidbody2D rb2D;
+    protected Animator animator;
     [SerializeField] protected int _level = 1;
     public float MaxHealth { get => _maxHealth + (_maxHealth * (_level - 1) * 0.2f); }
     [SerializeField] private float _maxHealth = 100;
@@ -15,6 +16,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Awake() {
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         _level = Mathf.Max(_level, 1);
         health = MaxHealth;
@@ -57,10 +59,11 @@ public abstract class Character : MonoBehaviour
         float currentX = transform.rotation.eulerAngles.x;
         float currentZ = transform.rotation.eulerAngles.z;
 
-        if ((velocity * speed).x > 0)
-            transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
-        else if ((velocity * speed).x < 0)
-            transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
+        if (animator == null)
+            if ((velocity * speed).x > 0)
+                transform.rotation = Quaternion.Euler(currentX, 0, currentZ);
+            else if ((velocity * speed).x < 0)
+                transform.rotation = Quaternion.Euler(currentX, 180, currentZ);
     }
 
     protected abstract void Attack();
