@@ -56,8 +56,8 @@ public class EnemyDataManager : MonoBehaviour
         Debug.LogWarning("Enemy is no data");
         return;
     }
-    private void GetEnemiesFromDatabase(sEnemy[] enemies){
-        _enemiesFromDatabase = enemies.ToList();
+    private void GetEnemiesFromDatabase(List<sEnemy> enemies){
+        _enemiesFromDatabase = enemies;
     }
 
     private IEnumerator GetEnemyData(){
@@ -65,7 +65,7 @@ public class EnemyDataManager : MonoBehaviour
             Debug.LogError("DatabaseManager.Instance is null!");
             yield break;
         }
-        DatabaseManager.Instance.GetDataObejct<sEnemy[]>(API.getAllEnemy , GetEnemiesFromDatabase);
+        DatabaseManager.Instance.GetDataObejct<List<sEnemy>>(API.getAllEnemy , GetEnemiesFromDatabase);
 
         yield return new WaitUntil(() => {
             Debug.Log($"{_enemiesFromDatabase.Count} enemies loaded");
