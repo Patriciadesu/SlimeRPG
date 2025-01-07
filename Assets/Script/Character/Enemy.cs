@@ -52,11 +52,11 @@ public class Enemy : Character
     }
 
     public string id;
+    public string rewardID;
 
     [SerializeField] private EnemyAttack[] skills;
     [SerializeField] private float chaseDistance;
     [SerializeField] private float attackDistance;
-    [SerializeField] private string rewardID;
 
     private State state;
 

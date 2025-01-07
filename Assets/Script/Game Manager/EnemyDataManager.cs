@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyDataManager : MonoBehaviour
 {
     public static EnemyDataManager Instance {get; private set;}
-    public List<GameObject> availableEnemyPrefab;
+    public List<Enemy> availableEnemyPrefab;
     
     private List<sEnemy> _enemiesFromDatabase = new List<sEnemy>();
 
@@ -19,34 +19,57 @@ public class EnemyDataManager : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(this);
-        GetEnemyData();
+        SetUpEnemies();
     }
-
+    /// <summary>
+    /// Get enemy gameobject from enemy ID
+    /// </summary>
+    /// <param name="ID">enemyID</param>
+    /// <returns></returns>
     public GameObject GetEnemy(string ID){
-        foreach(GameObject enemyGO in availableEnemyPrefab){
-            if(enemyGO.GetComponent<Enemy>().id.ToString() == ID){
+        foreach(Enemy enemy in availableEnemyPrefab){
+            if(enemy.id.ToString() == ID){
                 Debug.Log("Get Enemy from enemy datamanager");
                 
-                return enemyGO;
+                return enemy.gameObject;
             }
         }
         return null;
     }
-    public void GetEnemiesFromDatabase(sEnemy[] enemies){
-        _enemiesFromDatabase = enemies.ToList();
+
+    private void SetUpEnemies(){
+        GetEnemyData();
+        SetEnemiesReward();
+    }
+    private void SetEnemiesReward(){
+        foreach(Enemy enemy in availableEnemyPrefab){
+            AddRewardtoEnemy(enemy);
+        }
+    }
+    public void AddRewardtoEnemy(Enemy enemy){
+        foreach(sEnemy enemydata in _enemiesFromDatabase){
+            if(enemy.id == enemydata._id){
+                enemy.rewardID = enemydata.rewardID;
+                return;
+            }
+        }
+        Debug.LogWarning("Enemy is no data");
+        return;
+    }
+    private void GetEnemiesFromDatabase(List<sEnemy> enemies){
+        _enemiesFromDatabase = enemies;
     }
 
-    public IEnumerator GetEnemyData(){
+    private IEnumerator GetEnemyData(){
         if(DatabaseManager.Instance == null){
             Debug.LogError("DatabaseManager.Instance is null!");
             yield break;
         }
-        DatabaseManager.Instance.GetDataObejct<sEnemy[]>(API.getAllEnemy , GetEnemiesFromDatabase);
-
+        DatabaseManager.Instance.GetDataObejct<List<sEnemy>>(API.getAllEnemy , GetEnemiesFromDatabase);
 
         yield return new WaitUntil(() => {
-            Debug.Log($"{rewardloaded} reward loaded");
-            return rewardloaded == availableEnemyPrefab.Count-1;
+            Debug.Log($"{_enemiesFromDatabase.Count} enemies loaded");
+            return _enemiesFromDatabase.Count == availableEnemyPrefab.Count;
         });
     }
 
