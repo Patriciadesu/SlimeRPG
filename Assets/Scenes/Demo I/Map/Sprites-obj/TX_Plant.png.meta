@@ -181,10 +181,10 @@ TextureImporter:
       name: TX_Plant_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 358
-        width: 115
-        height: 141
+        x: 24
+        y: 359
+        width: 113
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +203,10 @@ TextureImporter:
       name: TX_Plant_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 343
-        width: 99
-        height: 153
+        x: 161
+        y: 359
+        width: 95
+        height: 136
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,10 +225,10 @@ TextureImporter:
       name: TX_Plant_2
       rect:
         serializedVersion: 2
-        x: 294
-        y: 360
-        width: 81
-        height: 122
+        x: 295
+        y: 361
+        width: 79
+        height: 120
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
