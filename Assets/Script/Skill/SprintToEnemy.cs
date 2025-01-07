@@ -6,8 +6,9 @@ using UnityEngine;
 public class SprintToEnemy : Mobility
 {
     public float knockbackRadious = 5f;      // ระยะเมื่อโดนกระแทก
-    public float knockbackForce = 1;      // ดาเมจเมื่อกระแทก
-    public LayerMask obstacleLayer;        //เลเยอร์สำหรับตรวจจับสิ่งกีดขวาง
+    public float knockbackForce = 1;         // ดาเมจเมื่อกระแทก
+    public float knockbackDistance = 5f;     // ระยะทางสูงสุดที่ศัตรูจะถูกกระแทก
+    public LayerMask obstacleLayer;          // เลเยอร์สำหรับตรวจจับสิ่งกีดขวาง
 
     public override IEnumerator OnUse()
     {
@@ -23,33 +24,27 @@ public class SprintToEnemy : Mobility
             yield break;
         }
 
-        // รับตำแหน่งMouse
+        // รับตำแหน่ง Mouse
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = character.transform.position.z; // Align with the player's Z-axis in a 2D game
 
-        //คำนวณระยะทาง และ ตำแหน่งเป้าหมาย
+        // คำนวณระยะทาง และ ตำแหน่งเป้าหมาย
         Vector3 directionToMouse = (mousePosition - character.transform.position).normalized;
-        Vector3 targetPosition = Vector3.zero;
+        Vector3 targetPosition = mousePosition; // เริ่มต้นที่ตำแหน่ง Mouse
 
         // ตรวจสอบสิ่งกีดขวาง
         float distanceToMouse = Vector3.Distance(character.transform.position, mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(character.transform.position, directionToMouse, distanceToMouse, obstacleLayer);
         if (hit.collider != null)
         {
-            targetPosition = hit.point; // Adjust target position to the obstacle point
+            targetPosition = hit.point; // ถ้ามีสิ่งกีดขวาง จะวิ่งไปที่ตำแหน่งที่ใกล้ที่สุด
             Debug.Log("Obstacle detected. Sprinting to closest possible point.");
         }
 
-        if (targetPosition == Vector3.zero)
-        {
-            isActive = true;
-            yield break;
-        }
-
-        // Perform the sprint movement
+        // ทำการวิ่งไปยังตำแหน่งเป้าหมาย
         SprintMovement(character, targetPosition);
 
-        // ใช้งานknock back (ถ้าอยู่ใกล้)
+        // ใช้งาน knock back (ถ้าอยู่ใกล้)
         var rays = Physics2D.CircleCastAll(targetPosition, knockbackRadious, Vector2.zero, knockbackRadious, obstacleLayer);
         foreach (var ray in rays)
         {
@@ -64,7 +59,6 @@ public class SprintToEnemy : Mobility
         isActive = true;
     }
 
-
     private void SprintMovement(Player character, Vector3 targetPosition)
     {
         // ย้ายตัวละครไปยังตำแหน่งเป้าหมายโดยตรง
@@ -76,9 +70,13 @@ public class SprintToEnemy : Mobility
         Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
         if (enemyRb != null)
         {
-            // กำหนดความเร็วสำหรับการกระเด็นโดยตรง
-            enemyRb.AddRelativeForce(direction.normalized * knockbackForce * 35, ForceMode2D.Impulse);
-            Debug.Log("Enemy knocked back with force: " + knockbackForce);
+            // คำนวณทิศทางที่ศัตรูจะถูกกระแทก
+            Vector3 knockbackDirection = direction.normalized;
+            float distanceToMove = Mathf.Min(knockbackDistance, direction.magnitude); // หาระยะทางที่กระแทก (ไม่เกิน knockbackDistance)
+
+            // ใช้ AddForce เพื่อกระแทกศัตรูไปในทิศทางที่คำนวณ
+            enemyRb.AddForce(knockbackDirection * knockbackForce * distanceToMove, ForceMode2D.Impulse);
+            Debug.Log("Enemy knocked back with force: " + knockbackForce + " to distance: " + distanceToMove);
         }
     }
 }

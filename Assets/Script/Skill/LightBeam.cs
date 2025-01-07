@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LightBeam", menuName = "Skill/ActiveSkill/LightBeam", order = 1)]
 public class LightBeam : ActiveSkill
 {
+    [SerializeField] private GameObject lightBeamPrefab; // Prefab สำหรับ LightBeam
     [SerializeField] private float beamSize = 1;
     [SerializeField] private float spread = 90;
     [SerializeField] private int beamCount = 1;
@@ -32,7 +33,7 @@ public class LightBeam : ActiveSkill
         var mousePos = MouseInput.Instance.MousePos;
         var direction = (mousePos - plrPos).normalized;
 
-        float startAngle = beamCount <= 1 ? 0 : - spread / 2f;
+        float startAngle = beamCount <= 1 ? 0 : -spread / 2f;
         float step = beamCount <= 1 ? 0 : spread / (beamCount - 1);
 
         for (int i = 0; i < beamCount; i++)
@@ -44,17 +45,13 @@ public class LightBeam : ActiveSkill
                 Mathf.Sin((Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angle) * Mathf.Deg2Rad)
             ).normalized;
 
-            var effectObj = EffectManager.Instance.CreateEffect(
-                EffectManager.Effect.LIGHTBEAM,
-                plrPos + (newDirection * (beamSize * 9)),//plrPos + (direction * (beamSize * 9)),
-                Quaternion.Euler(
-                    0,
-                    0,
-                    Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg//Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg
-                ),
+            var effectObj = Instantiate(
+                lightBeamPrefab,
+                plrPos + (newDirection * (beamSize * 9)),
+                Quaternion.Euler(0, 0, Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg),
                 Player.Instance.transform
             );
-            effectObj.localScale = Vector3.one * beamSize;
+            effectObj.transform.localScale = Vector3.one * beamSize;
             var attackObject = effectObj.AddComponent<AttackObject>();
             attackObject.Setup(KnockbackPosition.Player, damage, knockbackPower);
         }

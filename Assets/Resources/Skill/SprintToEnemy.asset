@@ -18,11 +18,11 @@ MonoBehaviour:
   skillID: 677a86fb58eb4c39ccd12974
   Have: 0
   _price: 0
-  coolDown: 0
-  isActive: 1
+  coolDown: 5
+  isActive: 0
   activateType: 0
   knockbackRadious: 5
-  knockbackForce: 1
+  knockbackForce: 2
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0

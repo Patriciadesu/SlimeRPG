@@ -18,7 +18,7 @@ MonoBehaviour:
   skillID: 677a871a58eb4c39ccd12976
   Have: 0
   _price: 0
-  coolDown: 0
+  coolDown: 5
   isActive: 1
   activateType: 0
   teleportDistance: 10

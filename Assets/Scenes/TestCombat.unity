@@ -5350,7 +5350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
+  skill: {fileID: 11400000, guid: cfb5b0e4ddc51c6459c267adf47a86b0, type: 2}
   skillSlotType: 3
 --- !u!1 &801511229
 GameObject:
@@ -6072,7 +6072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
+  skill: {fileID: 11400000, guid: 2bdbdcb7a5b5dc2489f592f47dee287e, type: 2}
   skillSlotType: 3
 --- !u!1 &1044630196
 GameObject:
@@ -6428,7 +6428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
+  skill: {fileID: 11400000, guid: fe46d10ec6bccd1448c242c48b761be9, type: 2}
   skillSlotType: 3
 --- !u!114 &1096038691 stripped
 MonoBehaviour:
@@ -7431,7 +7431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4c34f14548d64cba9e4b214f09bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
+  skill: {fileID: 11400000, guid: 57fe94f4921367842a6e9e1596242bc2, type: 2}
   skillSlotType: 3
 --- !u!1 &1941793090
 GameObject:
