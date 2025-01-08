@@ -53,7 +53,6 @@ public abstract class Character : MonoBehaviour
 
     protected void Move(Vector2 velocity)
     {
-
         rb2D.linearVelocity = Vector2.Lerp(rb2D.linearVelocity, velocity * speed * (this is Player ? 3 : 2.5f), Time.fixedDeltaTime * 5);
 
         float currentX = transform.rotation.eulerAngles.x;

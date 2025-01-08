@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -93,12 +94,64 @@ public class Player : Character
         }
 
         // Load skills
+        LoadSkill(data);
 
         // Load items
         Inventory.Instance.LoadInventory(data.itemInventory);
 
         // Load quest progress
     }
+
+    private void LoadSkill(sPlayer data)
+    {
+        foreach (var skillData in data.skillInventory)
+        {
+            Skill[] skills = SkillManager.Instance.skills.Where(s => s.skillID == skillData._id).ToArray();
+
+            foreach (var skill in skills)
+            {
+                if (skill.Level <= skillData.level)
+                {
+                    skill.Have = true;
+                }
+            }
+        }
+
+        LoadSkillHotbar();
+    }
+
+    private void LoadSkillHotbar()
+    {
+        string normalAttackID = PlayerPrefs.GetString("normalAttack", null);
+        string activeSkill1ID = PlayerPrefs.GetString("activeSkill1", null);
+        string activeSkill2ID = PlayerPrefs.GetString("activeSkill2", null);
+        string mobilitySkillID = PlayerPrefs.GetString("mobilitySkill", null);
+
+        if (normalAttackID != null)
+        {
+            Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == normalAttackID);
+            normalAttack = skill.ConvertTo<NormalAttack>();
+        }
+
+        if (activeSkill1ID != null)
+        {
+            Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == activeSkill1ID);
+            activeSkill1 = skill.ConvertTo<ActiveSkill>();
+        }
+
+        if (activeSkill2ID != null)
+        {
+            Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == activeSkill2ID);
+            activeSkill2 = skill.ConvertTo<ActiveSkill>();
+        }
+
+        if (mobilitySkillID != null)
+        {
+            Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == mobilitySkillID);
+            mobilitySkill = skill.ConvertTo<Mobility>();
+        }
+    }
+
 
     public void InitializePlayerData()
     {
@@ -410,6 +463,12 @@ public class Player : Character
         }
 
         SkillSlotUI.Instance?.SetSkillImage(skill, skillSlotType);
+
+        PlayerPrefs.SetString("normalAttack", normalAttack?.skillID);
+        PlayerPrefs.SetString("activeSkill1", activeSkill1?.skillID);
+        PlayerPrefs.SetString("activeSkill2", activeSkill2?.skillID);
+        PlayerPrefs.SetString("mobilitySkill", mobilitySkill?.skillID);
+        PlayerPrefs.Save();
     }
 
     public enum SkillSlotType
