@@ -28,7 +28,7 @@ public class Login : MonoBehaviour
     void Start()
     {
         QuickSignIn();
-
+        signOut.onClick.AddListener(() => SignOut());
     }
     public void QuickSignIn()
     {
@@ -98,16 +98,15 @@ public class Login : MonoBehaviour
         waitForData = false;
         profileSet = false;
 
-        PlayerPrefs.DeleteKey("DiscordUsername");
-        PlayerPrefs.DeleteKey("ID");
-        PlayerPrefs.DeleteKey("Avatar");
+        PlayerPrefs.DeleteAll();
 
         discordUsername = null;
         id = null;
         avatar = null;
         username = null;
-        
-        startGame.gameObject.SetActive(false);
+
+        startGame.onClick.RemoveAllListeners();
+        startGame.onClick.AddListener(()=>SignIn());
         signOut.gameObject.SetActive(false);
 
         //Application.Quit();
