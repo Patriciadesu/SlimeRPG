@@ -23,7 +23,7 @@ MonoBehaviour:
   rarity: 0
   activateType: 0
   NextStep: {fileID: 0}
-  lightBeamPrefab: {fileID: 0}
+  lightBeamPrefab: {fileID: 1217021829763875618, guid: a76ce3d691eb7124697c172e969688fc, type: 3}
   beamSize: 1.3
   spread: 60
   beamCount: 3

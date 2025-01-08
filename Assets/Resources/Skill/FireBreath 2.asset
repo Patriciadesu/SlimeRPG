@@ -23,7 +23,7 @@ MonoBehaviour:
   rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: c663e89e565e85140ab533b6ae5b120c, type: 2}
-  fireBreathEffectPrefab: {fileID: 0}
+  fireBreathEffectPrefab: {fileID: 9215568423190908543, guid: f52278fcd6bfcde4e830acdff225cc31, type: 3}
   fireBreathSize: 1.2
   damageMultiply: 0.2
   knockbackPower: 6

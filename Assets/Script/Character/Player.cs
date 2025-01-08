@@ -115,6 +115,12 @@ public class Player : Character
 
     private void LoadSkill(sPlayer data)
     {
+        foreach (var skill in SkillManager.Instance.skills)
+        {
+            skill.Have = false;
+            skill.isActive = true;
+        }
+
         foreach (var skillData in data.skillInventory)
         {
             Skill[] skills = SkillManager.Instance.skills.Where(s => s.skillID == skillData._id).ToArray();
@@ -141,25 +147,29 @@ public class Player : Character
         if (normalAttackID != null)
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == normalAttackID);
-            normalAttack = skill.ConvertTo<NormalAttack>();
+            if (skill.Have && skill is NormalAttack _normalAttack)
+                normalAttack = _normalAttack;
         }
 
         if (activeSkill1ID != null)
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == activeSkill1ID);
-            activeSkill1 = skill.ConvertTo<ActiveSkill>();
+            if (skill.Have && skill is ActiveSkill _activeSkill)
+                activeSkill1 = _activeSkill;
         }
 
         if (activeSkill2ID != null)
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == activeSkill2ID);
-            activeSkill2 = skill.ConvertTo<ActiveSkill>();
+            if (skill.Have && skill is ActiveSkill _activeSkill)
+                activeSkill2 = _activeSkill;
         }
 
         if (mobilitySkillID != null)
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == mobilitySkillID);
-            mobilitySkill = skill.ConvertTo<Mobility>();
+            if (skill.Have && skill is Mobility _mobility)
+                mobilitySkill = _mobility;
         }
     }
 
