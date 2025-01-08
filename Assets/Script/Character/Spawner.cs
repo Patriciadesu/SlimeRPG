@@ -11,10 +11,11 @@ public class Spawner : MonoBehaviour
     public float triggerZoneRange;
     public List<Enemy> storedEnemies = new List<Enemy>();
     private bool canSpawn = true; // Flag to control spawning
+    public bool isInRange = false;
 
     public IEnumerator SpawnEnemy()
     {
-        while (storedEnemies.Count < maxNearbyEnemy && isPlayerInRange())
+        while (storedEnemies.Count < maxNearbyEnemy && isInRange)
         {
             if (canSpawn)
             {
@@ -49,13 +50,6 @@ public class Spawner : MonoBehaviour
         return spawnPosition;
     }
 
-    private bool isPlayerInRange()
-    {
-        Collider2D collider2D = Physics2D.OverlapCircle(this.transform.position, triggerZoneRange);
-        bool isInRange = collider2D != null && collider2D.CompareTag("Player");
-        Debug.Log($"Is player in range: {isInRange}");
-        return isInRange;
-    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
