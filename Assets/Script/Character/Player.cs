@@ -63,9 +63,9 @@ public class Player : Character
     //private SprintToEnemy SprintToEnemy;// เพิ่มตัวแปรเพื่อเก็บ SprintToEnemy
     //private Teleport Teleport;// เพิ่มตัวแปรเพื่อเก็บ Teleport
     [Header("Skill")]
-    [SerializeField] private ActiveSkill activeSkill1;
-    [SerializeField] private ActiveSkill activeSkill2;
-    [SerializeField] private Mobility mobilitySkill;
+    public ActiveSkill activeSkill1;
+    public ActiveSkill activeSkill2;
+    public Mobility mobilitySkill;
 
     // [Header("Inventory")]
     // public Inventory inventory;
