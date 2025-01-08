@@ -72,6 +72,17 @@ public class Player : Character
     //public Rigidbody2D rb2D;
     //private Skill activeQSkill; // สกิลที่จะใช้เมื่อกดปุ่ม Q
 
+    private void Start()
+    {
+        if (DatabaseManager.Instance.playerData != null)
+        {
+            LoadPlayerData(DatabaseManager.Instance.playerData);
+        }
+        else
+        {
+            Debug.LogWarning("Did't have sPlayer");
+        }
+    }
 
     public void LoadPlayerData(sPlayer data)
     {
@@ -149,15 +160,6 @@ public class Player : Character
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == mobilitySkillID);
             mobilitySkill = skill.ConvertTo<Mobility>();
-        }
-    }
-
-
-    public void InitializePlayerData()
-    {
-        if (DatabaseManager.Instance.playerData != null)
-        {
-            LoadPlayerData(DatabaseManager.Instance.playerData);
         }
     }
 
