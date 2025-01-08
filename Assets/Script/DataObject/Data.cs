@@ -1,5 +1,58 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+
+[Serializable]
+public class sPlayer
+{
+    public string _id;
+    public string discordId;
+    public int coin;
+    public sPlayerSkill[] skillInventory;
+    public sPlayerItem[] itemInventory;
+    public sPlayerStat stats;
+    public sPlayerPosition lastPos;
+    public int lastScene;
+    public string currentQuest;
+    public sPlayerProgress[] questProgress;
+    //public int __v;
+}
+
+[Serializable]
+public class sPlayerProgress
+{
+    public string _id;
+    public int currentProgress;
+}
+
+[Serializable]
+public class sPlayerItem
+{
+    public string _id;
+    public string amount;
+}
+
+[Serializable]
+public class sPlayerSkill
+{
+    public string _id;
+    public int level;
+}
+
+[Serializable]
+public class sPlayerStat
+{
+    public int level;
+    public float xp;
+    public float currentHp;
+}
+
+[Serializable]
+public class sPlayerPosition
+{
+    public float x;
+    public float y;
+}
 
 [Serializable]
 public class sQuest
@@ -94,4 +147,13 @@ public class sEnemy{
     public string _id;
     public string name;
     public string rewardID;
+}
+[Serializable]
+public class PlayerData
+{
+    public string id;
+    public string fullname;
+    public string discordId;
+    public List<string> rank;
+    public List<string> role;
 }

@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Demo I/MainMenu/MainMenu.unity
     guid: ee7b1c58e4bccc14aa413cdeb52302f9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMap.unity
     guid: d186d5ec53ee60745904e780a58bdaf1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Demo I/MainMenu/GameOver.unity
     guid: 00e7f8f34fa5522449d7c2c4717efe2a
   - enabled: 1

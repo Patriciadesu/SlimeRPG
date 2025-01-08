@@ -10,8 +10,7 @@ using UnityEngine.Playables;
 public static class API
 {
     const string www = "http://152.42.196.107:3000/";
-    const string createPlayer                                           = www + "createPlayer";
-    public static string getUser                                        => www + $"getPlayer?playerID={DatabaseManager.Instance.playerId}"; // player id
+    public static string signIn(string discordId)                                        => www + $"signIn?discordId={discordId}"; // player id
     public static string getUserItem                                    => www + $"getItem?playerID={DatabaseManager.Instance.playerId}";
     public static string addUserItem(string itemId, int amount = 1)     => www + $"addItem?playerID={DatabaseManager.Instance.playerId}&itemID={itemId}&amount={amount}";
     public static string deleteUserItem(string itemId , int amount=1)   => www + $"deleteItem?playerID={DatabaseManager.Instance.playerId}&itemID={itemId}&amount={amount}";
@@ -35,13 +34,10 @@ public static class API
 
 }
 
-public class DatabaseManager : Singleton<DatabaseManager>
+public class DatabaseManager : SingletonPersistent<DatabaseManager>
 {
-    public string playerId;
-    public void Start()
-    {
-        
-    }
+    public sPlayer playerData = null;
+    public string playerId => playerData._id;
 
     #region Get
     /// <summary>

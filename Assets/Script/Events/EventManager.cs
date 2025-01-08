@@ -59,7 +59,7 @@ public class EventManager : Singleton<EventManager>
                 }
             }
         }
-        StartCoroutine(CheckEventSpawnTime());
+        if(TodayEvents.Count>0)StartCoroutine(CheckEventSpawnTime());
     }
     public IEnumerator CheckEventSpawnTime()
     {
