@@ -70,6 +70,43 @@ public class Player : Character
     // public Inventory inventory;
     //public Rigidbody2D rb2D;
     //private Skill activeQSkill; // สกิลที่จะใช้เมื่อกดปุ่ม Q
+
+
+    public void LoadPlayerData(sPlayer data)
+    {
+        if (data == null)
+        {
+            Debug.LogWarning("Attempting to load null player data!");
+            return;
+        }
+
+        // Load basic stats
+        coin = data.coin;
+        _level = data.stats.level;
+        _exp = data.stats.xp;
+        health = data.stats.currentHp;
+
+        // Load position
+        if (data.lastPos != null && transform != null)
+        {
+            transform.position = new Vector2(data.lastPos.x, data.lastPos.y);
+        }
+
+        // Load skills
+
+        // Load items
+
+        // Load quest progress
+    }
+
+    public void InitializePlayerData()
+    {
+        if (DatabaseManager.Instance.playerData != null)
+        {
+            LoadPlayerData(DatabaseManager.Instance.playerData);
+        }
+    }
+
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
