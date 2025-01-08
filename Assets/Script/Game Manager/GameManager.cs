@@ -63,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 
     public IEnumerator UpdatePlayerData(sPlayer player)
     {
-        string url = "http://localhost:3000/api/updatePlayer"; // Replace with your API URL
+        string url = "http://152.42.196.107:3000/updatePlayer"; // Replace with your API URL
 
         string jsonData = JsonUtility.ToJson(player);
         Debug.Log("JSON Data: " + jsonData);
