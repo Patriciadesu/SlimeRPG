@@ -78183,6 +78183,7 @@ MonoBehaviour:
   signOut: {fileID: 394569100}
   startGame: {fileID: 388349341}
   sceneChange: MainMap
+  becomePatrickMode: 1
 --- !u!1 &1431974187
 GameObject:
   m_ObjectHideFlags: 0

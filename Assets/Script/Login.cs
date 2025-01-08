@@ -9,6 +9,7 @@ using UnityEngine.Video;
 
 public class Login : MonoBehaviour
 {
+
     public GameObject videoScreen;
     string baseURL = "https://nj.dekhub.com/hamsterTown";
     string tempTokens;
@@ -24,7 +25,8 @@ public class Login : MonoBehaviour
     public static string username;
     bool isLogin = true;
     public string sceneChange = "MainScene";
-
+    [Header("For Dev")]
+    public bool becomePatrickMode = false;
     void Start()
     {
         QuickSignIn();
@@ -69,6 +71,7 @@ public class Login : MonoBehaviour
 
     public void StartGame()
     {
+        if (becomePatrickMode) id = "547402456363958273";
         DatabaseManager.Instance.GetDataObejct<sPlayer>(API.signIn(id),OnGetPlayerData);
     }
     public void OnGetPlayerData(sPlayer data)
