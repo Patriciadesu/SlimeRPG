@@ -26,45 +26,51 @@ public class LightBeam : ActiveSkill
             yield break;
         }
 
-        ////////////// ATTACK //////////////
-        float damage = Player.Instance.AttackDamage * damageMultiply;
-
-        var plrPos = Player.Instance.transform.position.ConvertTo<Vector2>();
-        var mousePos = MouseInput.Instance.MousePos;
-        var direction = (mousePos - plrPos).normalized;
-
-        float startAngle = beamCount <= 1 ? 0 : -spread / 2f;
-        float step = beamCount <= 1 ? 0 : spread / (beamCount - 1);
-
-        for (int i = 0; i < beamCount; i++)
-        {
-            float angle = startAngle + (step * i);
-
-            Vector2 newDirection = new Vector2(
-                Mathf.Cos((Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angle) * Mathf.Deg2Rad),
-                Mathf.Sin((Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angle) * Mathf.Deg2Rad)
-            ).normalized;
-
-            var effectObj = Instantiate(
-                lightBeamPrefab,
-                plrPos + (newDirection * (beamSize * 9)),
-                Quaternion.Euler(0, 0, Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg),
-                Player.Instance.transform
-            );
-            effectObj.transform.localScale = Vector3.one * beamSize;
-            var attackObject = effectObj.AddComponent<AttackObject>();
-            attackObject.Setup(KnockbackPosition.Player, damage, knockbackPower);
-        }
-
         float normalSpeed = Player.Instance.Speed;
 
-        Player.Instance.Speed = 0;
+        try
+        {
+            ////////////// ATTACK //////////////
+            float damage = Player.Instance.AttackDamage * damageMultiply;
 
-        CameraShaker.Instance.TriggerShake(0.08f, stayTime, 0.55f);
+            var plrPos = Player.Instance.transform.position.ConvertTo<Vector2>();
+            var mousePos = MouseInput.Instance.MousePos;
+            var direction = (mousePos - plrPos).normalized;
 
-        yield return new WaitForSeconds(stayTime);
+            float startAngle = beamCount <= 1 ? 0 : -spread / 2f;
+            float step = beamCount <= 1 ? 0 : spread / (beamCount - 1);
 
-        Player.Instance.Speed = normalSpeed;
+            for (int i = 0; i < beamCount; i++)
+            {
+                float angle = startAngle + (step * i);
+
+                Vector2 newDirection = new Vector2(
+                    Mathf.Cos((Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angle) * Mathf.Deg2Rad),
+                    Mathf.Sin((Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angle) * Mathf.Deg2Rad)
+                ).normalized;
+
+                var effectObj = Instantiate(
+                    lightBeamPrefab,
+                    plrPos + (newDirection * (beamSize * 9)),
+                    Quaternion.Euler(0, 0, Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg),
+                    Player.Instance.transform
+                );
+                effectObj.transform.localScale = Vector3.one * beamSize;
+                var attackObject = effectObj.AddComponent<AttackObject>();
+                attackObject.Setup(KnockbackPosition.Player, damage, knockbackPower);
+            }
+
+            Player.Instance.Speed = 0;
+
+            CameraShaker.Instance.TriggerShake(0.08f, stayTime, 0.55f);
+
+            yield return new WaitForSeconds(stayTime);
+        }
+        finally
+        {
+            // Ensure the player's speed is reset
+            Player.Instance.Speed = normalSpeed;
+        }
 
         ////////////////////////////////////
 

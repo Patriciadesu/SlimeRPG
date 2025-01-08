@@ -26,36 +26,42 @@ public class FireBreath : ActiveSkill
             yield break;
         }
 
-        ////////////// ATTACK //////////////
-        float damage = Player.Instance.AttackDamage * damageMultiply;
-
-        var plrPos = Player.Instance.transform.position.ConvertTo<Vector2>();
-        var mousePos = MouseInput.Instance.MousePos;
-        var direction = (mousePos - plrPos).normalized;
-
-        var effectObj = Instantiate(
-            fireBreathEffectPrefab,
-            plrPos + (direction * (fireBreathSize * 0.15f)),
-            Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg),
-            Player.Instance.transform
-        );
-
-        effectObj.transform.localScale = Vector3.one * fireBreathSize;
-
-        var attackObject = effectObj.AddComponent<AttackObject>();
-        attackObject.Setup(KnockbackPosition.Player, damage, knockbackPower, tickTime);
-
         float normalSpeed = Player.Instance.Speed;
 
-        Player.Instance.Speed = 0;
+        try
+        {
+            ////////////// ATTACK //////////////
+            float damage = Player.Instance.AttackDamage * damageMultiply;
 
-        CameraShaker.Instance.TriggerShake(0.1f, stayTime, 0.3f);
+            var plrPos = Player.Instance.transform.position.ConvertTo<Vector2>();
+            var mousePos = MouseInput.Instance.MousePos;
+            var direction = (mousePos - plrPos).normalized;
 
-        yield return new WaitForSeconds(stayTime);
+            var effectObj = Instantiate(
+                fireBreathEffectPrefab,
+                plrPos + (direction * (fireBreathSize * 0.15f)),
+                Quaternion.Euler(0, 0, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg),
+                Player.Instance.transform
+            );
 
-        Player.Instance.Speed = normalSpeed;
+            effectObj.transform.localScale = Vector3.one * fireBreathSize;
 
-        Destroy(attackObject.gameObject);
+            var attackObject = effectObj.AddComponent<AttackObject>();
+            attackObject.Setup(KnockbackPosition.Player, damage, knockbackPower, tickTime);
+
+            Player.Instance.Speed = 0;
+
+            CameraShaker.Instance.TriggerShake(0.1f, stayTime, 0.3f);
+
+            yield return new WaitForSeconds(stayTime);
+
+            Destroy(attackObject.gameObject);
+        }
+        finally
+        {
+            // Ensure the player's speed is reset
+            Player.Instance.Speed = normalSpeed;
+        }
 
         ////////////////////////////////////
 
