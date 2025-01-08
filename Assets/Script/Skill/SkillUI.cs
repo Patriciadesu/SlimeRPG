@@ -21,6 +21,8 @@ public class SkillUI : MonoBehaviour
     [SerializeField] private GameObject addMobilityButtonList;
     [SerializeField] private Button addMobilityButton;
 
+    private int oldSkillHave = 0;
+
     private Skill skillSelected;
 
     private void Awake()
@@ -41,6 +43,13 @@ public class SkillUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             skillUI.SetActive(!skillUI.activeSelf);
+        }
+
+        int newSkillHave = SkillManager.Instance.skills.Where(s => s.Have).ToArray().Length;
+        if (newSkillHave != oldSkillHave)
+        {
+            oldSkillHave = newSkillHave;
+            LoadSkillList();
         }
     }
 
