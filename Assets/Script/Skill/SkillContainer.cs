@@ -9,17 +9,16 @@ public class SkillContainer : MonoBehaviour , ICollectables
     public Skill skill;
     public TMP_Text PriceText;
     public void Collect()
-    { GameObject player = GameObject.FindWithTag("Player");
-        Player p1 = player.GetComponent<Player>();
-        if ( p1.coin >= skill.Price)  //doesn't work
-        {
-            p1.coin -= skill.Price;
-            skill.Have = true;
-            Destroy(this.gameObject); 
-        }
-         //Player.Instance.AddSkill(skill);
+    {
+        Player p1 = GameObject.FindWithTag("Player").GetComponent<Player>();
+        skill.Have = true;
+        Destroy(this.gameObject);
+        //if ( p1.coin >= skill.Price)  //doesn't work
+        //{
+        //    p1.coin -= skill.Price;
+        //}
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
