@@ -300,4 +300,19 @@ public class Inventory : MonoBehaviour
     }
 
     #endregion
+
+    public void LoadInventory(sPlayerItem[] data)
+    {
+        foreach (var item in data)
+        {
+            Item items = ItemManager.Instance.GetItemFromID(item._id);
+            if (item == null)
+            {
+                Debug.LogError($"Item with ID {item._id} not found.");
+                continue;
+            }
+
+            AddItem(items, item.amount);
+        }
+    }
 }

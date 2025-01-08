@@ -29,7 +29,7 @@ public class sPlayerProgress
 public class sPlayerItem
 {
     public string _id;
-    public string amount;
+    public int amount;
 }
 
 [Serializable]

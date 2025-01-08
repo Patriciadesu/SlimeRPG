@@ -95,6 +95,7 @@ public class Player : Character
         // Load skills
 
         // Load items
+        Inventory.Instance.LoadInventory(data.itemInventory);
 
         // Load quest progress
     }
