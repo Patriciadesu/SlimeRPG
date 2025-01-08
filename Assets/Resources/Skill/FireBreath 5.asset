@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 5
   SkillSprite: {fileID: -7921052967969465774, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: FireBreath
-  skillID: 
+  skillID: 677a864758eb4c39ccd1296f
   Have: 1
   _price: 0
   coolDown: 7
@@ -23,6 +23,7 @@ MonoBehaviour:
   rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: 82fa3ed35dc8efb4dab6429ee2d38989, type: 2}
+  fireBreathEffectPrefab: {fileID: 0}
   fireBreathSize: 1.6
   damageMultiply: 0.4
   knockbackPower: 8

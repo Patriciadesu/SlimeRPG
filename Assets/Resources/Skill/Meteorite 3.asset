@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 3
   SkillSprite: {fileID: 6985626698306143173, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: Meteorite
-  skillID: 
+  skillID: 677a86d958eb4c39ccd12973
   Have: 1
   _price: 0
   coolDown: 10

@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 3
   SkillSprite: {fileID: 5777552420452043588, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: LightBeam
-  skillID: 
+  skillID: 677a86c358eb4c39ccd12972
   Have: 1
   _price: 0
   coolDown: 12
@@ -23,6 +23,7 @@ MonoBehaviour:
   rarity: 0
   activateType: 0
   NextStep: {fileID: 11400000, guid: be97f731ad38bb244aa2bf49e6954451, type: 2}
+  lightBeamPrefab: {fileID: 0}
   beamSize: 1.1
   spread: 60
   beamCount: 1

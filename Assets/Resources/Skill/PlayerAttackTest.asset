@@ -15,8 +15,8 @@ MonoBehaviour:
   level: 1
   SkillSprite: {fileID: 8367830406354533065, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
   Name: PlayerAttackTest
-  skillID: 
-  Have: 0
+  skillID: 677e78432bee0cae4da22338
+  Have: 1
   _price: 0
   coolDown: 1
   isActive: 1

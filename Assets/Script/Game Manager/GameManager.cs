@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using System;
@@ -19,18 +20,26 @@ public class GameManager : Singleton<GameManager>
     {
         StartCoroutine(UpdatePlayerData(CreateUpdatedData()));
     }
-
-    public sPlayer CreateUpdatedData()
+    public sPlayerProgress[] CreateUpdatedProgress()
     {
         List<sPlayerProgress> playerProgresses = new List<sPlayerProgress>();
-        foreach(QuestObjective objective in QuestManager.Instance.currentQuest.objectives)
+        if (!QuestManager.Instance.currentQuest.Equals(default(Quest)))
         {
-            playerProgresses.Add(new sPlayerProgress
+            foreach (QuestObjective objective in QuestManager.Instance.currentQuest.objectives)
             {
-                _id = objective.objectiveID,
-                currentProgress = objective.currentAmount
-            });
+                playerProgresses.Add(new sPlayerProgress
+                {
+                    _id = objective.objectiveID,
+                    currentProgress = objective.currentAmount
+                });
+            }
         }
+        return playerProgresses.ToArray();
+    }
+    public sPlayer CreateUpdatedData()
+    {
+        
+        Debug.Log(DatabaseManager.Instance.playerData._id);
         sPlayer player = new sPlayer
         {
             _id = DatabaseManager.Instance.playerData._id,
@@ -55,8 +64,8 @@ public class GameManager : Singleton<GameManager>
                 y = Player.Instance.gameObject.transform.position.y
             },
             lastScene = 1,
-            currentQuest = QuestManager.Instance.currentQuest.questID,
-            questProgress = playerProgresses.ToArray()
+            currentQuest = QuestManager.Instance.currentQuest.Equals(default(Quest))?null : QuestManager.Instance.currentQuest.questID,
+            questProgress = CreateUpdatedProgress()
         };
         return player;
     }
