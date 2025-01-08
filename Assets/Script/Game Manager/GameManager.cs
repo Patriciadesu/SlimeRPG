@@ -36,21 +36,36 @@ public class GameManager : Singleton<GameManager>
         }
         return playerProgresses.ToArray();
     }
+    public sPlayerSkill[] CreateUpdatedSkill()
+    {
+        List<sPlayerSkill> playerSkill = new List<sPlayerSkill>();
+
+        Skill[] skillHaves = SkillManager.Instance.skills.Where(s => s.Have).ToArray();
+        skillHaves = skillHaves.Select(s => Skill.GetMaxLevel(s.GetType(), true)).ToArray();
+        skillHaves = new HashSet<Skill>(skillHaves).ToArray();
+
+        foreach(Skill skill in skillHaves)
+        {
+            playerSkill.Add(new sPlayerSkill
+            {
+                _id = skill.skillID,
+                level = skill.Level
+            });
+        }
+
+        return playerSkill.ToArray();
+    }
     public sPlayer CreateUpdatedData()
     {
-        
+        var skillHaves = SkillManager.Instance.skills.Where(s => s.Have).ToArray();
+        skillHaves = skillHaves.Select(s => Skill.GetMaxLevel(s.GetType(), true)).ToArray();
         Debug.Log(DatabaseManager.Instance.playerData._id);
         sPlayer player = new sPlayer
         {
             _id = DatabaseManager.Instance.playerData._id,
             discordId = DatabaseManager.Instance.playerData.discordId,
             coin = (int)Math.Round(Player.Instance.coin, MidpointRounding.ToEven),
-            skillInventory = new sPlayerSkill[]
-            {
-                new sPlayerSkill { _id = Player.Instance.activeSkill1.skillID, level = Player.Instance.activeSkill1.Level },
-                new sPlayerSkill { _id = Player.Instance.activeSkill2.skillID, level = Player.Instance.activeSkill2.Level },
-                new sPlayerSkill { _id = Player.Instance.mobilitySkill.skillID, level = Player.Instance.mobilitySkill.Level }
-            },
+            skillInventory = CreateUpdatedSkill(),
             itemInventory = DatabaseManager.Instance.playerData.itemInventory,
             stats = new sPlayerStat
             {
