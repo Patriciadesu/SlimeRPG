@@ -82,17 +82,18 @@ public class GameManager : Singleton<GameManager>
             currentQuest = QuestManager.Instance.currentQuest.Equals(default(Quest))?null : QuestManager.Instance.currentQuest.questID,
             questProgress = CreateUpdatedProgress()
         };
+        if (player.currentQuest == "") player.currentQuest = null;
         return player;
     }
 
     public IEnumerator UpdatePlayerData(sPlayer player)
     {
-        string url = "http://152.42.196.107:3000/updatePlayer"; // Replace with your API URL
+        string url = $"http://152.42.196.107:3000/updatePlayer/{DatabaseManager.Instance.playerData._id}"; // Replace with your API URL
 
         string jsonData = JsonUtility.ToJson(player);
         Debug.Log("JSON Data: " + jsonData);
 
-        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(url, "PUT"))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
