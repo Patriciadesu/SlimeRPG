@@ -306,7 +306,7 @@ public class Inventory : MonoBehaviour
         foreach (var item in data)
         {
             Item items = ItemManager.Instance.GetItemFromID(item._id);
-            if (item == null)
+            if (items == null)
             {
                 Debug.LogError($"Item with ID {item._id} not found.");
                 continue;

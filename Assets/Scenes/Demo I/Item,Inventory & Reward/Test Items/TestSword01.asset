@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d05d558509afb49bc7cf762ee78342, type: 3}
   m_Name: TestSword01
   m_EditorClassIdentifier: 
-  itemID: test_sword
+  itemID: 677e70c32bee0cae4da22334
   itemName: Null Sword
   maxItemCount: 99
   itemSprite: {fileID: 0}

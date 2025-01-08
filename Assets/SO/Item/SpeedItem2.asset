@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc995781fd23f1409a378ff9719a8e4, type: 3}
   m_Name: SpeedItem2
   m_EditorClassIdentifier: 
-  itemID: 666
+  itemID: 675c4455b0fc615388eb4d05
   itemName: Speed Lv02
   maxItemCount: 5
   itemSprite: {fileID: 21300000, guid: b6185e315f6b640769f246c719ebe9c4, type: 3}

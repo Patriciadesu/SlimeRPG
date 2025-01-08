@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d05d558509afb49bc7cf762ee78342, type: 3}
   m_Name: TestItem02
   m_EditorClassIdentifier: 
-  itemID: test_banana
+  itemID: 677e70be2bee0cae4da22333
   itemName: Banana
   maxItemCount: 99
   itemSprite: {fileID: 21300000, guid: c9c04a4c986c94eeda2da7acd9f38a95, type: 3}
