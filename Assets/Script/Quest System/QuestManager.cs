@@ -78,9 +78,6 @@ public class QuestManager : Singleton<QuestManager>
     /// </summary>
     public void CreateAllQuests()
     {
-        /*List<sQuest> questsFromDatabase = GetQuestsFromDatabase();
-        List<sObjective> objectivesFromDatabase = GetObjectivesFromDatabase();*/
-
         allQuests.Clear();
 
         foreach (sQuest squest in _questsFromDatabase)
@@ -136,6 +133,39 @@ public class QuestManager : Singleton<QuestManager>
     /// Start current Quest
     /// </summary>
     /// <param name="quest">current Quest</param>
+    /// 
+
+
+
+    public void LoadQuestProgress(string currentQuestId, sPlayerProgress[] progress)
+    {
+        Quest currentQuest = allQuests.Find(q => q.questID == currentQuestId);
+
+        if (!currentQuest.Equals(default(Quest)))
+        {
+            Debug.LogWarning($"Quest ID {currentQuestId} not found in allQuests");
+            return;
+        }
+
+        foreach (QuestObjective objective in currentQuest.objectives)
+        {
+            sPlayerProgress objectiveProgress = Array.Find(progress, p => p._id == objective.objectiveID);
+
+            if (objectiveProgress != null)
+            {
+                objective.currentAmount = objectiveProgress.currentProgress;
+            }
+            else
+            {
+                Debug.LogWarning($"No progress found for objective ID {objective.objectiveID} in quest: {currentQuestId}");
+                objective.currentAmount = 0;
+            }
+        }
+
+        Debug.Log($"Quest progress loaded for quest: {currentQuestId}");
+    }
+
+
     public void StartQuest(Quest quest)
     {
         if (!currentQuest.Equals(default(Quest)))
