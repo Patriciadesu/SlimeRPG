@@ -139,16 +139,17 @@ public class QuestManager : Singleton<QuestManager>
 
     public void LoadQuestProgress(string currentQuestId, sPlayerProgress[] progress)
     {
-        Quest currentQuest = allQuests.Find(q => q.questID == currentQuestId);
+        Quest currentQuests = allQuests.Find(q => q.questID == currentQuestId);
         if (!currentQuest.Equals(default(Quest)))
         {
             Debug.LogWarning($"Quest ID {currentQuestId} not found in allQuests");
             return;
         }
 
+
         foreach (sPlayerProgress progressItem in progress)
         {
-            QuestObjective objective = currentQuest.objectives.Find(o => o.objectiveID == progressItem._id);
+            QuestObjective objective = currentQuests.objectives.Find(o => o.objectiveID == progressItem._id);
             if (objective != null)
             {
                 objective.currentAmount = progressItem.currentProgress;
@@ -160,7 +161,7 @@ public class QuestManager : Singleton<QuestManager>
         }
 
         Debug.Log($"Quest progress loaded for quest: {currentQuestId}");
-        StartQuest(currentQuest);
+        StartQuest(currentQuests);
     }
 
 
