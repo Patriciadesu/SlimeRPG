@@ -111,7 +111,6 @@ public class Player : Character
         Inventory.Instance.LoadInventory(data.itemInventory);
 
         // Load quest progress
-        QuestManager.Instance.LoadQuestProgress(data.currentQuest, data.questProgress); 
     }
 
     private void LoadSkill(sPlayer data)
@@ -149,28 +148,28 @@ public class Player : Character
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == normalAttackID);
             if (skill.Have && skill is NormalAttack _normalAttack)
-                normalAttack = _normalAttack;
+                AddSkill(_normalAttack, SkillSlotType.NormalAttack);
         }
 
         if (activeSkill1ID != null)
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == activeSkill1ID);
             if (skill.Have && skill is ActiveSkill _activeSkill)
-                activeSkill1 = _activeSkill;
+                AddSkill(_activeSkill, SkillSlotType.ActiveSkill1);
         }
 
         if (activeSkill2ID != null)
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == activeSkill2ID);
             if (skill.Have && skill is ActiveSkill _activeSkill)
-                activeSkill2 = _activeSkill;
+                AddSkill(_activeSkill, SkillSlotType.ActiveSkill2);
         }
 
         if (mobilitySkillID != null)
         {
             Skill skill = SkillManager.Instance.skills.FirstOrDefault(s => s.skillID == mobilitySkillID);
             if (skill.Have && skill is Mobility _mobility)
-                mobilitySkill = _mobility;
+                AddSkill(_mobility, SkillSlotType.Mobility);
         }
     }
 
@@ -188,13 +187,11 @@ public class Player : Character
         DontDestroyOnLoad(this);
         base.Awake();
 
+        Debug.Log($"SkillSloUI being null is {SkillSlotUI.Instance == null}");
         SkillSlotUI.Instance?.SetSkillImage(normalAttack, SkillSlotType.NormalAttack);
         SkillSlotUI.Instance?.SetSkillImage(activeSkill1, SkillSlotType.ActiveSkill1);
         SkillSlotUI.Instance?.SetSkillImage(activeSkill2, SkillSlotType.ActiveSkill2);
         SkillSlotUI.Instance?.SetSkillImage(mobilitySkill, SkillSlotType.Mobility);
-
-        Debug.Log(activeSkill1);
-        Debug.Log(SkillManager.Instance.skills.Count());
     }
     void FixedUpdate()
     {
