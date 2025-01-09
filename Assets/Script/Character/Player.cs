@@ -111,6 +111,7 @@ public class Player : Character
         Inventory.Instance.LoadInventory(data.itemInventory);
 
         // Load quest progress
+        QuestManager.Instance.LoadQuestProgress(data.currentQuest, data.questProgress); 
     }
 
     private void LoadSkill(sPlayer data)
@@ -191,6 +192,9 @@ public class Player : Character
         SkillSlotUI.Instance?.SetSkillImage(activeSkill1, SkillSlotType.ActiveSkill1);
         SkillSlotUI.Instance?.SetSkillImage(activeSkill2, SkillSlotType.ActiveSkill2);
         SkillSlotUI.Instance?.SetSkillImage(mobilitySkill, SkillSlotType.Mobility);
+
+        Debug.Log(activeSkill1);
+        Debug.Log(SkillManager.Instance.skills.Count());
     }
     void FixedUpdate()
     {

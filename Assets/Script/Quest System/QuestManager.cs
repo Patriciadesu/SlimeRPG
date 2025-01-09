@@ -140,7 +140,7 @@ public class QuestManager : Singleton<QuestManager>
     public void LoadQuestProgress(string currentQuestId, sPlayerProgress[] progress)
     {
         Quest currentQuests = allQuests.Find(q => q.questID == currentQuestId);
-        if (!currentQuest.Equals(default(Quest)))
+        if (!currentQuests.Equals(default(Quest)))
         {
             Debug.LogWarning($"Quest ID {currentQuestId} not found in allQuests");
             return;
@@ -161,6 +161,7 @@ public class QuestManager : Singleton<QuestManager>
         }
 
         Debug.Log($"Quest progress loaded for quest: {currentQuestId}");
+        currentQuest = default(Quest);
         StartQuest(currentQuests);
     }
 
