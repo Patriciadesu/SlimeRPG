@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
                 int randomEnemy = Random.Range(0, enemyIDs.Count);
 
                 Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy, randomSpawnPosition);
+                EnemyDataManager.Instance.AddRewardtoEnemy(enemyspawning);
                 storedEnemies.Add(enemyspawning);
 
                 yield return StartCoroutine(StartSpawnDelay());
@@ -71,6 +72,7 @@ public class Spawner : MonoBehaviour
                 int randomEnemy = Random.Range(0, enemyIDs.Count);
 
                 Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy, randomSpawnPosition);
+                EnemyDataManager.Instance.AddRewardtoEnemy(enemyspawning);
                 storedEnemies.Add(enemyspawning);
 
                 yield return StartCoroutine(StartSpawnDelay());
