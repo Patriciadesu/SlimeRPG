@@ -13,6 +13,11 @@ public class Spawner : MonoBehaviour
     private bool canSpawn = true; // Flag to control spawning
     public bool isInRange = false;
 
+    [Header("For debug")]
+    [SerializeField] private bool isAdmin = false;
+    [SerializeField] private GameObject enemyTest;
+
+
     public IEnumerator SpawnEnemy()
     {
         while (storedEnemies.Count < maxNearbyEnemy && isInRange)
@@ -24,6 +29,29 @@ public class Spawner : MonoBehaviour
                 int randomEnemy = Random.Range(0, enemyIDs.Count);
 
                 Enemy enemyspawning = SpawnEnemyOnPosition(randomEnemy, randomSpawnPosition);
+                EnemyDataManager.Instance.AddRewardtoEnemy(enemyspawning);
+                storedEnemies.Add(enemyspawning);
+
+                yield return StartCoroutine(StartSpawnDelay());
+            }
+            else
+            {
+                yield return null; // Wait for the delay to finish
+            }
+        }
+        yield return null;
+    }
+
+    public IEnumerator SpawnEnemy(bool isAdmin)
+    {
+        while (storedEnemies.Count < maxNearbyEnemy && isInRange)
+        {
+            if (canSpawn && isAdmin)
+            {
+                canSpawn = false; // Set the flag to prevent spawning during the delay
+                Vector2 randomSpawnPosition = CalculateSpawnPosition();
+                
+                Enemy enemyspawning = SpawnEnemyOnPosition(enemyTest, randomSpawnPosition);
                 EnemyDataManager.Instance.AddRewardtoEnemy(enemyspawning);
                 storedEnemies.Add(enemyspawning);
 
@@ -57,7 +85,11 @@ public class Spawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player is in Spawner Trigger");
+            if(isAdmin){
+                StartCoroutine(SpawnEnemy(isAdmin));
+            }else{
             StartCoroutine(SpawnEnemy());
+            }
         }
     }
 
@@ -88,6 +120,10 @@ public class Spawner : MonoBehaviour
     private Enemy SpawnEnemyOnPosition(int ID, Vector2 pos)
     {
         return Instantiate(EnemyDataManager.Instance.GetEnemy(enemyIDs[ID]), pos, Quaternion.identity, this.transform).GetComponent<Enemy>();
+    }
+    private Enemy SpawnEnemyOnPosition(GameObject enemyObj, Vector2 pos)
+    {
+        return Instantiate(enemyObj, pos, Quaternion.identity, this.transform).GetComponent<Enemy>();
     }
 
     public void ForceDie()
