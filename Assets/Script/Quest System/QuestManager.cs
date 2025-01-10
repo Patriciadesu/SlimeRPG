@@ -135,15 +135,19 @@ public class QuestManager : Singleton<QuestManager>
     /// <param name="quest">current Quest</param>
     /// 
 
-
-
-    public void LoadQuestProgress(string currentQuestId, sPlayerProgress[] questProgress)
+    public IEnumerator LoadQuestProgress(string currentQuestId, sPlayerProgress[] questProgress)
     {
+        yield return new WaitUntil(() =>
+        {
+            Debug.Log($"Waiting for quests data... Current count: {allQuests?.Count ?? 0}");
+            return allQuests != null && allQuests.Count > 0;
+        });
+
         Quest quest = allQuests.Find(q => q.questID == currentQuestId);
         if (quest.Equals(default(Quest)))
         {
             Debug.LogWarning($"Quest ID {currentQuestId} not found in allQuests");
-            return;
+            yield break;
         }
 
         foreach (sPlayerProgress progress in questProgress)
@@ -159,6 +163,7 @@ public class QuestManager : Singleton<QuestManager>
                 Debug.LogWarning($"No objective found with ID {progress._id} in quest: {currentQuestId}");
             }
         }
+
         currentQuest = default(Quest);
         StartQuest(quest);
     }

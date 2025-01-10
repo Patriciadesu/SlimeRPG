@@ -111,6 +111,7 @@ public class Player : Character
         Inventory.Instance.LoadInventory(data.itemInventory);
 
         // Load quest progress
+        StartCoroutine(QuestManager.Instance.LoadQuestProgress(data.currentQuest, data.questProgress));
     }
 
     private void LoadSkill(sPlayer data)
