@@ -215,6 +215,7 @@ public class QuestManager : Singleton<QuestManager>
         Debug.Log($"Quest '{currentQuest.name}' completed!");
         isFinish = true;
         RewardManager.Instance.GiveReward(currentQuest.reward);
+        currentQuest.objectives.ForEach(objective => objective.currentAmount = 0);
         currentQuest = default(Quest);
         UpdateQuestUI();
         //Add Reward
