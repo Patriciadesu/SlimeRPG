@@ -21,4 +21,4 @@ MonoBehaviour:
   player: {fileID: 0}
   priority: 1
   duration: 5
-  speedBonus: 10
+  speedBonus: 1
