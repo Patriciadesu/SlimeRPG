@@ -22,7 +22,6 @@ public class QuestObjective
     public void StartObjective()
     {
         GameManager.BattleReport += UpdateProgress;
-        currentAmount = 0;
         Debug.Log($"The objective is kill {requiredAmount} Enemy");
     }
     public void UpdateProgress(Enemy enemy)
