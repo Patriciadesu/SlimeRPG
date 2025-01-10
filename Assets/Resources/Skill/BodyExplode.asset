@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   SkillSprite: {fileID: 0}
-  Name: 
+  Name: Body Explode
   skillID: 675d1df4b0fc615388eb4d1e
   Have: 0
   _price: 0

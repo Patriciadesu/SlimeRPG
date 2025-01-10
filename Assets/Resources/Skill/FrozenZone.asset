@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   SkillSprite: {fileID: -5962389079421231736, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
-  Name: 
+  Name: FrozenZone
   skillID: 677a869758eb4c39ccd12970
   Have: 0
   _price: 0

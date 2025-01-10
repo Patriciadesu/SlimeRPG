@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SprintToEnemy
   level: 1
   SkillSprite: {fileID: -1297572194080285004, guid: 3aec91b73707d4e14b41042146067e3b, type: 3}
-  Name: 
+  Name: Sprint to Enemy
   skillID: 677a86fb58eb4c39ccd12974
   Have: 0
   _price: 0
@@ -23,6 +23,7 @@ MonoBehaviour:
   activateType: 0
   knockbackRadious: 5
   knockbackForce: 2
+  knockbackDistance: 5
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0

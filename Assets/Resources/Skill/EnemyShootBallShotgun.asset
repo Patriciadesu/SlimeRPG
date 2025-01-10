@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   SkillSprite: {fileID: 0}
-  Name: 
+  Name: EnemyShootBallShotgun
   skillID: 
   Have: 0
   _price: 0

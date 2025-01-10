@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602bb29faa384d845adf90056b43c3f9, type: 3}
   m_Name: EnemySlashAttack
   m_EditorClassIdentifier: 
+  level: 1
   SkillSprite: {fileID: 0}
-  Name: EnemyAttackTest
-  Description: Test
+  Name: EnemySlashAttack
+  skillID: 
   Have: 0
   _price: 0
   coolDown: 3
   isActive: 0
   stayTime: 1
   effectScale: {x: 2.5, y: 1.5}
+  attackCast: {x: 3, y: 3}
   attackMultiply: 1
   knockbackPower: 2.5
-  attackCast: {x: 3, y: 3}
